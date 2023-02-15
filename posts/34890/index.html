@@ -1,0 +1,971 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.ico">
+  <link rel="icon" href="/img/icon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ad8b00">
+  <meta name="author" content="没有秃头基因的燊">
+  <meta name="keywords" content="图形学, Card主题, 编程, Developer, shader">
+  
+    <meta name="description" content="计算机图形学大作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于openGL的船只航行模拟与水模拟">
+<meta property="og:url" content="https://yzs020220.github.io/posts/34890/index.html">
+<meta property="og:site_name" content="没有秃头基因的燊的博客">
+<meta property="og:description" content="计算机图形学大作业">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yzs020220.github.io/img/CGFinalWork/sailing.png">
+<meta property="article:published_time" content="2022-12-28T01:57:33.000Z">
+<meta property="article:modified_time" content="2023-02-02T14:07:11.729Z">
+<meta property="article:author" content="没有秃头基因的燊">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yzs020220.github.io/img/CGFinalWork/sailing.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>基于openGL的船只航行模拟与水模拟 - 没有秃头基因的燊的博客</title>
+  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yzs020220.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  
+  <script src="/live2d-widget/autoload.js"></script>
+
+  <link rel="stylesheet" href="https://yzs020220.github.io/css/APlayer.min.css"><!--APlayer的样式-->
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
+
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
+  <meting-js
+    server="netease"
+    type="playlist"
+    autoplay=false 
+    fixed=true 
+    lrc-type=0
+    id="8168818526"> 
+  </meting-js> 
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 75vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>没有秃头基因的燊的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/HollowKnight2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基于openGL的船只航行模拟与水模拟"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-28 09:57" pubdate>
+          2022年12月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">基于openGL的船只航行模拟与水模拟</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：13 天前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>计算机图形学大作业<span id="more"></span></p>
+<h2 id="项目地址"><a class="markdownIt-Anchor" href="#项目地址"></a> 项目地址</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzs020220/Sailing-Stimulation-using-openGL">yzs020220/Sailing-Stimulation-using-openGL: 基于openGL的船只航行模拟与水模拟 (github.com)</a></p>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+<p>因为这次实验花费了比较多的时间，个人感觉自己完成的也很不错，但是当时交报告实在是不太够时间写，所以专门写一篇博客，来记录一下（可能是刚刚建起来的博客实在是太空了，所以写一下丰富一下博客的内容）。</p>
+<p>虽然花费了比较多的时间，但其实还是有一些不尽如人意的地方，比如我尝试将Phong光照模型应用在水上，但是却会出错，不知道为什么Phong光照模型总是只会返回大概2/3水面的效果，剩下1/3几乎是全黑的，于是只好放弃做水面的光照效果了，毕竟时间有限。</p>
+<p><s>现在现实游戏里的水面大部分使用的是顶点动画来制作的，而我在这次作业中更新顶点的方法是简单粗暴地删除平面后添加平面，因为最近还在学Unity Shader入门精要，等到看到这部分的内容之后也许会来做补充（挖个坑）</s></p>
+<p>现在在游戏里比较经典的做法是用噪声纹理作为高度图，不断修改水面的法向，不过比较麻烦的是，在我们这一次作业里没有读取法线的方法（已经做完作业了也不想写），上网去找了github的代码我没翻到用法线贴图做的，虽然别人做的效果都很不错，但是我也不太想研究是怎么弄出来的（OpenGL每个人配的环境都不太一样），我也尝试了将菲涅耳反射应用在水面中，但法线还是不行，因为水面本身获得的光照就不正确。</p>
+<p>我在github中翻到的看着效果挺不错的一个项目，我反正没有尝试过。<a target="_blank" rel="noopener" href="https://github.com/damdoy/opengl_examples">opengl_examples: Collection of examples for OpenGL: Perlin noise, ambient occlusion, shadow mapping, water reflection and others</a></p>
+<h2 id="详细步骤"><a class="markdownIt-Anchor" href="#详细步骤"></a> 详细步骤</h2>
+<h3 id="水面实现"><a class="markdownIt-Anchor" href="#水面实现"></a> 水面实现</h3>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zju_fish1996/article/details/52317363">(65条消息) [OpenGL] 动态的水面模拟_ZJU_fish1996的博客-CSDN博客_opengl水面</a></p>
+<p>我更推荐看这篇博客来了解实现思路，其实水面模拟不是一件很困难的事情，我主要是创建了一个Fluid类继承TriMesh，实现思路都是大相径庭的。</p>
+<ol>
+<li>
+<p>水的平面可以看成是一个正方形平面，不同的是它不是只有四个顶点，而是由多个四顶点的正方形平面构成的一个网格：</p>
+<p><img src="/img/CGFinalWork/water_description.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</li>
+<li>
+<p>根据我们每一条边的顶点数n+1，计算出每个相邻顶点的间距，然后再根据顺序计算出各顶点的坐标与纹理坐标：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">float</span> step = <span class="hljs-number">1.0f</span> / n;<br><span class="hljs-comment">// 计算顶点位置</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">float</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++)<br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">float</span> j = <span class="hljs-number">0</span>; j &lt; n + <span class="hljs-number">1</span>; j++)<br>    &#123;<br>        vertex_positions.<span class="hljs-built_in">push_back</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">-0.5f</span> + step * j, <span class="hljs-number">0</span>, <span class="hljs-number">-0.5f</span> + step * i));<br>        vertex_colors.<span class="hljs-built_in">push_back</span>(color);<br>        vertex_textures.<span class="hljs-built_in">push_back</span>(glm::<span class="hljs-built_in">vec2</span>(step * j, step * i));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>根据网格的坐标计算出每个三角面片的顶点下标，颜色法向纹理的下标跟面片的顶点下标相同，最后调用storeFacesPoints方法将信息存储到需要传入GPU的数据：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 每个三角面片的顶点下标</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++)<br>    &#123;<br>        <span class="hljs-type">int</span> a, b, c, d;<br>        a = i * (n + <span class="hljs-number">1</span>) + j;<br>        b = a + <span class="hljs-number">1</span>;<br>        c = b + n;<br>        d = c + <span class="hljs-number">1</span>;<br>        faces.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vec3i</span>(a, b, c));<br>        faces.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vec3i</span>(b, c, d));<br>    &#125;<br>&#125;<br>normal_index = faces;<br>color_index = faces;<br>texture_index = faces;<br><br><span class="hljs-built_in">storeFacesPoints</span>();<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在main.cpp中的init方法中生成水平面，设置坐标旋转与大小，并将其与贴图加载到painter容器中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">water-&gt;<span class="hljs-built_in">generateSurface</span>(<span class="hljs-number">30</span>, glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>), <span class="hljs-number">0.03f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.05f</span>);<br>water-&gt;<span class="hljs-built_in">coefficientCount</span>(<span class="hljs-number">0.1f</span>);<br>water-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0.25</span>, <span class="hljs-number">0</span>));<br>water-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>));<br>water-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(waterScale, <span class="hljs-number">1.0</span>, waterScale));<br>painter-&gt;<span class="hljs-built_in">addMesh</span>(water, <span class="hljs-string">&quot;mesh_water&quot;</span>, <span class="hljs-string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">2</span>);<br>meshList.<span class="hljs-built_in">push_back</span>(water);<br></code></pre></td></tr></table></figure>
+<p>完成这一步骤之后我们应该能生成一个网格，如果直接生成应该能看到一个平面，想看到网格我们可以调整mesh的绘制模式，在MeshPainter.cpp文件下的drawMesh函数下调用glDrawArrays的参数中将GL_TRIANGLES换成GL_LINE_STRIP即可（可能需要更多参数，如报错请自行上网搜索），该步骤非必须，但是我建议你如果出现不知道什么问题试一下这个方法能让你更直观地观察这个平面是长什么样的</p>
+</li>
+</ol>
+<h3 id="水的波动实现"><a class="markdownIt-Anchor" href="#水的波动实现"></a> 水的波动实现</h3>
+<ol>
+<li>水波的运动位移满足微分方程，其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>是波速，是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span></span></span></span>描述阻力大小的系数，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi>y</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">xyz</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>是空间坐标，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>是时间：</li>
+</ol>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mi>z</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup><mo stretchy="false">(</mo><mfrac><mrow><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mi>z</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mi>z</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msup><mi>y</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="false">)</mo><mo>−</mo><mi>μ</mi><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>z</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac {∂^2 z}{∂t^2}=c^2 (\frac{∂^2 z}{∂x^2}+\frac{∂^2 z}{∂y^2 })-μ \frac{∂z}{∂t}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.371548em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord mathnormal">μ</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<ol start="2">
+<li>
+<p>这个方程的求解比较复杂，我们也不是使用代码来求解，所以我们直接关注用近似的方法得到的在i，j点的顶点的z方向上的位移公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>4</mn><mo>−</mo><mn>8</mn><msup><mi>c</mi><mn>2</mn></msup><msup><mi>t</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><msup><mi>d</mi><mn>2</mn></msup></mrow><mrow><mi>μ</mi><mi>t</mi><mo>+</mo><mn>2</mn></mrow></mfrac><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>μ</mi><mi>t</mi><mo>−</mo><mn>2</mn></mrow><mrow><mi>μ</mi><mi>t</mi><mo>+</mo><mn>2</mn></mrow></mfrac><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mo>+</mo><mfrac><mrow><mn>2</mn><msup><mi>c</mi><mn>2</mn></msup><msup><mi>t</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><msup><mi>d</mi><mn>2</mn></msup></mrow><mrow><mi>μ</mi><mi>t</mi><mo>+</mo><mn>2</mn></mrow></mfrac><mo stretchy="false">[</mo><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mi>z</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">z(i,j,k+1)=\frac{4-8c^2 t^2/d^2}{μt+2} z(i,j,k)+\frac{μt-2}{μt+2} z(i,j,k-1) \\ +\frac{2c^2 t^2/d^2}{μt+2}[z(i+1,j,k)+z(i-1,j,k)+z(i,j+1,k)+z(i,j-1,k)]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.371548em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">8</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:2.371548em;vertical-align:-0.8804400000000001em;"></span><span class="mord">+</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span></span></p>
+<p>其中k代表所在的帧，我们要计算下一帧需要依赖当前帧与上一帧的结果。</p>
+</li>
+<li>
+<p>为了保证迭代方程收敛，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>满足如下条件：</p>
+</li>
+</ol>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><mfrac><mrow><mi>μ</mi><mo>+</mo><msqrt><mrow><msup><mi>μ</mi><mn>2</mn></msup><mo>+</mo><mn>32</mn><msup><mi>c</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><msup><mi>d</mi><mn>2</mn></msup></mrow></msqrt></mrow><mrow><mn>8</mn><msup><mi>c</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><msup><mi>d</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">0&lt;t&lt;\frac{μ+\sqrt{μ^2+32c^2/d^2}}{8c^2/d^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65418em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.566em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.63em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6950000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.8950000000000005em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>c</mi><mo>&lt;</mo><mfrac><mi>d</mi><mrow><mn>2</mn><mi>t</mi></mrow></mfrac><msqrt><mrow><mi>μ</mi><mi>t</mi><mo>+</mo><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">0&lt;c&lt;\frac{d}{2t} \sqrt{μt+2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9588750000000001em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord mathnormal">μ</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span><span style="top:-2.9188750000000003em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.28112499999999985em;"><span></span></span></span></span></span></span></span></span></span></p>
+<ol start="4">
+<li>
+<p>接下来只需要跟据位移公式写出对应代码即可，在coefficientCount方法下计算出2）中公式的三个系数k1，k2，k3，这一步在初始化水平面时计算一次即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Fluid::coefficientCount</span><span class="hljs-params">(<span class="hljs-type">float</span> t)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">float</span> f1 = c * c * t * t / d / d;<br>    <span class="hljs-type">float</span> f2 = <span class="hljs-number">1.0f</span> / (u * t + <span class="hljs-number">2</span>);<br>    k1 = (<span class="hljs-number">4</span> - <span class="hljs-number">8</span> * f1) * f2;<br>    k2 = (u * t - <span class="hljs-number">2</span>) * f2;<br>    k3 = <span class="hljs-number">2</span> * f1 * f2;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在generateSurface方法下随机化vpb的坐标（即上一帧，若与当前帧相同则水面保持稳定），在openGL水面高度对应的是y轴坐标：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 随机化之前的坐标</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++)<br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; n; j++)<br>    &#123;<br>        tmp = <span class="hljs-built_in">rand</span>() % <span class="hljs-number">2</span>;<br>        vpb[i * (n + <span class="hljs-number">1</span>) + j].y = d * (tmp - <span class="hljs-number">0.5f</span>) * <span class="hljs-number">0.5f</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在方法updateSurfacePosition中根据公式更新顶点位置，其中vertex_positions存储当前顶点位置，vpa和vpb分别存储下一帧与上一帧的顶点位置信息。最后将坐标值转换成需要传入GPU的信息：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Fluid::updateSurfacePosition</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 顶点位置为最新的顶点</span><br>    vertex_positions = vpa;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numOfWidth + <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; numOfWidth + <span class="hljs-number">1</span>; j++)<br>        &#123;<br>            <span class="hljs-type">float</span> curY = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>            <span class="hljs-type">float</span> beforeY = vpb[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>            <span class="hljs-type">float</span> updateY = k1 * curY + k2 * beforeY;<br>            <span class="hljs-type">float</span> deltaY = <span class="hljs-number">0.0f</span>;<br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) deltaY += vertex_positions[(i - <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>            <span class="hljs-keyword">if</span> (i &lt; numOfWidth) deltaY += vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>            <span class="hljs-keyword">if</span> (j &gt; <span class="hljs-number">0</span>) deltaY += vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j - <span class="hljs-number">1</span>].y;<br>            <span class="hljs-keyword">if</span> (j &lt; numOfWidth) deltaY += vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;<br>            updateY += deltaY * k3;<br>            vpa[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y = updateY;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 之前的顶点位置变成当前顶点位置，当前更新为计算出后的顶点位置</span><br>    vpb = vertex_positions;<br>    vertex_positions = vpa;<br><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; faces.<span class="hljs-built_in">size</span>(); i++)<br>    &#123;<br>        <span class="hljs-comment">// 坐标</span><br>        points[j++] = vertex_positions[faces[i].x];<br>        points[j++] = vertex_positions[faces[i].y];<br>        points[j++] = vertex_positions[faces[i].z];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>给MeshPainter类添加replaceMesh方法，弹出最后一个mesh并添加新的mesh来更新水面的顶点信息（修改顶点位置不是通过模式变化矩阵来完成，而是直接修改了mesh的points变量，所以只能用这个方法），此处使用的方法其实有非常大的内存隐患，这个vector容器使用的类型是TriMesh而压入栈与弹出栈的是Fluid类，不过这毕竟只是一个作业所以我觉得能跑起来比什么都重要，这种地方要改都是牵一发而动全身：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MeshPainter::replaceMesh</span><span class="hljs-params">(TriMesh* mesh, <span class="hljs-type">const</span> std::string&amp; name, <span class="hljs-type">const</span> std::string&amp; texture_image, <span class="hljs-type">const</span> std::string&amp; vshader, <span class="hljs-type">const</span> std::string&amp; fshader, <span class="hljs-type">int</span> type)</span> </span>&#123;<br>    mesh_names.<span class="hljs-built_in">pop_back</span>();<br>    mesh_names.<span class="hljs-built_in">push_back</span>(name);<br><br>    meshes.<span class="hljs-built_in">pop_back</span>();<br>    meshes.<span class="hljs-built_in">push_back</span>(mesh);<br><br>    mesh_types.<span class="hljs-built_in">pop_back</span>();<br>    mesh_types.<span class="hljs-built_in">push_back</span>(type);<br><br>    openGLObject object;<br>    <span class="hljs-comment">// 绑定openGL对象，并传递顶点属性的数据</span><br><br>    <span class="hljs-built_in">bindObjectAndData</span>(mesh, object, texture_image, vshader, fshader);<br>    opengl_objects.<span class="hljs-built_in">pop_back</span>();<br>    opengl_objects.<span class="hljs-built_in">push_back</span>(object);<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在main函数中打开窗口的循环中调用replaceMesh方法将更新顶点后的水替换上去，t表示循环3次更新一次顶点，如果更新频率太高水会非常的鬼畜：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span> (t &gt; <span class="hljs-number">3</span>)<br>&#123;<br>    t = <span class="hljs-number">0</span>;<br>    water-&gt;<span class="hljs-built_in">updateSurfacePosition</span>();<br>    painter-&gt;<span class="hljs-built_in">replaceMesh</span>(water, <span class="hljs-string">&quot;mesh_water&quot;</span>, <span class="hljs-string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">2</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="船的模型读取与添加贴图"><a class="markdownIt-Anchor" href="#船的模型读取与添加贴图"></a> 船的模型读取与添加贴图</h3>
+<ol>
+<li>
+<p>在网上的许多obj模型文件用代码读取有时会出现贴图错误的问题，这是因为obj模型文件有两种版本的格式，两种格式的uv mapping的方式不同，如果你使用blender可以看到导出文件时的obj有两个选项分别是.obj与.obj(legacy)，我们可以使用blender打开模型文件（blender对fbx格式的模型文件支持比较好），再转成.obj(legacy)，关于贴图最好选择只有一张贴图的模型，而不是在mtl文件中带有多张贴图。</p>
+</li>
+<li>
+<p>使用readObj读取🚢模型文件，并在addMesh中指定贴图文件即可（🦈和🪨也是同理）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ship-&gt;<span class="hljs-built_in">setNormalize</span>(<span class="hljs-literal">true</span>);<br>ship-&gt;<span class="hljs-built_in">readObj</span>(<span class="hljs-string">&quot;./assets/ship.obj&quot;</span>);<br><br><span class="hljs-comment">// 设置物体的旋转位移</span><br>ship-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.0</span>));<br>ship-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">-65.0</span>, <span class="hljs-number">0.0</span>));<br>ship-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>));<br><br><span class="hljs-comment">// 设置材质</span><br>ship-&gt;<span class="hljs-built_in">setAmbient</span>(mat_ambient); <span class="hljs-comment">// 环境光</span><br>ship-&gt;<span class="hljs-built_in">setDiffuse</span>(mat_diffuse); <span class="hljs-comment">// 漫反射</span><br>ship-&gt;<span class="hljs-built_in">setSpecular</span>(mat_specular); <span class="hljs-comment">// 镜面反射</span><br>ship-&gt;<span class="hljs-built_in">setShininess</span>(shine); <span class="hljs-comment">//高光系数</span><br><br>painter-&gt;<span class="hljs-built_in">addMesh</span>(ship, <span class="hljs-string">&quot;mesh_ship&quot;</span>, <span class="hljs-string">&quot;./assets/Texture_01_A.png&quot;</span>, vshader, fshader, <span class="hljs-number">3</span>);<br>meshList.<span class="hljs-built_in">push_back</span>(ship);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="将phong着色应用在船上"><a class="markdownIt-Anchor" href="#将phong着色应用在船上"></a> 将Phong着色应用在船上</h3>
+<ol>
+<li>
+<p>在shader文件fshader.frag中（修改后缀名有语法提示方便修改代码，只需要修改后缀名并安装glsl扩展即可）实现Phong光照模型（如不了解可以去看看博客里的光照模型文章），取一个权重将它和纹理混合起来（本来shader中应该避免用if等条件判断，gpu执行逻辑计算需要绕弯而且都是对多个顶点或片元来执行，但是由于时间问题来不及重构代码，建议开多个shader文件并在drawmesh的时候根据类型指定使用的shader）：</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs glsl"><span class="hljs-comment">// 贴图+Phong光照</span><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(type == <span class="hljs-number">3</span>)&#123;<br>    <span class="hljs-comment">// 将顶点坐标、光源坐标和法向量转换到相机坐标系</span><br>    <span class="hljs-type">vec3</span> pos = position - eye_position;<br>    <span class="hljs-type">vec3</span> norm = (<span class="hljs-type">vec4</span>(normal, <span class="hljs-number">0.0</span>)).xyz;<br>    <span class="hljs-type">vec3</span> l_pos = light.position - eye_position;<br><br>    <span class="hljs-type">vec3</span> N = <span class="hljs-built_in">normalize</span>(norm);<br>    <span class="hljs-type">vec3</span> V = <span class="hljs-built_in">normalize</span>(-pos);<br>    <span class="hljs-type">vec3</span> L = <span class="hljs-built_in">normalize</span>(l_pos - pos);<br>    <span class="hljs-type">vec3</span> R = <span class="hljs-built_in">reflect</span>(-L, N);<br><br>    <span class="hljs-comment">// 环境光分量I_a</span><br>    <span class="hljs-type">vec4</span> I_a = light.ambient * material.ambient;<br><br>    <span class="hljs-comment">// @<span class="hljs-doctag">TODO:</span> Task2 计算系数和漫反射分量I_d</span><br>    <span class="hljs-type">float</span> diffuse_dot = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">dot</span>(L, N), <span class="hljs-number">0</span>);<br>    <span class="hljs-type">vec4</span> I_d = diffuse_dot *  light.diffuse * material.diffuse;<br><br>    <span class="hljs-comment">// @<span class="hljs-doctag">TODO:</span> Task2 计算系数和镜面反射分量I_s</span><br>    <span class="hljs-type">float</span> specular_dot_pow = <span class="hljs-built_in">pow</span>(<span class="hljs-built_in">max</span>(<span class="hljs-built_in">dot</span>(R, V), <span class="hljs-number">0</span>), material.shininess);<br>    <span class="hljs-type">vec4</span> I_s = specular_dot_pow * light.specular * material.specular;<br><br>    <span class="hljs-type">vec4</span> I = I_a + I_d + I_s;<br><br>    <span class="hljs-keyword">if</span>( <span class="hljs-built_in">dot</span>(L, N) &lt; <span class="hljs-number">0.0</span> ) &#123;<br>        I_s = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);<br>    &#125;<br><br>    fColor = <span class="hljs-built_in">texture</span>(texture1, texCoord) * <span class="hljs-number">0.7</span> + I * <span class="hljs-number">0.3</span>;<br>    fColor.a = <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在init函数下设定光源</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 设置光源位置</span><br>light-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, waterScale / <span class="hljs-number">2</span>, -waterScale / <span class="hljs-number">2</span>));<br>light-&gt;<span class="hljs-built_in">setAmbient</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 环境光</span><br>light-&gt;<span class="hljs-built_in">setDiffuse</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 漫反射</span><br>light-&gt;<span class="hljs-built_in">setSpecular</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 镜面反射</span><br>light-&gt;<span class="hljs-built_in">setAttenuation</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">0.45</span>, <span class="hljs-number">0.075</span>); <span class="hljs-comment">// 衰减系数</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设定船的材质参数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">glm::vec4 mat_ambient = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1.0f</span> &#125;;<br>glm::vec4 mat_diffuse = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1.0f</span> &#125;;<br>glm::vec4 mat_specular = &#123; <span class="hljs-number">0.5f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span> &#125;;<br><span class="hljs-type">float</span> shine = <span class="hljs-number">200.0f</span>;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="计算船的阴影并投影到平面上"><a class="markdownIt-Anchor" href="#计算船的阴影并投影到平面上"></a> 计算船的阴影并投影到平面上</h3>
+<ol>
+<li>
+<p>在meshPainter类下修改drawMesh函数，当类型为3时绘制阴影（投射到y=0的平面上）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 阴影绘制</span><br><span class="hljs-keyword">if</span> (type == <span class="hljs-number">3</span>)<br>&#123;<br>    <span class="hljs-comment">// 三角形阴影绘制</span><br>    <span class="hljs-built_in">glBindVertexArray</span>(object.vao);<br>    <span class="hljs-comment">// 根据光源位置，计算阴影投影矩阵</span><br>    glm::mat4 shadowProjMatrix = light-&gt;<span class="hljs-built_in">getShadowProjectionMatrix</span>();<br>    modelMatrix = shadowProjMatrix * modelMatrix;<br>    <span class="hljs-built_in">glUniform1i</span>(object.typeLocation, <span class="hljs-number">5</span>);<br>    <span class="hljs-comment">// 传递 unifrom 关键字的矩阵数据。</span><br>    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.modelLocation, <span class="hljs-number">1</span>, GL_FALSE, &amp;modelMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.viewLocation, <span class="hljs-number">1</span>, GL_TRUE, &amp;camera-&gt;viewMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.projectionLocation, <span class="hljs-number">1</span>, GL_TRUE, &amp;camera-&gt;projMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br>    <span class="hljs-comment">// 绘制</span><br>    <span class="hljs-built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="hljs-number">0</span>, mesh-&gt;<span class="hljs-built_in">getPoints</span>().<span class="hljs-built_in">size</span>());<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改fshader.frag（最好另开shader文件），当type为5时绘制阴影（颜色输出为黑色）：</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs glsl"><span class="hljs-comment">// 阴影</span><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type == <span class="hljs-number">5</span>) &#123;<br>    fColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="船的移动与旋转"><a class="markdownIt-Anchor" href="#船的移动与旋转"></a> 船的移动与旋转</h3>
+<ol>
+<li>
+<p>在TriMesh类中添加Movement方法（因为模型读取不一定是摆正的，所以需要一个初始的修正），船的航行是向前的，不能像螃蟹一样横着走，所以他的位移要乘上当前旋转的角度：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::movement</span><span class="hljs-params">(<span class="hljs-type">float</span> speed)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">float</span> theta = <span class="hljs-number">0.005</span>;<br>    <span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<br>        translation.x + speed * theta * -<span class="hljs-built_in">sin</span>(glm::<span class="hljs-built_in">radians</span>(rotation.y + <span class="hljs-number">65</span>)),<br>        translation.y,<br>        translation.z + speed * theta * -<span class="hljs-built_in">cos</span>(glm::<span class="hljs-built_in">radians</span>(rotation.y + <span class="hljs-number">65</span>))));<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>添加changeDir方法，修改船在y轴上的旋转（Movement应用了y轴的旋转，所以可以做到转向航行）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::changeDir</span><span class="hljs-params">(<span class="hljs-type">float</span> dir)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">float</span> theta = <span class="hljs-number">0.2</span>;<br>    rotation.y += dir * theta;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>添加键盘监听，修改全局变量speed和dir（w、s加速减速，a、d向左向右）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 键盘响应函数</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">key_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> scancode, <span class="hljs-type">int</span> action, <span class="hljs-type">int</span> mode)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (action == GLFW_PRESS) &#123;<br>        <span class="hljs-keyword">switch</span> (key)<br>        &#123;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_ESCAPE: <span class="hljs-built_in">exit</span>(EXIT_SUCCESS); <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_H: <span class="hljs-built_in">printHelp</span>(); <span class="hljs-keyword">break</span>;<br><br>        <span class="hljs-keyword">case</span> GLFW_KEY_2: controlShark = <span class="hljs-literal">true</span>; speed = <span class="hljs-number">0</span>; dir = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_1: controlShark = <span class="hljs-literal">false</span>; speed = <span class="hljs-number">0</span>; dir = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<br><br>        <span class="hljs-keyword">case</span> GLFW_KEY_W: speed += <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_S: speed -= <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_A: dir += <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> GLFW_KEY_D: dir -= <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;<br><br>        <span class="hljs-keyword">default</span>:<br>            camera-&gt;<span class="hljs-built_in">keyboard</span>(key, action, mode);<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>船只跟随水面高低波动，由于水面时高时低，在y轴上不会有位移的船很容易变成潜水艇或者飞船，所以要根据所在水面的顶点位置更新它的y轴位置，由于水面的网格的x，z值不会发生改变，我们只要根据船所在的位置映射到当前水面并获取周围的四个顶点的y值，计算出当前水面相对初始值的偏移量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">float</span> <span class="hljs-title">Fluid::getOffset</span><span class="hljs-params">(glm::vec3 pos)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">float</span> x = pos.x;<br>    <span class="hljs-type">float</span> z = pos.z;<br>    <span class="hljs-type">int</span> i = (x + <span class="hljs-number">0.5</span>) * (numOfWidth + <span class="hljs-number">1.0</span>);<br>    <span class="hljs-type">int</span> j = (z + <span class="hljs-number">0.5</span>) * (numOfWidth + <span class="hljs-number">1.0</span>);<br>    <span class="hljs-keyword">if</span> (i &lt; numOfWidth + <span class="hljs-number">1</span> &amp;&amp; j &lt; numOfWidth + <span class="hljs-number">1</span> &amp;&amp; i &gt;= <span class="hljs-number">0</span> &amp;&amp; j &gt;= <span class="hljs-number">0</span>)<br>    &#123;<br>        <span class="hljs-type">float</span> ay = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>        <span class="hljs-type">float</span> by = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;<br>        <span class="hljs-type">float</span> cy = vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;<br>        <span class="hljs-type">float</span> dy = vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;<br>        <span class="hljs-keyword">return</span> (ay + by + cy + dy) / <span class="hljs-number">4</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0.0f</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>根据offset加入船只的左右前后晃动，让它更有在海上的感觉：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::shake</span><span class="hljs-params">(<span class="hljs-type">float</span> offset)</span></span><br><span class="hljs-function"></span>&#123;<br>    rotation.x = offset * <span class="hljs-number">60</span>;<br>    rotation.z = offset * <span class="hljs-number">30</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在main函数中根据速度和方向调用movement和changeDir函数并根据偏移值在main函数中实时更新船只的y轴坐标并调用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ship-&gt;<span class="hljs-built_in">movement</span>(speed);<br><span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(speed) &gt; <span class="hljs-number">0.01f</span>)<br>&#123;<br>    ship-&gt;<span class="hljs-built_in">changeDir</span>(dir);<br>    glm::vec3 pos = ship-&gt;<span class="hljs-built_in">getTranslation</span>();<br>    pos.y = <span class="hljs-number">0.5</span>;<br>    camera-&gt;<span class="hljs-built_in">focus</span>(glm::<span class="hljs-built_in">vec4</span>(pos, <span class="hljs-number">1.0f</span>));<br>    camera-&gt;<span class="hljs-built_in">updateCamera</span>();<br>&#125;<br>glm::vec3 pos = ship-&gt;<span class="hljs-built_in">getTranslation</span>();<br><span class="hljs-type">float</span> offset = water-&gt;<span class="hljs-built_in">getOffset</span>(pos / waterScale);<br>pos.y = <span class="hljs-number">0.5</span> + offset / <span class="hljs-number">10</span>;<br>ship-&gt;<span class="hljs-built_in">setTranslation</span>(pos);<br>ship-&gt;<span class="hljs-built_in">shake</span>(offset);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="相机跟随"><a class="markdownIt-Anchor" href="#相机跟随"></a> 相机跟随</h3>
+<ol>
+<li>
+<p>为Camera类添加focus方法，修改at：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Camera::focus</span><span class="hljs-params">(glm::vec4 _at)</span> </span>&#123;<br>    at = _at;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改updateCamera方法，让相机跟随焦点位置更新：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">eye = at + glm::<span class="hljs-built_in">vec4</span>(eyex, eyey, eyez, <span class="hljs-number">1.0</span>);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="天空盒的实现"><a class="markdownIt-Anchor" href="#天空盒的实现"></a> 天空盒的实现</h3>
+<ol>
+<li>
+<p>从网上下载一个天空盒图片切成6张图片（可以在网上找设定像素切割的工具，如果你是PS好手也可以直接处理，暗藏玄🐔）</p>
+<p><img src="/img/CGFinalWork/img_choose.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</li>
+<li>
+<p>直接生成6个正方形平面拼起来，不想赘述了，简单的很</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">skybox1-&gt;<span class="hljs-built_in">generateSquare</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>));<br><br>skybox1-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, waterScale / <span class="hljs-number">15</span>, -waterScale / <span class="hljs-number">2</span>));<br>skybox1-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>));<br>skybox1-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(waterScale, waterScale, waterScale));<br><br>painter-&gt;<span class="hljs-built_in">addMesh</span>(skybox1, <span class="hljs-string">&quot;skybox1&quot;</span>, <span class="hljs-string">&quot;./assets/_skybox_6.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">1</span>);<br>meshList.<span class="hljs-built_in">push_back</span>(skybox1);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="水的半透明效果"><a class="markdownIt-Anchor" href="#水的半透明效果"></a> 水的半透明效果</h3>
+<ol>
+<li>
+<p>在fshader中修改水输出颜色的透明度：</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs glsl"><span class="hljs-comment">// 水</span><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(type == <span class="hljs-number">2</span>)&#123;<br>    fColor = <span class="hljs-built_in">texture</span>(texture1, texCoord);<br>    fColor.a = <span class="hljs-number">0.7</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>透明效果详细来讲的话会涉及非常多的东西，简略地讲，我们就是将前面的透明物体与后面的物体的颜色进行混合，混合因子就是控制它们的系数，我们选择用透明度与1-透明度作为混合因子，启动混合功能并设置混合函数，最后在设置深度缓冲区为读写：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br><br>    <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);<br>    <span class="hljs-built_in">glEnable</span>(GL_BLEND);<br>    <span class="hljs-built_in">glBlendFunc</span>(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);<br>    painter-&gt;<span class="hljs-built_in">drawMeshes</span>(light, camera);<br><br>    <span class="hljs-built_in">glDepthMask</span>(GL_TRUE);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="最终结果"><a class="markdownIt-Anchor" href="#最终结果"></a> 最终结果</h2>
+<p><img src="/img/CGFinalWork/sailing.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6/" class="category-chain-item">学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
+      
+        <a href="/tags/%E4%BD%9C%E4%B8%9A/">#作业</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基于openGL的船只航行模拟与水模拟</div>
+      <div>https://yzs020220.github.io/posts/34890/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>没有秃头基因的燊</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/34941/" title="光照模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">光照模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/48031/" title="Hexo guide">
+                        <span class="hidden-mobile">Hexo guide</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"yzs020220/giscus-repo","repo-id":"R_kgDOI4ZyKQ","category":"Announcements","category-id":"DIC_kwDOI4ZyKc4CT7cN","theme-light":"light","theme-dark":"dark","mapping":"title","reactions-enabled":10,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
