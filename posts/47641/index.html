@@ -16,16 +16,16 @@
   <meta name="author" content="没有秃头基因的燊">
   <meta name="keywords" content="图形学, Card主题, 编程, Developer, shader">
   
-    <meta name="description" content="使用APlayer+MetingJS方便快捷地为你的博客添加歌单">
+    <meta name="description" content="使用APlayer+MetingJS方便快捷地为你的博客添加歌单，qq音乐不能外链，建议网易">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo添加全局音乐播放-APlayer(包含位置修改)">
 <meta property="og:url" content="https://yzs020220.github.io/posts/47641/index.html">
 <meta property="og:site_name" content="没有秃头基因的燊的博客">
-<meta property="og:description" content="使用APlayer+MetingJS方便快捷地为你的博客添加歌单">
+<meta property="og:description" content="使用APlayer+MetingJS方便快捷地为你的博客添加歌单，qq音乐不能外链，建议网易">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yzs020220.github.io/img/music.png">
 <meta property="article:published_time" content="2023-02-15T10:42:07.000Z">
-<meta property="article:modified_time" content="2023-02-15T14:02:16.964Z">
+<meta property="article:modified_time" content="2023-02-16T04:12:09.890Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Fluid">
@@ -308,7 +308,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 小时前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -316,7 +316,18 @@
             
               <div class="markdown-body">
                 
-                <p>使用APlayer+MetingJS方便快捷地为你的博客添加歌单<span id="more"></span></p>
+                <p>使用APlayer+MetingJS方便快捷地为你的博客添加歌单，qq音乐不能外链，建议网易<span id="more"></span></p>
+<link rel="stylesheet" href="https://yzs020220.github.io/css/APlayer.min.css"><!--APlayer的样式-->
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
+<meting-js
+ server="netease"
+ type="playlist"
+ autoplay=false 
+fixed=true 
+lrc-type=0
+ id="8168818526"> 
+</meting-js>
 <h2 id="全局添加音乐播放器"><a class="markdownIt-Anchor" href="#全局添加音乐播放器"></a> 全局添加音乐播放器</h2>
 <p>APlayer提供了吸底模式，在主题文件夹下的<code>/source/layout/_partials/head.ejs</code>下加入以下代码即可(如果是其他主题，找到head对应的文件渲染成html即可)</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;</span>&gt;</span><span class="hljs-comment">&lt;!--APlayer的样式--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-comment">&lt;!--APlayer的依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-comment">&lt;!--Meting的依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meting-js</span></span><br><span class="hljs-tag">    <span class="hljs-attr">server</span>=<span class="hljs-string">&quot;tencent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;playlist&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">autoplay</span>=<span class="hljs-string">false</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">fixed</span>=<span class="hljs-string">true</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">lrc-type</span>=<span class="hljs-string">0</span></span><br><span class="hljs-tag">    <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;8807687250&quot;</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">meting-js</span>&gt;</span> <br></code></pre></td></tr></table></figure>
