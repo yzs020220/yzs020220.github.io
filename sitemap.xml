@@ -208,13 +208,6 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/Cards%E4%B8%BB%E9%A2%98/</loc>
-    <lastmod>2023-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yzs020220.github.io/tags/%E6%8A%98%E8%85%BE/</loc>
     <lastmod>2023-02-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -222,14 +215,7 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/Fluid%E4%B8%BB%E9%A2%98/</loc>
-    <lastmod>2023-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
+    <loc>https://yzs020220.github.io/tags/Cards%E4%B8%BB%E9%A2%98/</loc>
     <lastmod>2023-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -244,6 +230,20 @@
   
   <url>
     <loc>https://yzs020220.github.io/tags/%E9%9F%B3%E4%B9%90/</loc>
+    <lastmod>2023-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/Fluid%E4%B8%BB%E9%A2%98/</loc>
+    <lastmod>2023-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
     <lastmod>2023-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
