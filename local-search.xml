@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>Hexo博客添加live2看板娘-可换装，增删模型</title>
+    <link href="/posts/41158/"/>
+    <url>/posts/41158/</url>
+    
+    <content type="html"><![CDATA[<p>记录如何折腾左下角的看板娘，包括live2d_widget的使用，如何自己修改live2d_api中的模型并上传到NPM上再通过CDN加速访问，以及如何调整模型的大小进行适配。<span id="more"></span></p><h2 id="live2d_widget的使用"><a class="markdownIt-Anchor" href="#live2d_widget的使用"></a> live2d_widget的使用</h2><ul><li><p>将<a href="https://github.com/stevenjoezhang/live2d-widget">stevenjoezhang/live2d-widget</a>的项目通过git clone拷贝到主题的<code>source</code>目录下</p></li><li><p>在主题目录的<code>layout</code>文件夹中找到<code>head</code>文件并在其中添加代码(若有PJAX放到PJAX刷新区域外更好)</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure></li><li><p>修改live2d_widget文件夹下的<code>autoload.js</code>文件，更换live2d_path为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> live2d_path = <span class="hljs-string">&quot;/live2d-widget/&quot;</span>;<br></code></pre></td></tr></table></figure><p>在initWidget中，注释掉apiPath(原api地址已不可用)并修改cdnPath，原作者的cdn地址不能换装，可以用<a href="https://akilar.top/posts/5b8f515f/">Live2d Widget | Akilarの糖果屋</a>中的cdn地址(可换装且模型比较多，之后的修改也是在此基础上改的)</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 三个cdnP</span><br></code></pre></td></tr></table></figure></li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    
+    <categories>
+      
+      <category>Hexo</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>live2d_widget</tag>
+      
+      <tag>live2d_api</tag>
+      
+      <tag>NPM</tag>
+      
+      <tag>CDN</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo添加全局音乐播放-APlayer(包含位置修改)</title>
     <link href="/posts/47641/"/>
     <url>/posts/47641/</url>
@@ -184,9 +217,9 @@
       
       <tag>Hexo</tag>
       
-      <tag>折腾</tag>
-      
       <tag>Cards主题</tag>
+      
+      <tag>折腾</tag>
       
       <tag>Fluid主题</tag>
       
@@ -215,9 +248,9 @@
       
       <tag>Hexo</tag>
       
-      <tag>折腾</tag>
-      
       <tag>Cards主题</tag>
+      
+      <tag>折腾</tag>
       
     </tags>
     
@@ -271,9 +304,9 @@
       
       <tag>Hexo</tag>
       
-      <tag>折腾</tag>
-      
       <tag>Cards主题</tag>
+      
+      <tag>折腾</tag>
       
     </tags>
     
