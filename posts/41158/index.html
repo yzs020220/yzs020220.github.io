@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yzs020220.github.io/img/waifu.png">
 <meta property="article:published_time" content="2023-02-18T02:11:35.000Z">
-<meta property="article:modified_time" content="2023-02-18T02:43:25.938Z">
+<meta property="article:modified_time" content="2023-02-18T10:55:18.853Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="live2d_widget">
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          508 字
+          2.8k 字
         
       </span>
     
@@ -310,7 +310,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 分钟前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -331,8 +331,114 @@
 <li>
 <p>修改live2d_widget文件夹下的<code>autoload.js</code>文件，更换live2d_path为</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> live2d_path = <span class="hljs-string">&quot;/live2d-widget/&quot;</span>;<br></code></pre></td></tr></table></figure>
-<p>在initWidget中，注释掉apiPath(原api地址已不可用)并修改cdnPath，原作者的cdn地址不能换装，可以用<a target="_blank" rel="noopener" href="https://akilar.top/posts/5b8f515f/">Live2d Widget | Akilarの糖果屋</a>中的cdn地址(可换装且模型比较多，之后的修改也是在此基础上改的)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 三个cdnP</span><br></code></pre></td></tr></table></figure>
+<p>在initWidget中，注释掉apiPath(原api地址已不可用)并修改cdnPath，原作者的cdn地址不能换装，可以用<a target="_blank" rel="noopener" href="https://akilar.top/posts/5b8f515f/">Live2d Widget | Akilarの糖果屋</a>中的cdn地址(可换装且模型比较多，我也是在此基础上改的，<a target="_blank" rel="noopener" href="https://github.com/yzs020220/live2d_api">我的live2d_api</a>)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 三个cdnPath选一个，分别是原作者，Akilar站长，我的</span><br><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/&quot;</span><br><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;</span><br><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://fastly.jsdelivr.net/npm/yzs-live2d_src@1.1.0/&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改完后deploy就可以用了</p>
+</li>
+<li>
+<p>如果看板娘说的话太羞耻了，可以在waifu-tips.json中更改</p>
+</li>
+<li>
+<p>如果被挡住的话是因为在插件的z-index默认为-1(修改为999就是最顶层，值越大所在的图层就越高)，在waifu.css文件中修改即可，调整插件大小也是在这个文件中，修改对应部分的width和height即可</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#waifu</span> &#123;<br>    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">999</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="修改live2d_api"><a class="markdownIt-Anchor" href="#修改live2d_api"></a> 修改live2d_api</h2>
+<h3 id="fork并克隆仓库到本地"><a class="markdownIt-Anchor" href="#fork并克隆仓库到本地"></a> fork并克隆仓库到本地</h3>
+<ul>
+<li>
+<p>先把live2d_api fork到自己的仓库里，可以fork我的也可以fork <a target="_blank" rel="noopener" href="https://github.com/Akilarlxh/live2d_api">Akilarlxh/live2d_api</a></p>
+</li>
+<li>
+<p>将自己的仓库git clone下来</p>
+</li>
+</ul>
+<h3 id="如何增删模型即缩放调整"><a class="markdownIt-Anchor" href="#如何增删模型即缩放调整"></a> 如何增删模型即缩放调整</h3>
+<p>以下操作都在本地的live2d_api文件夹中进行操作</p>
+<h4 id="删除模型"><a class="markdownIt-Anchor" href="#删除模型"></a> 删除模型</h4>
+<ul>
+<li>
+<p>在model_list.json中删除对应的models名称，messages对应的是更换看板娘时看板娘会说的话(跟models的顺序对应)</p>
+</li>
+<li>
+<p>在model文件夹中删除对应名称的文件夹</p>
+</li>
+</ul>
+<h4 id="增加模型"><a class="markdownIt-Anchor" href="#增加模型"></a> 增加模型</h4>
+<ul>
+<li>
+<p>由于live2d_widget仅支持Cubism2.1，虽然issues上有<a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget/pull/82">兼容目前所有live2d格式的issues</a>，但我目前暂时没有尝试过，可能应该会尝试吧</p>
+</li>
+<li>
+<p>如果只使用Cubism2.1，我个人推荐去看看<a target="_blank" rel="noopener" href="https://github.com/xiazeyu/live2d-widget-models">xiazeyu/live2d-widget-models</a>和<a target="_blank" rel="noopener" href="https://github.com/xiaoski/live2d_models_collection">xiaoski/live2d_models_collection</a>，收录的不少而且都是可用的，在网上找的话Cubism2.1的模型已经不多了</p>
+</li>
+<li>
+<p>在将上面两个项目中通过git clone或npm install后，把对应的模型文件夹拉到model文件夹下</p>
+</li>
+<li>
+<p>修改模型文件夹中的那个指定各个文件路径的json文件为<code>index.json</code>，一般这个文件叫<code>name.model.json</code>，一般来说修改到这个步骤的模型文件就已经可用了</p>
+</li>
+<li>
+<p>在model_list.json文件中的models中添加对应的文件夹名字并添加对应的messages即可</p>
+</li>
+</ul>
+<h4 id="修改模型的大小即位置"><a class="markdownIt-Anchor" href="#修改模型的大小即位置"></a> 修改模型的大小即位置</h4>
+<ul>
+<li>
+<p>由于一般拿到的模型可能大小不对，所以也给出了模型的位置及大小的方法</p>
+</li>
+<li>
+<p>打开需要修改的模型的文件夹中的<code>name.model.json</code>文件，添加或修改layout部分</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;center_x&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 模型中心对应的横坐标，默认为0</span><br>        <span class="hljs-attr">&quot;center_y&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">-0.2</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 模型中心对应的纵坐标，默认为0</span><br>        <span class="hljs-attr">&quot;width&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1.5</span> <span class="hljs-comment">// 模型的大小，默认为2</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+<p>调整到自己需要的比例还挺麻烦的，上面的参数是<a target="_blank" rel="noopener" href="https://github.com/xiaoski/live2d_models_collection">xiaoski/live2d_models_collection</a>中我调整康娜缩放及位置的参数，应该其他的模型也基本可用(我没试过)</p>
+</li>
+</ul>
+<p>修改完之后就是上传到npm了，如果你可以使用api访问的话到这里就基本不用看了。</p>
+<h2 id="npm上传并通过cdn访问"><a class="markdownIt-Anchor" href="#npm上传并通过cdn访问"></a> NPM上传并通过CDN访问</h2>
+<p>为什么是npm，github打包之后发布release版本后，等待一段时间也可以通过cdn访问，可惜cdn访问github仓库，必须控制在50MB以内，而npm则可以到100MB，更不用说npm发布的包可以通过unpkg访问，就是我的仓库通过unpkg访问实在是太慢了，所以我还是用的cdn。</p>
+<h3 id="注册npm帐号"><a class="markdownIt-Anchor" href="#注册npm帐号"></a> 注册npm帐号</h3>
+<p>在<a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm官网</a>注册帐号</p>
+<h3 id="在api文件夹下打开cmd"><a class="markdownIt-Anchor" href="#在api文件夹下打开cmd"></a> 在api文件夹下打开cmd</h3>
+<ul>
+<li>
+<p>如果有使用过npm镜像请先关闭</p>
+</li>
+<li>
+<p>输入命令登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm adduser<br></code></pre></td></tr></table></figure>
+<p>按照提示输入邮箱和密码</p>
+</li>
+<li>
+<p>查看一下是否登录成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm whoami<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果提示网络错误可以设置代理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm config set proxy http://127.0.0.1:port<br>npm config set https-proxy http://127.0.0.1:port<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="修改packagejson的信息并发布"><a class="markdownIt-Anchor" href="#修改packagejson的信息并发布"></a> 修改package.json的信息并发布</h3>
+<ul>
+<li>
+<p>修改api文件夹中的package.json的信息，将几处都换成你自己的链接，注意版本之后每一次发布都要比上一次更大</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;资源名，尽量不要包含数字，容易被ban&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;你的版本&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;你的npm用户名字&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>发布资源(会比较久，看大小和网速)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm publish --public<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="通过cdn或unpkg访问"><a class="markdownIt-Anchor" href="#通过cdn或unpkg访问"></a> 通过CDN或unpkg访问</h3>
+<ul>
+<li>
+<p>一般上传到npm后基本能立刻通过CDN访问到(可以在浏览器打开查看)，但是不能超过100MB，格式如下(fastly的访问速度更好一点)</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs diff">https://cdn.jsdelivr.net/npm/资源名@版本/ <br>https://fastly.jsdelivr.net/npm/资源名@版本/ <br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>unpkg也可以使用，就是收录速度实在太慢了，还经常内部的文件夹打不开，不过它确实能加载更大的项目，格式如下(饿了么的源好一点)</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs diff">https://npm.elemecdn.com/资源名@版本/<br>https://unpkg.com/资源名@版本/<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
