@@ -18,7 +18,7 @@ Add Live2D widget to web page. Compatible with PJAX.</p>
 </ul>
 <h2 id="使用-usage"><a class="markdownIt-Anchor" href="#使用-usage"></a> 使用 Usage</h2>
 <p>如果你是小白，或者只需要最基础的功能，那么只用将这一行代码加入 html 页面的 <code>head</code> 或 <code>body</code> 中，即可加载看板娘：</p>
-<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 </code></pre>
 <p>添加代码的位置取决于你的网站的构建方式。例如，如果你使用的是 <a href="https://hexo.io">Hexo</a>，那么需要在主题的模版文件中添加以上代码。对于用各种模版引擎生成的页面，修改方法类似。<br />
 如果网站启用了 PJAX，由于看板娘不必每页刷新，需要注意将该脚本放到 PJAX 刷新区域之外。</p>
@@ -74,7 +74,7 @@ Add Live2D widget to web page. Compatible with PJAX.</p>
 <p><code>waifu-tips.json</code> 中默认的 CSS 选择器规则是对 Hexo 的 <a href="http://github.com/next-theme/hexo-theme-next">NexT 主题</a> 有效的，为了适用于你自己的网页，可能需要自行修改，或增加新内容。<br />
 <strong>警告：<code>waifu-tips.json</code> 中的内容可能不适合所有年龄段，或不宜在工作期间访问。在使用时，请自行确保它们是合适的。</strong></p>
 <p>要在本地部署本项目的开发测试环境，你需要安装 Node.js 和 npm，然后执行以下命令：</p>
-<pre class="highlight"><code class="bash">git <span class="hljs-built_in">clone</span> https://github.com/stevenjoezhang/live2d-widget.git
+<pre class="highlight"><code class="bash">git <span class="built_in">clone</span> https://github.com/stevenjoezhang/live2d-widget.git
 npm install
 npm run build
 </code></pre>
@@ -83,7 +83,7 @@ npm run build
 <p>在本地完成了修改后，你可以将修改后的项目部署在服务器上，或者通过 CDN 加载，以便在网页中使用。</p>
 <h3 id="using-cdn"><a class="markdownIt-Anchor" href="#using-cdn"></a> Using CDN</h3>
 <p>要自定义有关内容，可以把这个仓库 Fork 一份，然后把修改后的内容通过 git push 到你的仓库中。这时，使用方法对应地变为</p>
-<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://fastly.jsdelivr.net/gh/username/live2d-widget@latest/autoload.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/username/live2d-widget@latest/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 </code></pre>
 <p>将此处的 <code>username</code> 替换为你的 GitHub 用户名。为了使 CDN 的内容正常刷新，需要创建新的 git tag 并推送至 GitHub 仓库中，否则此处的 <code>@latest</code> 仍然指向更新前的文件。此外 CDN 本身存在缓存，因此改动可能需要一定的时间生效。相关文档：</p>
 <ul>
@@ -106,7 +106,7 @@ npm run build
 </code></pre>
 <p>路径末尾的 <code>/</code> 一定要加上。<br />
 完成后，在你要添加看板娘的界面加入</p>
-<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://example.com/path/to/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://example.com/path/to/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 </code></pre>
 <p>就可以加载了。</p>
 <h2 id="鸣谢-thanks"><a class="markdownIt-Anchor" href="#鸣谢-thanks"></a> 鸣谢 Thanks</h2>
