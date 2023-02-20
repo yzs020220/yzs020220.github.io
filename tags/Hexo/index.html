@@ -684,15 +684,50 @@ button {
 .cover-wrapper.focus .menu .list-h a:hover {
   background: var(--color-card);
 }
-.cover-wrapper.featured .menu .list-h {
-  margin: -2px;
+.cover-wrapper.dock .top {
+  margin-bottom: 48px;
 }
-.cover-wrapper.featured .menu .list-h a {
-  margin: 2px;
+.cover-wrapper.dock .menu {
   background: rgba(255,255,255,0.5);
+  position: absolute;
+  bottom: 0;
+  max-width: 100%;
+}
+.cover-wrapper.dock .menu .list-h {
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  margin: 4px;
+}
+.cover-wrapper.dock .menu .list-h a+a {
+  margin-left: 4px;
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper.dock .menu .list-h {
+    overflow-x: scroll;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-thumb {
+    background: #3dd9b6;
+    cursor: pointer;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-thumb:hover {
+    background: #ff5722;
+  }
 }
 @supports (backdrop-filter: blur(20px)) {
-  .cover-wrapper.featured .menu .list-h a {
+  .cover-wrapper.dock .menu {
     background: rgba(255,255,255,0.5);
     backdrop-filter: saturate(200%) blur(20px);
   }
@@ -1838,9 +1873,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1676888823680),
+    lastupdate: new Date(1676895472213),
     sidebar: {
-      for_page: ["blogger","category","tagcloud","donate"],
+      for_page: ["blogger","category","tagcloud","webinfo"],
       for_post: ["toc"],
       webinfo: {
         lastupd: {
@@ -1865,7 +1900,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
       rightmenu: {
         faicon: "fa",
-        layout: ["home","hr","help","examples","contributors","hr","source_docs","source_theme","hr","print","darkmode","reading","music"],
+        layout: ["home","hr","comments-repo","hr","source_code","source_theme","hr","print","darkmode","reading","music"],
         music_alwaysShow: true,
         customPicUrl: {"enable":false,"old":null,"new":null}
       },
@@ -2307,13 +2342,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/" title="博客"
+                href="/" title="首页"
                   
                   
                   
                     active-action="action-home"
                   >
-                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                  <i class='fa-solid fa-home fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -2409,7 +2444,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box header toggle-mode-btn">
-                  <i class='fas fa-moon fa-fw'></i>
+                  <i class='fas fa-circle-half-stroke fa-fw'></i>深色模式
                 </a>
               <li>
             
@@ -2438,13 +2473,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/" title="博客"
+                href="/" title="首页"
                   
                   
                   
                     active-action="action-home"
                   >
-                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                  <i class='fa-solid fa-home fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -2540,7 +2575,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box header toggle-mode-btn">
-                  <i class='fas fa-moon fa-fw'></i>
+                  <i class='fas fa-circle-half-stroke fa-fw'></i>深色模式
                 </a>
               <li>
             
@@ -2563,7 +2598,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper  featured' style="display: ;">
+      <div id="half" class='cover-wrapper  dock' style="display: ;">
         
   <div id="parallax-window"></div>
 
@@ -2584,7 +2619,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
               
               active-action="action-home">
-              <i class='fa-solid fa-rss fa-fw'></i><p>博客</p>
+              <i class='fa-solid fa-home fa-fw'></i><p>首页</p>
             </a>
           
             <a href="/categories"
@@ -3232,6 +3267,62 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
   
+    
+    
+      
+<section class="widget desktop pjax">
+  
+  <header>
+    
+      <i class="fa-solid fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>15 篇</div>
+        </div>
+      
+
+      
+
+
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="busuanzi_value_site_uv"><i class="fa-solid fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="busuanzi_value_site_pv"><i class="fa-solid fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          <div id="last-update-show">2023-02-20 日</div>
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+    
+  
 
 
 <div class="widget-sticky pjax">
@@ -3240,10 +3331,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3346,7 +3433,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         
-          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+          <div><p><span id="lc-sv">本站总访问量为 <span id="busuanzi_value_site_pv"><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id="busuanzi_value_site_uv"><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
 </div>
         
       
@@ -3362,7 +3449,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © since 2017 XXX</a></p>
+        <p><a href="/">Copyright © since 2022.12.07</a></p>
 
         </div>
       
@@ -3464,49 +3551,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
     <li class="menuLoad-Content">
-      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/faqs/
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/yzs020220/giscus-repo/
         
         
         
         
-          id="https:volantisjsorgfaqs"
-        
-      >
-        <i class='fa fa-question fa-fw'></i> 常见问题
-      </a>
-    </li>
-  
-        
-      
-        
-          
-    <li class="menuLoad-Content">
-      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/examples/
-        
-        
-        
-        
-          id="https:volantisjsorgexamples"
+          id="https:githubcomyzs020220giscus-repo"
         
       >
-        <i class='fa fa-rss fa-fw'></i> 示例博客
-      </a>
-    </li>
-  
-        
-      
-        
-          
-    <li class="menuLoad-Content">
-      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/contributors/
-        
-        
-        
-        
-          id="https:volantisjsorgcontributors"
-        
-      >
-        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+        <i class='fa fa-comments fa-fw'></i> 评论地址
       </a>
     </li>
   
@@ -3519,15 +3572,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
     <li class="menuLoad-Content">
-      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/volantis-docs/
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/yzs020220/yzs020220.github.io/
         
         
         
         
-          id="https:githubcomvolantis-xvolantis-docs"
+          id="https:githubcomyzs020220yzs020220githubio"
         
       >
-        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+        <i class='fa fa-file-code fa-fw'></i> 本站源码
       </a>
     </li>
   
@@ -3565,7 +3618,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <li class='option menuOption-Content'>
             <span class='vlts-menu opt fix-cursor-default toggle-mode-btn' id='menuDarkBtn'>
-              <i class='fa fa-moon fa-fw '></i> 暗黑模式
+              <i class='fa fa-circle-half-stroke fa-fw '></i> 深色模式
             </span>
           </li>
         
@@ -3966,7 +4019,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script defer src="https://unpkg.com/volantis-static@0.0.1654736714924/libs/busuanzi/js/busuanzi.pure.mini.js" data-pjax></script>
+  <script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
 
 
 <!-- optional -->
@@ -4054,7 +4107,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic2.png","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic1.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/inside2.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/HollowKnight2.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/inside1.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic4.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/HollowKnight3.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic3.jpg"];
+  let imgs = ["https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic3.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/HollowKnight2.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic2.png","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/HollowKnight3.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic4.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/inside2.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/Wallpaper/pic1.jpg","https://fastly.jsdelivr.net/npm/yzs-blog_src@1.0.0/img/inside1.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
