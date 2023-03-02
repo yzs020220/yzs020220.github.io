@@ -207,20 +207,6 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/%E8%87%AA%E7%94%A8/</loc>
-    <lastmod>2023-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2023-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yzs020220.github.io/tags/live2d-widget/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -263,6 +249,27 @@
   </url>
   
   <url>
+    <loc>https://yzs020220.github.io/tags/%E8%87%AA%E7%94%A8/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/%E6%8A%98%E8%85%BE/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yzs020220.github.io/tags/volantis%E4%B8%BB%E9%A2%98/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -284,7 +291,21 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/%E6%8A%98%E8%85%BE/</loc>
+    <loc>https://yzs020220.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/%E6%9D%82/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -299,27 +320,6 @@
   
   <url>
     <loc>https://yzs020220.github.io/tags/%E9%9F%B3%E4%B9%90/</loc>
-    <lastmod>2023-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
-    <lastmod>2023-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2023-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/%E6%9D%82/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -349,14 +349,14 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/categories/%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://yzs020220.github.io/categories/%E6%9D%82/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/categories/%E6%9D%82/</loc>
+    <loc>https://yzs020220.github.io/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2023-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
