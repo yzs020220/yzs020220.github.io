@@ -5,7 +5,7 @@
   --color-site-body: #f4f4f4;
   --color-site-bg: #f4f4f4;
   --color-site-inner: #fff;
-  --color-site-footer: #666;
+  --color-site-footer: #fff;
   --color-card: #fff;
   --color-text: #444;
   --color-block: #f6f6f6;
@@ -756,7 +756,7 @@ button {
     --color-read-post: #262626;
     --color-site-bg: #1f1f1f;
     --color-site-inner: rgba(238,238,238,0.871);
-    --color-site-footer: rgba(170,170,170,0.871);
+    --color-site-footer: #eee;
     --color-card: #262626;
     --color-text: rgba(238,238,238,0.871);
     --color-block: #434343;
@@ -828,7 +828,7 @@ button {
   --color-read-post: #262626;
   --color-site-bg: #1f1f1f;
   --color-site-inner: rgba(238,238,238,0.871);
-  --color-site-footer: rgba(170,170,170,0.871);
+  --color-site-footer: #eee;
   --color-card: #262626;
   --color-text: rgba(238,238,238,0.871);
   --color-block: #434343;
