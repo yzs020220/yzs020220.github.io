@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2023-01-03T03:09:23.000Z">
-<meta property="article:modified_time" content="2023-03-03T05:45:46.568Z">
+<meta property="article:modified_time" content="2023-03-08T05:36:10.569Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="Unity Shader">
@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2784,50 +2784,109 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><a target="_blank" rel="noopener" href="https://github.com/yzs020220/my-unity-shaders-book">yzs020220/my-unity-shaders-book</a></p>
 <h3 id="p35-342最聪明的孩子顶点片元着色器"><a class="markdownIt-Anchor" href="#p35-342最聪明的孩子顶点片元着色器"></a> P35 3.4.2最聪明的孩子：顶点/片元着色器</h3>
 <p>之后也会用到的，在顶点着色器中将坐标从模型空间转换到世界空间中。代码需include “UnityCG.cginc”（在其他库中经常会被include，比如Lighting.cginc）</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-return mul(UNITY_MATRIX_MVP, v);</span></span><br><span class="line"><span class="addition">+#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"><span class="addition">+···</span></span><br><span class="line"><span class="addition">+return UnityWorldToClipPos(v);</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">#include &quot;UnityCG.cginc&quot;
+···
+return UnityWorldToClipPos(v);
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">return mul(UNITY_MATRIX_MVP, v);
+</code></pre></div></div></div>
 <h3 id="p101-521-去掉天空盒"><a class="markdownIt-Anchor" href="#p101-521-去掉天空盒"></a> P101 5.2.1 去掉天空盒</h3>
 <p>在<em>Window-&gt;Rendering-&gt;Lighting-&gt;Environment-&gt;skybox</em>中</p>
 <h3 id="p113-553最新利器帧调节器"><a class="markdownIt-Anchor" href="#p113-553最新利器帧调节器"></a> P113 5.5.3最新利器：帧调节器</h3>
 <p>在<em>Window-&gt;Analysis-&gt;Frame Debugger</em>中</p>
 <h3 id="p128-641逐顶点漫反射光照"><a class="markdownIt-Anchor" href="#p128-641逐顶点漫反射光照"></a> P128 6.4.1逐顶点漫反射光照</h3>
 <p>在顶点着色器中将法线从模型空间变换到世界空间中</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-fixed3 worldNormal = normalize(mul(v.normal, (float3x3)_World2Object));</span></span><br><span class="line"><span class="addition">+fixed3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">fixed3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">fixed3 worldNormal = normalize(mul(v.normal, (float3x3)_World2Object));
+</code></pre></div></div></div>
 <h3 id="p134-651逐顶点高光反射光照"><a class="markdownIt-Anchor" href="#p134-651逐顶点高光反射光照"></a> P134 6.5.1逐顶点高光反射光照</h3>
 <p>在顶点着色器中将顶点位置从模型空间变换到世界空间中</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(Object2World, v.vertex).xyz);</span></span><br><span class="line"><span class="addition">+fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, v.vertex).xyz);</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, v.vertex).xyz);
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(Object2World, v.vertex).xyz);
+</code></pre></div></div></div>
 <h3 id="p180-91渲染路径"><a class="markdownIt-Anchor" href="#p180-91渲染路径"></a> P180 9.1渲染路径</h3>
 <p>Unity的<em>Edit-&gt;Project Settings-&gt;Graphics</em>中能看到不同图像质量下对应的<em>Rendering Path</em></p>
 <h3 id="p192-922处理不同光源的衰减"><a class="markdownIt-Anchor" href="#p192-922处理不同光源的衰减"></a> P192 9.2.2处理不同光源的衰减</h3>
 <p>在Additional Pass的片元着色器中计算不同光源的衰减前，要将片元的坐标转换到光源空间，在采样衰减纹理来得到衰减值</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-float3 lightCoord = mul(_LightMatrix0, float4(i.worldPos, 1)).xyz;</span></span><br><span class="line"><span class="addition">+float3 lightCoord = mul(unity_WorldToLight, float4(i.worldPos, 1)).xyz;</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">float3 lightCoord = mul(unity_WorldToLight, float4(i.worldPos, 1)).xyz;
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">float3 lightCoord = mul(_LightMatrix0, float4(i.worldPos, 1)).xyz;
+</code></pre></div></div></div>
 <h3 id="p226-1031声明程序纹理参数"><a class="markdownIt-Anchor" href="#p226-1031声明程序纹理参数"></a> P226 10.3.1声明程序纹理参数</h3>
 <p>书中使用了一个开源插件，我个人没有去尝试这个开源插件，可能这个开源插件能够让修改更丝滑一点，考虑到其实我们就是检测inspector中是否被修改，然后调用_UpdateMaterial方法就好，要实现这个我们可以使用onValidate方法，这个方法在inspector中参数被修改时会被调用，这个写法也能让代码简洁很多：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-[SerializeField, SetProperty(&quot;textureWidth&quot;)]</span></span><br><span class="line"><span class="deletion">-private int m_textureWidth = 512;-</span></span><br><span class="line"><span class="deletion">-public int textureWidth &#123;</span></span><br><span class="line"><span class="deletion">-    get &#123;</span></span><br><span class="line"><span class="deletion">-        return m_textureWidth;</span></span><br><span class="line"><span class="deletion">-    &#125;</span></span><br><span class="line"><span class="deletion">-    set &#123;</span></span><br><span class="line"><span class="deletion">-        m_textureWidth = value;</span></span><br><span class="line"><span class="deletion">-        _UpdateMaterial();</span></span><br><span class="line"><span class="deletion">-    &#125;</span></span><br><span class="line"><span class="deletion">-&#125;</span></span><br><span class="line"><span class="addition">+[SerializeField] private int textureWidth = 512;</span></span><br><span class="line"><span class="addition">+[SerializeField] private Color backgroundColor = Color.white;</span></span><br><span class="line"><span class="addition">+···</span></span><br><span class="line"><span class="addition">+private void OnValidate()</span></span><br><span class="line"><span class="addition">+&#123;</span></span><br><span class="line"><span class="addition">+    _UpdateMaterial();</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="csharp">[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> textureWidth = <span class="hljs-number">512</span>;
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Color backgroundColor = Color.white;
+···
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnValidate</span>()</span>
+{
+    _UpdateMaterial();
+}
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="csharp">[<span class="hljs-meta">SerializeField, SetProperty(<span class="hljs-string">&quot;textureWidth&quot;</span>)</span>]
+<span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> m_textureWidth = <span class="hljs-number">512</span>;-
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> textureWidth {
+    <span class="hljs-keyword">get</span> {
+        <span class="hljs-keyword">return</span> m_textureWidth;
+    }
+    <span class="hljs-keyword">set</span> {
+        m_textureWidth = <span class="hljs-keyword">value</span>;
+        _UpdateMaterial();
+    }
+}
+</code></pre></div></div></div>
 <h3 id="p245-121posteffectsbasecs"><a class="markdownIt-Anchor" href="#p245-121posteffectsbasecs"></a> P245 12.1PostEffectsBase.cs</h3>
 <p>检查各种资源和条件的代码，在新版本中已经被弃用，返回值总会是True，所以可以不写</p>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        PostEffectsBase.cs
-    </div>
-    <div class='spoiler-content'>
-        <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">[<span class="meta">ExecuteInEditMode</span>]</span><br><span class="line">[<span class="meta">RequireComponent(typeof(Camera))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PostEffectBase</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Material <span class="title">CheckShaderAndCreateMaterial</span>(<span class="params">Shader shader, Material material</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (shader == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (shader.isSupported &amp;&amp; material &amp;&amp; material.shader == shader) <span class="keyword">return</span> material;</span><br><span class="line">        <span class="keyword">if</span> (!shader.isSupported) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            material = <span class="keyword">new</span> Material(shader);</span><br><span class="line">            material.hideFlags = HideFlags.DontSave;</span><br><span class="line">            <span class="keyword">if</span> (material) <span class="keyword">return</span> material;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="csharp"><span class="hljs-keyword">using</span> UnityEngine;
 
-    </div>
-</div>
+[<span class="hljs-meta">ExecuteInEditMode</span>]
+[<span class="hljs-meta">RequireComponent(typeof(Camera))</span>]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PostEffectBase</span> : <span class="hljs-title">MonoBehaviour</span>
+&#123;
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> Material <span class="hljs-title">CheckShaderAndCreateMaterial</span>(<span class="hljs-params">Shader shader, Material material</span>)</span>
+    &#123;
+        <span class="hljs-keyword">if</span> (shader == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (shader.isSupported &amp;&amp; material &amp;&amp; material.shader == shader) <span class="hljs-keyword">return</span> material;
+        <span class="hljs-keyword">if</span> (!shader.isSupported) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">else</span>
+        &#123;
+            material = <span class="hljs-keyword">new</span> Material(shader);
+            material.hideFlags = HideFlags.DontSave;
+            <span class="hljs-keyword">if</span> (material) <span class="hljs-keyword">return</span> material;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
 <h3 id="p264-126运动模糊"><a class="markdownIt-Anchor" href="#p264-126运动模糊"></a> P264 12.6运动模糊</h3>
 <p>RenderTexture.MarkRestoreExpected会显示已被弃用，具体可以查看官方文档<a target="_blank" rel="noopener" href="https://docs.unity3d.com/ScriptReference/RenderTexture.MarkRestoreExpected.html">Unity - Scripting API: RenderTexture.MarkRestoreExpected</a>，大概意思是在移动端，Unity会对还原renderTexture的操作进行警告，因为恢复发生在渲染纹理的时候，不将内容清除或丢弃在许多移动端GPU和多GPU系统中需要很大消耗，不过如果你确实需要（就像我们现在写运动模糊），我们仍可以使用该方法禁用警告（感觉好像没完全被禁用，不过是否使用该代码都不会影响运行结果）。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// We are accumulating motion over frames without clear/discard</span></span><br><span class="line"><span class="comment">// by design, so silence any performance warnings from Unity</span></span><br><span class="line">accumulationTexture.MarkRestoreExpected();</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="csharp"><span class="hljs-comment">// We are accumulating motion over frames without clear/discard</span>
+<span class="hljs-comment">// by design, so silence any performance warnings from Unity</span>
+accumulationTexture.MarkRestoreExpected();
+</code></pre>
 <h3 id="p275-132再谈运动模糊中的片元着色器"><a class="markdownIt-Anchor" href="#p275-132再谈运动模糊中的片元着色器"></a> P275 13.2再谈运动模糊中的片元着色器</h3>
 <p>如果直接使用书本的代码会有一种很奇怪的感觉，会感觉只是有一大堆重影，总而言之会觉得不对，这是因为物体的运动是有方向的，而书中的代码直接将前两帧和当前帧取平均会让人不知道往哪个方向运动，我在<a target="_blank" rel="noopener" href="https://github.com/candycat1992/Unity_Shaders_Book/issues/195">“再谈运动模糊”效果改进建议 · Issue #195 </a>中找到了改进方法，我们可以设置权重，当前帧的权重调大，后两帧权重调小，这样我们就能从三帧混合的图像中知道画面中知道哪一帧在前，我们只需要修改最后对三帧取平均的代码即可</p>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        对比代码
-    </div>
-    <div class='spoiler-content'>
-        <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;</span></span><br><span class="line"><span class="deletion">-            </span></span><br><span class="line"><span class="deletion">-float2 uv = i.uv;</span></span><br><span class="line"><span class="deletion">-float4 c = tex2D(_MainTex, uv);</span></span><br><span class="line"><span class="deletion">-uv += velocity * _BlurSize;</span></span><br><span class="line"><span class="deletion">-for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) &#123;</span></span><br><span class="line"><span class="deletion">-    float4 currentColor = tex2D(_MainTex, uv);</span></span><br><span class="line"><span class="deletion">-    c += currentColor;</span></span><br><span class="line"><span class="deletion">-&#125;</span></span><br><span class="line"><span class="deletion">-c /= 3;</span></span><br><span class="line"><span class="deletion">-</span></span><br><span class="line"><span class="deletion">-return fixed4(c.rgb, 1.0);</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;</span></span><br><span class="line"><span class="addition">+            </span></span><br><span class="line"><span class="addition">+float2 uv = i.uv;</span></span><br><span class="line"><span class="addition">+float vecColRate[3] = &#123; 0.7,0.2,0.1 &#125;;</span></span><br><span class="line"><span class="addition">+float4 c = tex2D(_MainTex, uv) * vecColRate[0];</span></span><br><span class="line"><span class="addition">+uv += velocity * _BlurSize;</span></span><br><span class="line"><span class="addition">+for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) &#123;</span></span><br><span class="line"><span class="addition">+    float4 currentColor = tex2D(_MainTex, uv);</span></span><br><span class="line"><span class="addition">+    c += currentColor * vecColRate[it];</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"><span class="addition">+            </span></span><br><span class="line"><span class="addition">+return fixed4(c.rgb, 1.0);</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;
+            
+float2 uv = i.uv;
+float vecColRate[3] = { 0.7,0.2,0.1 };
+float4 c = tex2D(_MainTex, uv) * vecColRate[0];
+uv += velocity * _BlurSize;
+for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) {
+    float4 currentColor = tex2D(_MainTex, uv);
+    c += currentColor * vecColRate[it];
+}
+            
+return fixed4(c.rgb, 1.0);
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;
+            
+float2 uv = i.uv;
+float4 c = tex2D(_MainTex, uv);
+uv += velocity * _BlurSize;
+for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) {
+    float4 currentColor = tex2D(_MainTex, uv);
+    c += currentColor;
+}
+c /= 3;
 
-    </div>
-</div>
+return fixed4(c.rgb, 1.0);
+</code></pre></div></div></div>
 <h3 id="p302-152水波效果"><a class="markdownIt-Anchor" href="#p302-152水波效果"></a> P302 15.2水波效果</h3>
 <p>难绷，这个地方不能算是一个错误，但还是提上一嘴，看彩图的图片可能会自然地以为地板是经过水的折射形成这个颜色，但其实地板和墙的贴图颜色是不一样的，地板对应的贴图是Wall04那一张贴图（其实观察墙经过水面和地板经过水面的颜色估计也能察觉到了，但是看着图片太想当然了）。</p>
 <p><img src="/img/ShaderLearn/water.png" class="lazyload" data-srcset="/img/ShaderLearn/water.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
@@ -2839,7 +2898,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><img src="/img/ShaderLearn/FrameDebugger.png" class="lazyload" data-srcset="/img/ShaderLearn/FrameDebugger.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <h3 id="p336-175-编译指令指定参数不要换行"><a class="markdownIt-Anchor" href="#p336-175-编译指令指定参数不要换行"></a> P336 17.5 编译指令指定参数不要换行</h3>
 <p>由于书本的排版原因，会让人误以为这个地方要换行，这一句指定参数的编译指令如果换行会报错（在作者github中的代码是正确的）</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow </span></span><br><span class="line"><span class="deletion">-exclude_path:deferred exclude_path:prepass nometa</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow exclude_path:deferred exclude_path:prepass nometa</span></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow exclude_path:deferred exclude_path:prepass nometa
+</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow 
+exclude_path:deferred exclude_path:prepass nometa
+</code></pre></div></div></div>
 <h3 id="p348-182-unity5的standard-shaderstandardshader"><a class="markdownIt-Anchor" href="#p348-182-unity5的standard-shaderstandardshader"></a> P348 18.2 Unity5的Standard Shader（Standard.Shader）</h3>
 <p>书上说Standard的Shader源代码可以在DefaultResourcesExtra文件夹下找到，但是在新版本中，虽然可以在安装路径下的<em>Editor-&gt;Data-&gt;CGIncludes</em>中查看到相关头文件，但是却找不到DefaultResourcesExtra这个文件夹，根据在网上论坛上翻的一些讨论，这个文件夹应该是被打包了，我们可以在<em>Editor-&gt;Data-&gt;Resources</em>中找到一个叫unity-builtin-extra的文件，这个文件是打不开的。如果真的要查看Standard.Shader的源代码，我在github上找到一个项目是比较全的：<a target="_blank" rel="noopener" href="https://github.com/chsxf/unity-built-in-shaders/tree/master/Shaders">unity-built-in-shaders</a>，各个版本也可以在branches中查看。</p>
 <h3 id="p352-183一个更加复杂的例子"><a class="markdownIt-Anchor" href="#p352-183一个更加复杂的例子"></a> P352 18.3一个更加复杂的例子</h3>
@@ -2902,10 +2964,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-03T13:45:46+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-08T13:36:10+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年3月3日</p>
+    <p>更新于：2023年3月8日</p>
   </a>
 </div>
 
@@ -3779,6 +3841,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3803,7 +3876,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4030,7 +4103,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/学/","name":"学"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/20934/","name":"Unity Shader入门精要学习记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity Shader入门精要学习记录","description":"主要记录了学习Shader时，由于版本更新，书中与实际操作中不一样的地方，我的unity版本是2021.3.5，因为是中途开始写的，如有遗漏请见谅","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/20934/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/20934/","wordCount":73,"datePublished":"2023-01-03T03:09:23.000Z","dateModified":"2023-03-03T05:45:46.568Z","articleSection":"学","keywords":"笔记,Unity Shader","image":{"@type":"ImageObject","url":"/img/ShaderLearn/VikingVillage.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/学/","name":"学"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/20934/","name":"Unity Shader入门精要学习记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity Shader入门精要学习记录","description":"主要记录了学习Shader时，由于版本更新，书中与实际操作中不一样的地方，我的unity版本是2021.3.5，因为是中途开始写的，如有遗漏请见谅","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/20934/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/20934/","wordCount":73,"datePublished":"2023-01-03T03:09:23.000Z","dateModified":"2023-03-08T05:36:10.569Z","articleSection":"学","keywords":"笔记,Unity Shader","image":{"@type":"ImageObject","url":"/img/ShaderLearn/VikingVillage.png","width":1024,"height":768}}]</script>
 
 
 

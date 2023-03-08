@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2782,67 +2782,155 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/config/">基本配置 | Theme Cards (ichr.me)</a></p>
 <h3 id="网站图标"><a class="markdownIt-Anchor" href="#网站图标"></a> 网站图标</h3>
 <p>favicon的路径设置在source下的目录，打开Card主题文件夹下的_config.yml文件，例：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">head:</span> </span><br><span class="line"></span><br><span class="line">  <span class="comment"># 网站图标</span></span><br><span class="line">  <span class="attr">favicon:</span></span><br><span class="line">    <span class="attr">ico:</span> <span class="string">/img/icon.ico</span></span><br><span class="line">    <span class="attr">small:</span> <span class="string">/img/icon.png</span></span><br><span class="line">    <span class="attr">medium:</span> </span><br><span class="line">    <span class="attr">apple_touch_icon:</span> </span><br><span class="line">    <span class="attr">safari_pinned_tab:</span> </span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">head:</span> 
+
+  <span class="hljs-comment"># 网站图标</span>
+  <span class="hljs-attr">favicon:</span>
+    <span class="hljs-attr">ico:</span> <span class="hljs-string">/img/icon.ico</span>
+    <span class="hljs-attr">small:</span> <span class="hljs-string">/img/icon.png</span>
+    <span class="hljs-attr">medium:</span> 
+    <span class="hljs-attr">apple_touch_icon:</span> 
+    <span class="hljs-attr">safari_pinned_tab:</span> 
+</code></pre>
 <p>具体关于图像尺寸格式请查阅官方文档</p>
 <h3 id="封面头像"><a class="markdownIt-Anchor" href="#封面头像"></a> 封面头像</h3>
 <p>在cover下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 封面 cover 设置</span></span><br><span class="line"><span class="attr">cover:</span> </span><br><span class="line"></span><br><span class="line">  <span class="comment"># 显示在最上方 cover 处的站点名称</span></span><br><span class="line">  <span class="attr">sitename:</span> <span class="string">的博客</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">/img/avatar.jpg</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># sitename/avatar 下方的一句话介绍</span></span><br><span class="line">  <span class="attr">description:</span> </span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># 封面 cover 设置</span>
+<span class="hljs-attr">cover:</span> 
+
+  <span class="hljs-comment"># 显示在最上方 cover 处的站点名称</span>
+  <span class="hljs-attr">sitename:</span> <span class="hljs-string">的博客</span>
+
+  <span class="hljs-comment"># 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename</span>
+  <span class="hljs-attr">avatar:</span> <span class="hljs-string">/img/avatar.jpg</span>
+
+  <span class="hljs-comment"># sitename/avatar 下方的一句话介绍</span>
+  <span class="hljs-attr">description:</span> 
+</code></pre>
 <h3 id="颜色配置与代码高亮主题"><a class="markdownIt-Anchor" href="#颜色配置与代码高亮主题"></a> 颜色配置与代码高亮主题</h3>
 <p>style下可以设置颜色配置，[色号查询网站](<a target="_blank" rel="noopener" href="https://www.qtccolor.com/secaiku/search?word#&amp;colorPage">查询色号“null”相关结果 - 千通彩色库 (qtccolor.com)</a>)：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 颜色配置</span></span><br><span class="line"><span class="attr">color:</span> </span><br><span class="line">  <span class="attr">main_color:</span> <span class="string">&#x27;#26251c&#x27;</span></span><br><span class="line">  <span class="attr">main_color_dark:</span> <span class="string">&#x27;#ded7a2&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 颜色配置</span>
+  <span class="hljs-attr">color:</span> 
+    <span class="hljs-attr">main_color:</span> <span class="hljs-string">&#x27;#26251c&#x27;</span>
+    <span class="hljs-attr">main_color_dark:</span> <span class="hljs-string">&#x27;#ded7a2&#x27;</span>
+</code></pre>
 <p>在highlight中指定默认模式和深色模式使用的代码高亮主题，主题样式可在<em>node_modules-&gt;highlight.js-&gt;styles</em>中查看：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认代码高亮</span></span><br><span class="line"><span class="attr">highlight:</span> </span><br><span class="line"></span><br><span class="line">  <span class="comment"># 默认代码高亮主题</span></span><br><span class="line">  <span class="attr">default:</span> <span class="string">atom-one-light</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 暗色代码高亮主题</span></span><br><span class="line">  <span class="attr">darkmode:</span> <span class="string">atom-one-dark</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 默认代码高亮</span>
+  <span class="hljs-attr">highlight:</span> 
+
+    <span class="hljs-comment"># 默认代码高亮主题</span>
+    <span class="hljs-attr">default:</span> <span class="hljs-string">atom-one-light</span>
+
+    <span class="hljs-comment"># 暗色代码高亮主题</span>
+    <span class="hljs-attr">darkmode:</span> <span class="hljs-string">atom-one-dark</span>
+</code></pre>
 <h3 id="文章缩略图"><a class="markdownIt-Anchor" href="#文章缩略图"></a> 文章缩略图</h3>
 <p>在meta中启用thumbnail：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文章缩略图</span></span><br><span class="line"><span class="attr">thumbnail:</span> </span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">default:</span>   <span class="comment"># 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 文章缩略图</span>
+  <span class="hljs-attr">thumbnail:</span> 
+    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">default:</span>   <span class="hljs-comment"># 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数</span>
+</code></pre>
 <p>之后只要在front-matter中指定thumbnail即可：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">thumbnail:</span> <span class="string">/img/.png</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">thumbnail:</span> <span class="hljs-string">/img/.png</span>
+</code></pre>
 <h3 id="博客自动更新日期"><a class="markdownIt-Anchor" href="#博客自动更新日期"></a> 博客自动更新日期</h3>
 <p>我也不太确定是什么时候我博客的更新日期不需要专门指定updated就可以通过博客的更改来更新日期，大概是在_config.yml文件中指定timezone即可：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">timezone:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">timezone:</span> <span class="hljs-string">&quot;Asia/Shanghai&quot;</span>
+</code></pre>
 <h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录"></a> 文章目录</h3>
 <p>meta中启用toc：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文章目录</span></span><br><span class="line"><span class="attr">toc:</span> </span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">list_number:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 文章目录</span>
+  <span class="hljs-attr">toc:</span> 
+    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">list_number:</span> <span class="hljs-literal">false</span>
+</code></pre>
 <p><strong>注：文章目录不要使用一级标题，不要跨级使用标题否则会出现乱码，如2级到5级到2级，请严格一级一级使用如2级到3级到2级（hexo博客的特性）</strong></p>
 <h3 id="插件"><a class="markdownIt-Anchor" href="#插件"></a> 插件</h3>
 <h4 id="启用站内搜索"><a class="markdownIt-Anchor" href="#启用站内搜索"></a> 启用站内搜索</h4>
 <p>启用站内搜索插件：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 站内搜索插件</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.json</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">All</span>  <span class="comment"># Page | Post | All</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># 站内搜索插件</span>
+<span class="hljs-attr">search:</span>
+  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">search.json</span>
+  <span class="hljs-attr">field:</span> <span class="hljs-string">All</span>  <span class="hljs-comment"># Page | Post | All</span>
+</code></pre>
 <p>使用cmd新建页面</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;search&quot;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo new page &quot;search&quot;
+</code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">search</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">layout:</span> <span class="hljs-string">search</span>
+<span class="hljs-meta">---
+</span></code></pre>
 <h4 id="启用标签页"><a class="markdownIt-Anchor" href="#启用标签页"></a> 启用标签页</h4>
 <p>cmd新建页面：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo new page &quot;tags&quot;
+</code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">tags</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">layout:</span> <span class="hljs-string">tags</span>
+<span class="hljs-meta">---
+</span></code></pre>
 <h4 id="启用友链"><a class="markdownIt-Anchor" href="#启用友链"></a> 启用友链</h4>
 <p>cmd新建页面：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;friends&quot;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo new page &quot;friends&quot;
+</code></pre>
 <p>在新建页面下的index.md文档中修改front-matter，详见<a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/pages/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">独立页面 | Theme Cards </a>：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">links</span></span><br><span class="line"><span class="attr">links:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">HCY-ASLEEP</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">https://hcy-asleep.github.io</span></span><br><span class="line">      <span class="attr">avatar:</span> <span class="string">https://hcy-asleep.github.io/images/logo.svg</span></span><br><span class="line">      <span class="attr">desc:</span> <span class="string">喜欢ctrl+c（chicken）的男人</span></span><br><span class="line">      <span class="attr">tags:</span> [<span class="string">唱</span>, <span class="string">跳</span>, <span class="string">rap</span>, <span class="string">篮球</span>]</span><br><span class="line">      <span class="attr">target:</span> <span class="string">_blank</span></span><br><span class="line">      <span class="attr">backgroundColor:</span> <span class="string">&#x27;#226&#x27;</span></span><br><span class="line">      <span class="attr">textColor:</span> <span class="string">&#x27;#CC8&#x27;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">layout:</span> <span class="hljs-string">links</span>
+<span class="hljs-attr">links:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">HCY-ASLEEP</span>
+      <span class="hljs-attr">url:</span> <span class="hljs-string">https://hcy-asleep.github.io</span>
+      <span class="hljs-attr">avatar:</span> <span class="hljs-string">https://hcy-asleep.github.io/images/logo.svg</span>
+      <span class="hljs-attr">desc:</span> <span class="hljs-string">喜欢ctrl+c（chicken）的男人</span>
+      <span class="hljs-attr">tags:</span> [<span class="hljs-string">唱</span>, <span class="hljs-string">跳</span>, <span class="hljs-string">rap</span>, <span class="hljs-string">篮球</span>]
+      <span class="hljs-attr">target:</span> <span class="hljs-string">_blank</span>
+      <span class="hljs-attr">backgroundColor:</span> <span class="hljs-string">&#x27;#226&#x27;</span>
+      <span class="hljs-attr">textColor:</span> <span class="hljs-string">&#x27;#CC8&#x27;</span>
+<span class="hljs-meta">---
+</span></code></pre>
 <h4 id="设置返回顶部按钮"><a class="markdownIt-Anchor" href="#设置返回顶部按钮"></a> 设置返回顶部按钮</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 返回顶部</span></span><br><span class="line"><span class="attr">back_to_top:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># 返回顶部</span>
+<span class="hljs-attr">back_to_top:</span> <span class="hljs-literal">true</span>
+</code></pre>
 <h4 id="折叠内容"><a class="markdownIt-Anchor" href="#折叠内容"></a> 折叠内容</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fold:</span> </span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">summary:</span> </span><br><span class="line">  <span class="attr">motion:</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">fold:</span> 
+  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">summary:</span> 
+  <span class="hljs-attr">motion:</span>
+</code></pre>
 <p>在文章中需要折叠的内容前后分别添加</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% fold 摘要内容 %&#125;</span><br><span class="line">正文</span><br><span class="line">&#123;% endfold %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="markdown">&#123;% fold 摘要内容 %&#125;
+正文
+&#123;% endfold %&#125;
+</code></pre>
 <h4 id="评论系统"><a class="markdownIt-Anchor" href="#评论系统"></a> 评论系统</h4>
 <p>这一个颇为麻烦，我本来满心欢喜的点进gitment，gitment用的是github的issues系统来实现评论的，配好之后才发现作者的服务器过期，gitment得转自己的域名，issues里的人都在推荐gitalk，那么就搞gitalk吧<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md#%E8%AE%BE%E7%BD%AE">gitalk/readme-cn.md at master · gitalk/gitalk (github.com)</a></p>
 <h5 id="安装gitalk"><a class="markdownIt-Anchor" href="#安装gitalk"></a> 安装gitalk</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i --save gitalk</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm i --save gitalk
+</code></pre>
 <h5 id="创建github-application并配置"><a class="markdownIt-Anchor" href="#创建github-application并配置"></a> 创建Github Application并配置</h5>
 <p>点击<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">申请链接</a>，<code>HomepageUrl</code>填写你的repo的地址，<code>Authorization callback URL</code> 填写当前使用插件页面的域名，申请后会出现<code>clientID</code>与<code>clientSecret</code>（需要generate一下）</p>
 <p><img src="/img/HexoEnhance/application.png" class="lazyload" data-srcset="/img/HexoEnhance/application.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"> <span class="attr">comments:</span> </span><br><span class="line">  <span class="attr">use:</span> <span class="string">gitalk</span></span><br><span class="line"><span class="meta">--- </span></span><br><span class="line">  <span class="comment"># Gitalk</span></span><br><span class="line">  <span class="attr">gitalk:</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">yzs020220.github.io</span> <span class="comment"># 存放评论的仓库（评论会上传到issues上）</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">yzs020220</span> <span class="comment"># github的id</span></span><br><span class="line">    <span class="attr">clientID:</span> <span class="string">*****</span></span><br><span class="line">    <span class="attr">clientSecret:</span> <span class="string">********</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"> <span class="hljs-attr">comments:</span> 
+  <span class="hljs-attr">use:</span> <span class="hljs-string">gitalk</span>
+<span class="hljs-meta">--- </span>
+  <span class="hljs-comment"># Gitalk</span>
+  <span class="hljs-attr">gitalk:</span>
+    <span class="hljs-attr">repo:</span> <span class="hljs-string">yzs020220.github.io</span> <span class="hljs-comment"># 存放评论的仓库（评论会上传到issues上）</span>
+    <span class="hljs-attr">owner:</span> <span class="hljs-string">yzs020220</span> <span class="hljs-comment"># github的id</span>
+    <span class="hljs-attr">clientID:</span> <span class="hljs-string">*****</span>
+    <span class="hljs-attr">clientSecret:</span> <span class="hljs-string">********</span>
+</code></pre>
 <p>完成以上步骤基本就可以显示了，初次打开会需要使用github账号登录，生成的评论也都可以在issues中查看，但还会有一个关于中文的问题</p>
 <h5 id="解决error-validation-failed"><a class="markdownIt-Anchor" href="#解决error-validation-failed"></a> 解决Error: Validation Failed</h5>
 <p>中文标题会被转码到很长，而issues的label长度限制在了50个字符，在项目的<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/102">issues</a>中我找到了解决办法，在<code>cards/layout/_plugins/comments/gitalk</code>目录下打开source.ejs，在gitalk的构造函数中给id加上decodeURI即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id: decodeURI(window.location.pathname),</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="ejs">id: decodeURI(window.location.pathname),
+</code></pre>
 <h4 id="数学公式"><a class="markdownIt-Anchor" href="#数学公式"></a> 数学公式</h4>
 <p>见<a href="https://yzs020220.github.io/2022/12/30/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-Card%E4%B8%BB%E9%A2%98/">Hexo博客显示数学公式|Card主题</a></p>
 <h3 id="让你的网站能被搜到seo但无优化"><a class="markdownIt-Anchor" href="#让你的网站能被搜到seo但无优化"></a> 让你的网站能被搜到（SEO但无优化）</h3>
@@ -2852,15 +2940,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>在右边输入你的网址进入html验证</p>
 <p><img src="/img/HexoEnhance/html.png" class="lazyload" data-srcset="/img/HexoEnhance/html.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>下载html文件放到source下，在根目录下的_config.yml文件中跳过该文件的渲染</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">skip_render:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;README.md&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;google9f6e9cf05881a1e4.html&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">skip_render:</span> 
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;README.md&#x27;</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;google9f6e9cf05881a1e4.html&#x27;</span>
+</code></pre>
 <p>同步博客后点击验证即可</p>
 <h4 id="bing"><a class="markdownIt-Anchor" href="#bing"></a> Bing</h4>
 <p>进入webMaster tools直接导入gsc即可</p>
 <h4 id="sitemap"><a class="markdownIt-Anchor" href="#sitemap"></a> Sitemap</h4>
 <p>生成站点地图能更好地索引，使用npm命令安装sitemap</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install sitemap --save</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm install sitemap --save
+</code></pre>
 <p>在根目录的_config.yml中设置sitemap的路径：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line">  <span class="attr">tag:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">category:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">sitemap:</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span>
+  <span class="hljs-attr">tag:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">category:</span> <span class="hljs-literal">false</span>
+</code></pre>
 <p>我们只需要在站点地图中，添加新的站点地图中输入sitemap.xml即可</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
@@ -3760,6 +3856,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3784,7 +3891,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

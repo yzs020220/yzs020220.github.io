@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2784,40 +2784,51 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p>文章更新日期</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">update:</span> </span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">update:</span> 
+</code></pre>
 </li>
 <li>
 <p>tags后跟标签</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">tags:</span> [<span class="string">标签1</span>, <span class="string">标签2</span>]</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">tags:</span> [<span class="hljs-string">标签1</span>, <span class="hljs-string">标签2</span>]
+</code></pre>
 </li>
 <li>
 <p>文章缩略图（根目录为source），或者在线图片链接，以下为本地方法</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">thumbnail:</span> <span class="string">/img/文件路径</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">thumbnail:</span> <span class="hljs-string">/img/文件路径</span>
+</code></pre>
 </li>
 <li>
 <p>文章详细信息，要在结尾添加</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;!--</span> <span class="string">more</span> <span class="string">--&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-string">&lt;!--</span> <span class="hljs-string">more</span> <span class="hljs-string">--&gt;</span>
+</code></pre>
 </li>
 </ul>
 <h2 id="文章上传"><a class="markdownIt-Anchor" href="#文章上传"></a> 文章上传</h2>
 <ul>
 <li>
 <p>新建文章</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new &quot;title&quot; // 标题替换掉title</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo new &quot;title&quot; // 标题替换掉title
+</code></pre>
 </li>
 <li>
 <p>同步博客</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean    // 清楚静态页面缓存（清除public文件夹）</span><br><span class="line">hexo g        // 在本地生成静态页面（生成public文件夹）</span><br><span class="line">hexo d        // 远程部署，同步到github</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo clean    // 清楚静态页面缓存（清除public文件夹）
+hexo g        // 在本地生成静态页面（生成public文件夹）
+hexo d        // 远程部署，同步到github
+</code></pre>
 </li>
 <li>
 <p>（可选）启动本地服务，Ctrl+C终止服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s        // 本地服务 http://localhost:4000</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">hexo s        // 本地服务 http://localhost:4000
+</code></pre>
 </li>
 </ul>
 <ul>
 <li>
 <p>给cmd挂代理(用于装包装不上的时候)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set http_proxy=&quot;http://127.0.0.1:7890&quot;</span><br><span class="line">set https_proxy=&quot;http://127.0.0.1:7890&quot;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">set http_proxy=&quot;http://127.0.0.1:7890&quot;
+set https_proxy=&quot;http://127.0.0.1:7890&quot;
+</code></pre>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -3719,6 +3730,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3743,7 +3765,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

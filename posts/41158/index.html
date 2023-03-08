@@ -1884,7 +1884,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2787,15 +2787,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>在主题目录的<code>layout</code>文件夹中找到<code>head</code>文件并在其中添加代码(若有PJAX放到PJAX刷新区域外更好)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
 </li>
 <li>
 <p>修改live2d_widget文件夹下的<code>autoload.js</code>文件，更换live2d_path为</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> live2d_path = <span class="string">&quot;/live2d-widget/&quot;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> live2d_path = <span class="hljs-string">&quot;/live2d-widget/&quot;</span>;
+</code></pre>
 <p>在initWidget中，注释掉apiPath(原api地址已不可用)并修改cdnPath，原作者的cdn地址不能换装，可以用<a target="_blank" rel="noopener" href="https://akilar.top/posts/5b8f515f/">Live2d Widget | Akilarの糖果屋</a>中的cdn地址(可换装且模型比较多，我也是在此基础上改的，<a target="_blank" rel="noopener" href="https://github.com/yzs020220/live2d_api">我的live2d_api</a>)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 三个cdnPath选一个，分别是原作者，Akilar站长，我的</span></span><br><span class="line"><span class="attr">cdnPath</span>: <span class="string">&quot;https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/&quot;</span></span><br><span class="line"><span class="attr">cdnPath</span>: <span class="string">&quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;</span></span><br><span class="line"><span class="attr">cdnPath</span>: <span class="string">&quot;https://gcore.jsdelivr.net/npm/yzs-live2d_src@1.1.0/&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// 三个cdnPath选一个，分别是原作者，Akilar站长，我的</span>
+<span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/&quot;</span>
+<span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;</span>
+<span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://gcore.jsdelivr.net/npm/yzs-live2d_src@1.1.0/&quot;</span>
+</code></pre>
 <p>或者使用本地的地址，将live2d_api放在博客的原网站下(反正免费的CDN加速在国内基本上不得行，基本上需要梯子，所以直接在网站内访问的速度也可以，如果有条件用gitee也可以直接用gitee，不过注意在tips下删掉一些句子)，具体操作见下文</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">cdnPath</span>: <span class="string">&quot;/live2d_api/&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;/live2d_api/&quot;</span>
+</code></pre>
 </li>
 <li>
 <p>修改完后deploy就可以用了</p>
@@ -2805,7 +2812,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>如果被挡住的话是因为在插件的z-index默认为-1(修改为999就是最顶层，值越大所在的图层就越高)，在waifu.css文件中修改即可，调整插件大小也是在这个文件中，修改对应部分的width和height即可</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#waifu</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="css"><span class="hljs-selector-id">#waifu</span> &#123;
+    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">999</span>;
+&#125;
+</code></pre>
 </li>
 </ul>
 <h2 id="修改live2d_api"><a class="markdownIt-Anchor" href="#修改live2d_api"></a> 修改live2d_api</h2>
@@ -2854,7 +2864,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>打开需要修改的模型的文件夹中的<code>name.model.json</code>文件，添加或修改layout部分</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;layout&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;center_x&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 模型中心对应的横坐标，默认为0</span></span><br><span class="line">        <span class="attr">&quot;center_y&quot;</span><span class="punctuation">:</span> <span class="number">-0.2</span><span class="punctuation">,</span> <span class="comment">// 模型中心对应的纵坐标，默认为0</span></span><br><span class="line">        <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> <span class="number">1.5</span> <span class="comment">// 模型的大小，默认为2</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="json"><span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+        <span class="hljs-attr">&quot;center_x&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 模型中心对应的横坐标，默认为0</span>
+        <span class="hljs-attr">&quot;center_y&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">-0.2</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 模型中心对应的纵坐标，默认为0</span>
+        <span class="hljs-attr">&quot;width&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1.5</span> <span class="hljs-comment">// 模型的大小，默认为2</span>
+    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+</code></pre>
 <p>调整到自己需要的比例还挺麻烦的，上面的参数是<a target="_blank" rel="noopener" href="https://github.com/xiaoski/live2d_models_collection">xiaoski/live2d_models_collection</a>中我调整康娜缩放及位置的参数，应该其他的模型也基本可用(我没试过)</p>
 </li>
 </ul>
@@ -2862,7 +2877,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h2 id="上传到博客上并访问"><a class="markdownIt-Anchor" href="#上传到博客上并访问"></a> 上传到博客上并访问</h2>
 <p>因为国内jsDelivr已经几乎不可用了，所以直接上传也是不错的选择(还不限大小)。</p>
 <p>将修改后的<code>live2d_api</code>仓库拷贝到主题的<code>source</code>文件夹下(在博客根目录的<code>source</code>下会导致里面的很多文件会进行渲染)，修改<code>live2d-widget</code>中的<code>autoload.js</code>中的cdnPath：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">cdnPath</span>: <span class="string">&quot;/live2d_api/&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;/live2d_api/&quot;</span>
+</code></pre>
 <h2 id="npm上传并通过cdn访问"><a class="markdownIt-Anchor" href="#npm上传并通过cdn访问"></a> NPM上传并通过CDN访问</h2>
 <p>为什么是npm，github打包之后发布release版本后，等待一段时间也可以通过cdn访问，可惜cdn访问github仓库，必须控制在50MB以内，而npm则可以到100MB，更不用说npm发布的包可以通过unpkg访问，就是我的仓库通过unpkg访问实在是太慢了，所以我还是用的cdn。</p>
 <h3 id="注册npm帐号"><a class="markdownIt-Anchor" href="#注册npm帐号"></a> 注册npm帐号</h3>
@@ -2874,42 +2890,56 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>输入命令登录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm adduser
+</code></pre>
 <p>按照提示输入邮箱和密码</p>
 </li>
 <li>
 <p>查看一下是否登录成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm whoami</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm whoami
+</code></pre>
 </li>
 <li>
 <p>如果提示网络错误可以设置代理</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm config set proxy http://127.0.0.1:port</span><br><span class="line">npm config set https-proxy http://127.0.0.1:port</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm config set proxy http://127.0.0.1:port
+npm config set https-proxy http://127.0.0.1:port
+</code></pre>
 </li>
 </ul>
 <h3 id="修改packagejson的信息并发布"><a class="markdownIt-Anchor" href="#修改packagejson的信息并发布"></a> 修改package.json的信息并发布</h3>
 <ul>
 <li>
 <p>先初始化</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm init
+</code></pre>
 </li>
 <li>
 <p>修改api文件夹中的package.json的信息，将几处都换成你自己的链接，注意版本之后每一次发布都要比上一次更大</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;资源名，尽量不要包含数字，容易被ban&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;你的版本&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;你的npm用户名字&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="json"><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;资源名，尽量不要包含数字，容易被ban&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;你的版本&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-attr">&quot;author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;你的npm用户名字&quot;</span><span class="hljs-punctuation">,</span>
+</code></pre>
 </li>
 <li>
 <p>发布资源(会比较久，看大小和网速)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm publish --public</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm publish --public
+</code></pre>
 </li>
 </ul>
 <h3 id="通过cdn或unpkg访问"><a class="markdownIt-Anchor" href="#通过cdn或unpkg访问"></a> 通过CDN或unpkg访问</h3>
 <ul>
 <li>
 <p>一般上传到npm后基本能立刻通过CDN访问到(可以在浏览器打开查看)，但是不能超过100MB，格式如下(gcore的访问速度更好一点)</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">https://unpkg.com/资源名@版本/ </span><br><span class="line">https://fastly.jsdelivr.net/npm/资源名@版本/ </span><br><span class="line">https://gcore.jsdelivr.net/npm/资源名@版本/ </span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="diff">https://unpkg.com/资源名@版本/ 
+https://fastly.jsdelivr.net/npm/资源名@版本/ 
+https://gcore.jsdelivr.net/npm/资源名@版本/ 
+</code></pre>
 </li>
 <li>
 <p>unpkg也可以使用，就是收录速度实在太慢了，还经常内部的文件夹打不开，不过它确实能加载更大的项目，格式如下(饿了么的源好一点)</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">https://npm.elemecdn.com/资源名@版本/</span><br><span class="line">https://unpkg.com/资源名@版本/</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="diff">https://npm.elemecdn.com/资源名@版本/
+https://unpkg.com/资源名@版本/
+</code></pre>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -3811,6 +3841,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3835,7 +3876,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

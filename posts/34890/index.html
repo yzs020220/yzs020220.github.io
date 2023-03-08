@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2796,15 +2796,52 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>根据我们每一条边的顶点数n+1，计算出每个相邻顶点的间距，然后再根据顺序计算出各顶点的坐标与纹理坐标：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> step = <span class="number">1.0f</span> / n;</span><br><span class="line"><span class="comment">// 计算顶点位置</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">float</span> i = <span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">float</span> j = <span class="number">0</span>; j &lt; n + <span class="number">1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        vertex_positions.<span class="built_in">push_back</span>(glm::<span class="built_in">vec3</span>(<span class="number">-0.5f</span> + step * j, <span class="number">0</span>, <span class="number">-0.5f</span> + step * i));</span><br><span class="line">        vertex_colors.<span class="built_in">push_back</span>(color);</span><br><span class="line">        vertex_textures.<span class="built_in">push_back</span>(glm::<span class="built_in">vec2</span>(step * j, step * i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-type">float</span> step = <span class="hljs-number">1.0f</span> / n;
+<span class="hljs-comment">// 计算顶点位置</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">float</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++)
+&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">float</span> j = <span class="hljs-number">0</span>; j &lt; n + <span class="hljs-number">1</span>; j++)
+    &#123;
+        vertex_positions.<span class="hljs-built_in">push_back</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">-0.5f</span> + step * j, <span class="hljs-number">0</span>, <span class="hljs-number">-0.5f</span> + step * i));
+        vertex_colors.<span class="hljs-built_in">push_back</span>(color);
+        vertex_textures.<span class="hljs-built_in">push_back</span>(glm::<span class="hljs-built_in">vec2</span>(step * j, step * i));
+    &#125;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>根据网格的坐标计算出每个三角面片的顶点下标，颜色法向纹理的下标跟面片的顶点下标相同，最后调用storeFacesPoints方法将信息存储到需要传入GPU的数据：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 每个三角面片的顶点下标</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a, b, c, d;</span><br><span class="line">        a = i * (n + <span class="number">1</span>) + j;</span><br><span class="line">        b = a + <span class="number">1</span>;</span><br><span class="line">        c = b + n;</span><br><span class="line">        d = c + <span class="number">1</span>;</span><br><span class="line">        faces.<span class="built_in">push_back</span>(<span class="built_in">vec3i</span>(a, b, c));</span><br><span class="line">        faces.<span class="built_in">push_back</span>(<span class="built_in">vec3i</span>(b, c, d));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">normal_index = faces;</span><br><span class="line">color_index = faces;</span><br><span class="line">texture_index = faces;</span><br><span class="line"></span><br><span class="line"><span class="built_in">storeFacesPoints</span>();</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-comment">// 每个三角面片的顶点下标</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++)
+    &#123;
+        <span class="hljs-type">int</span> a, b, c, d;
+        a = i * (n + <span class="hljs-number">1</span>) + j;
+        b = a + <span class="hljs-number">1</span>;
+        c = b + n;
+        d = c + <span class="hljs-number">1</span>;
+        faces.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vec3i</span>(a, b, c));
+        faces.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vec3i</span>(b, c, d));
+    &#125;
+&#125;
+normal_index = faces;
+color_index = faces;
+texture_index = faces;
+
+<span class="hljs-built_in">storeFacesPoints</span>();
+</code></pre>
 </li>
 <li>
 <p>在main.cpp中的init方法中生成水平面，设置坐标旋转与大小，并将其与贴图加载到painter容器中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">water-&gt;<span class="built_in">generateSurface</span>(<span class="number">30</span>, glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>), <span class="number">0.03f</span>, <span class="number">0.0f</span>, <span class="number">0.05f</span>);</span><br><span class="line">water-&gt;<span class="built_in">coefficientCount</span>(<span class="number">0.1f</span>);</span><br><span class="line">water-&gt;<span class="built_in">setTranslation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0</span>, <span class="number">0.25</span>, <span class="number">0</span>));</span><br><span class="line">water-&gt;<span class="built_in">setRotation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">water-&gt;<span class="built_in">setScale</span>(glm::<span class="built_in">vec3</span>(waterScale, <span class="number">1.0</span>, waterScale));</span><br><span class="line">painter-&gt;<span class="built_in">addMesh</span>(water, <span class="string">&quot;mesh_water&quot;</span>, <span class="string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="number">2</span>);</span><br><span class="line">meshList.<span class="built_in">push_back</span>(water);</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">water-&gt;<span class="hljs-built_in">generateSurface</span>(<span class="hljs-number">30</span>, glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>), <span class="hljs-number">0.03f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.05f</span>);
+water-&gt;<span class="hljs-built_in">coefficientCount</span>(<span class="hljs-number">0.1f</span>);
+water-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0.25</span>, <span class="hljs-number">0</span>));
+water-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>));
+water-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(waterScale, <span class="hljs-number">1.0</span>, waterScale));
+painter-&gt;<span class="hljs-built_in">addMesh</span>(water, <span class="hljs-string">&quot;mesh_water&quot;</span>, <span class="hljs-string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">2</span>);
+meshList.<span class="hljs-built_in">push_back</span>(water);
+</code></pre>
 <p>完成这一步骤之后我们应该能生成一个网格，如果直接生成应该能看到一个平面，想看到网格我们可以调整mesh的绘制模式，在MeshPainter.cpp文件下的drawMesh函数下调用glDrawArrays的参数中将GL_TRIANGLES换成GL_LINE_STRIP即可（可能需要更多参数，如报错请自行上网搜索），该步骤非必须，但是我建议你如果出现不知道什么问题试一下这个方法能让你更直观地观察这个平面是长什么样的</p>
 </li>
 </ol>
@@ -2852,23 +2889,98 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <ol start="4">
 <li>
 <p>接下来只需要跟据位移公式写出对应代码即可，在coefficientCount方法下计算出2）中公式的三个系数k1，k2，k3，这一步在初始化水平面时计算一次即可：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Fluid::coefficientCount</span><span class="params">(<span class="type">float</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> f1 = c * c * t * t / d / d;</span><br><span class="line">    <span class="type">float</span> f2 = <span class="number">1.0f</span> / (u * t + <span class="number">2</span>);</span><br><span class="line">    k1 = (<span class="number">4</span> - <span class="number">8</span> * f1) * f2;</span><br><span class="line">    k2 = (u * t - <span class="number">2</span>) * f2;</span><br><span class="line">    k3 = <span class="number">2</span> * f1 * f2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Fluid::coefficientCount</span><span class="hljs-params">(<span class="hljs-type">float</span> t)</span>
+</span>&#123;
+    <span class="hljs-type">float</span> f1 = c * c * t * t / d / d;
+    <span class="hljs-type">float</span> f2 = <span class="hljs-number">1.0f</span> / (u * t + <span class="hljs-number">2</span>);
+    k1 = (<span class="hljs-number">4</span> - <span class="hljs-number">8</span> * f1) * f2;
+    k2 = (u * t - <span class="hljs-number">2</span>) * f2;
+    k3 = <span class="hljs-number">2</span> * f1 * f2;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>在generateSurface方法下随机化vpb的坐标（即上一帧，若与当前帧相同则水面保持稳定），在openGL水面高度对应的是y轴坐标：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 随机化之前的坐标</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        tmp = <span class="built_in">rand</span>() % <span class="number">2</span>;</span><br><span class="line">        vpb[i * (n + <span class="number">1</span>) + j].y = d * (tmp - <span class="number">0.5f</span>) * <span class="number">0.5f</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">    <span class="hljs-comment">// 随机化之前的坐标</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++)
+    &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; n; j++)
+        &#123;
+            tmp = <span class="hljs-built_in">rand</span>() % <span class="hljs-number">2</span>;
+            vpb[i * (n + <span class="hljs-number">1</span>) + j].y = d * (tmp - <span class="hljs-number">0.5f</span>) * <span class="hljs-number">0.5f</span>;
+        &#125;
+    &#125;
+</code></pre>
 </li>
 <li>
 <p>在方法updateSurfacePosition中根据公式更新顶点位置，其中vertex_positions存储当前顶点位置，vpa和vpb分别存储下一帧与上一帧的顶点位置信息。最后将坐标值转换成需要传入GPU的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Fluid::updateSurfacePosition</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 顶点位置为最新的顶点</span></span><br><span class="line">    vertex_positions = vpa;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numOfWidth + <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; numOfWidth + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">float</span> curY = vertex_positions[i * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">            <span class="type">float</span> beforeY = vpb[i * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">            <span class="type">float</span> updateY = k1 * curY + k2 * beforeY;</span><br><span class="line">            <span class="type">float</span> deltaY = <span class="number">0.0f</span>;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span>) deltaY += vertex_positions[(i - <span class="number">1</span>) * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; numOfWidth) deltaY += vertex_positions[(i + <span class="number">1</span>) * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">            <span class="keyword">if</span> (j &gt; <span class="number">0</span>) deltaY += vertex_positions[i * (numOfWidth + <span class="number">1</span>) + j - <span class="number">1</span>].y;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; numOfWidth) deltaY += vertex_positions[i * (numOfWidth + <span class="number">1</span>) + j + <span class="number">1</span>].y;</span><br><span class="line">            updateY += deltaY * k3;</span><br><span class="line">            vpa[i * (numOfWidth + <span class="number">1</span>) + j].y = updateY;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 之前的顶点位置变成当前顶点位置，当前更新为计算出后的顶点位置</span></span><br><span class="line">    vpb = vertex_positions;</span><br><span class="line">    vertex_positions = vpa;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; faces.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 坐标</span></span><br><span class="line">        points[j++] = vertex_positions[faces[i].x];</span><br><span class="line">        points[j++] = vertex_positions[faces[i].y];</span><br><span class="line">        points[j++] = vertex_positions[faces[i].z];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Fluid::updateSurfacePosition</span><span class="hljs-params">()</span>
+</span>&#123;
+    <span class="hljs-comment">// 顶点位置为最新的顶点</span>
+    vertex_positions = vpa;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numOfWidth + <span class="hljs-number">1</span>; i++)
+    &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; numOfWidth + <span class="hljs-number">1</span>; j++)
+        &#123;
+            <span class="hljs-type">float</span> curY = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+            <span class="hljs-type">float</span> beforeY = vpb[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+            <span class="hljs-type">float</span> updateY = k1 * curY + k2 * beforeY;
+            <span class="hljs-type">float</span> deltaY = <span class="hljs-number">0.0f</span>;
+            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) deltaY += vertex_positions[(i - <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+            <span class="hljs-keyword">if</span> (i &lt; numOfWidth) deltaY += vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+            <span class="hljs-keyword">if</span> (j &gt; <span class="hljs-number">0</span>) deltaY += vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j - <span class="hljs-number">1</span>].y;
+            <span class="hljs-keyword">if</span> (j &lt; numOfWidth) deltaY += vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;
+            updateY += deltaY * k3;
+            vpa[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y = updateY;
+        &#125;
+    &#125;
+    <span class="hljs-comment">// 之前的顶点位置变成当前顶点位置，当前更新为计算出后的顶点位置</span>
+    vpb = vertex_positions;
+    vertex_positions = vpa;
+
+    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; faces.<span class="hljs-built_in">size</span>(); i++)
+    &#123;
+        <span class="hljs-comment">// 坐标</span>
+        points[j++] = vertex_positions[faces[i].x];
+        points[j++] = vertex_positions[faces[i].y];
+        points[j++] = vertex_positions[faces[i].z];
+    &#125;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>给MeshPainter类添加replaceMesh方法，弹出最后一个mesh并添加新的mesh来更新水面的顶点信息（修改顶点位置不是通过模式变化矩阵来完成，而是直接修改了mesh的points变量，所以只能用这个方法），此处使用的方法其实有非常大的内存隐患，这个vector容器使用的类型是TriMesh而压入栈与弹出栈的是Fluid类，不过这毕竟只是一个作业所以我觉得能跑起来比什么都重要，这种地方要改都是牵一发而动全身：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshPainter::replaceMesh</span><span class="params">(TriMesh* mesh, <span class="type">const</span> std::string&amp; name, <span class="type">const</span> std::string&amp; texture_image, <span class="type">const</span> std::string&amp; vshader, <span class="type">const</span> std::string&amp; fshader, <span class="type">int</span> type)</span> </span>&#123;</span><br><span class="line">    mesh_names.<span class="built_in">pop_back</span>();</span><br><span class="line">    mesh_names.<span class="built_in">push_back</span>(name);</span><br><span class="line"></span><br><span class="line">    meshes.<span class="built_in">pop_back</span>();</span><br><span class="line">    meshes.<span class="built_in">push_back</span>(mesh);</span><br><span class="line"></span><br><span class="line">    mesh_types.<span class="built_in">pop_back</span>();</span><br><span class="line">    mesh_types.<span class="built_in">push_back</span>(type);</span><br><span class="line"></span><br><span class="line">    openGLObject object;</span><br><span class="line">    <span class="comment">// 绑定openGL对象，并传递顶点属性的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">bindObjectAndData</span>(mesh, object, texture_image, vshader, fshader);</span><br><span class="line">    opengl_objects.<span class="built_in">pop_back</span>();</span><br><span class="line">    opengl_objects.<span class="built_in">push_back</span>(object);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MeshPainter::replaceMesh</span><span class="hljs-params">(TriMesh* mesh, <span class="hljs-type">const</span> std::string&amp; name, <span class="hljs-type">const</span> std::string&amp; texture_image, <span class="hljs-type">const</span> std::string&amp; vshader, <span class="hljs-type">const</span> std::string&amp; fshader, <span class="hljs-type">int</span> type)</span> </span>&#123;
+    mesh_names.<span class="hljs-built_in">pop_back</span>();
+    mesh_names.<span class="hljs-built_in">push_back</span>(name);
+
+    meshes.<span class="hljs-built_in">pop_back</span>();
+    meshes.<span class="hljs-built_in">push_back</span>(mesh);
+
+    mesh_types.<span class="hljs-built_in">pop_back</span>();
+    mesh_types.<span class="hljs-built_in">push_back</span>(type);
+
+    openGLObject object;
+    <span class="hljs-comment">// 绑定openGL对象，并传递顶点属性的数据</span>
+
+    <span class="hljs-built_in">bindObjectAndData</span>(mesh, object, texture_image, vshader, fshader);
+    opengl_objects.<span class="hljs-built_in">pop_back</span>();
+    opengl_objects.<span class="hljs-built_in">push_back</span>(object);
+&#125;;
+</code></pre>
 </li>
 <li>
 <p>在main函数中打开窗口的循环中调用replaceMesh方法将更新顶点后的水替换上去，t表示循环3次更新一次顶点，如果更新频率太高水会非常的鬼畜：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (t &gt; <span class="number">3</span>)</span><br><span class="line">&#123;</span><br><span class="line">    t = <span class="number">0</span>;</span><br><span class="line">    water-&gt;<span class="built_in">updateSurfacePosition</span>();</span><br><span class="line">    painter-&gt;<span class="built_in">replaceMesh</span>(water, <span class="string">&quot;mesh_water&quot;</span>, <span class="string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-keyword">if</span> (t &gt; <span class="hljs-number">3</span>)
+&#123;
+    t = <span class="hljs-number">0</span>;
+    water-&gt;<span class="hljs-built_in">updateSurfacePosition</span>();
+    painter-&gt;<span class="hljs-built_in">replaceMesh</span>(water, <span class="hljs-string">&quot;mesh_water&quot;</span>, <span class="hljs-string">&quot;./assets/water1.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">2</span>);
+&#125;
+</code></pre>
 </li>
 </ol>
 <h3 id="船的模型读取与添加贴图"><a class="markdownIt-Anchor" href="#船的模型读取与添加贴图"></a> 船的模型读取与添加贴图</h3>
@@ -2878,71 +2990,224 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </li>
 <li>
 <p>使用readObj读取🚢模型文件，并在addMesh中指定贴图文件即可（🦈和🪨也是同理）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ship-&gt;<span class="built_in">setNormalize</span>(<span class="literal">true</span>);</span><br><span class="line">ship-&gt;<span class="built_in">readObj</span>(<span class="string">&quot;./assets/ship.obj&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置物体的旋转位移</span></span><br><span class="line">ship-&gt;<span class="built_in">setTranslation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, <span class="number">0.5</span>, <span class="number">0.0</span>));</span><br><span class="line">ship-&gt;<span class="built_in">setRotation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, <span class="number">-65.0</span>, <span class="number">0.0</span>));</span><br><span class="line">ship-&gt;<span class="built_in">setScale</span>(glm::<span class="built_in">vec3</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置材质</span></span><br><span class="line">ship-&gt;<span class="built_in">setAmbient</span>(mat_ambient); <span class="comment">// 环境光</span></span><br><span class="line">ship-&gt;<span class="built_in">setDiffuse</span>(mat_diffuse); <span class="comment">// 漫反射</span></span><br><span class="line">ship-&gt;<span class="built_in">setSpecular</span>(mat_specular); <span class="comment">// 镜面反射</span></span><br><span class="line">ship-&gt;<span class="built_in">setShininess</span>(shine); <span class="comment">//高光系数</span></span><br><span class="line"></span><br><span class="line">painter-&gt;<span class="built_in">addMesh</span>(ship, <span class="string">&quot;mesh_ship&quot;</span>, <span class="string">&quot;./assets/Texture_01_A.png&quot;</span>, vshader, fshader, <span class="number">3</span>);</span><br><span class="line">meshList.<span class="built_in">push_back</span>(ship);</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">ship-&gt;<span class="hljs-built_in">setNormalize</span>(<span class="hljs-literal">true</span>);
+ship-&gt;<span class="hljs-built_in">readObj</span>(<span class="hljs-string">&quot;./assets/ship.obj&quot;</span>);
+
+<span class="hljs-comment">// 设置物体的旋转位移</span>
+ship-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.0</span>));
+ship-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">-65.0</span>, <span class="hljs-number">0.0</span>));
+ship-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>));
+
+<span class="hljs-comment">// 设置材质</span>
+ship-&gt;<span class="hljs-built_in">setAmbient</span>(mat_ambient); <span class="hljs-comment">// 环境光</span>
+ship-&gt;<span class="hljs-built_in">setDiffuse</span>(mat_diffuse); <span class="hljs-comment">// 漫反射</span>
+ship-&gt;<span class="hljs-built_in">setSpecular</span>(mat_specular); <span class="hljs-comment">// 镜面反射</span>
+ship-&gt;<span class="hljs-built_in">setShininess</span>(shine); <span class="hljs-comment">//高光系数</span>
+
+painter-&gt;<span class="hljs-built_in">addMesh</span>(ship, <span class="hljs-string">&quot;mesh_ship&quot;</span>, <span class="hljs-string">&quot;./assets/Texture_01_A.png&quot;</span>, vshader, fshader, <span class="hljs-number">3</span>);
+meshList.<span class="hljs-built_in">push_back</span>(ship);
+</code></pre>
 </li>
 </ol>
 <h3 id="将phong着色应用在船上"><a class="markdownIt-Anchor" href="#将phong着色应用在船上"></a> 将Phong着色应用在船上</h3>
 <ol>
 <li>
 <p>在shader文件fshader.frag中（修改后缀名有语法提示方便修改代码，只需要修改后缀名并安装glsl扩展即可）实现Phong光照模型（如不了解可以去看看博客里的光照模型文章），取一个权重将它和纹理混合起来（本来shader中应该避免用if等条件判断，gpu执行逻辑计算需要绕弯而且都是对多个顶点或片元来执行，但是由于时间问题来不及重构代码，建议开多个shader文件并在drawmesh的时候根据类型指定使用的shader）：</p>
-<figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 贴图+Phong光照</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(type == <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="comment">// 将顶点坐标、光源坐标和法向量转换到相机坐标系</span></span><br><span class="line">    <span class="type">vec3</span> pos = position - eye_position;</span><br><span class="line">    <span class="type">vec3</span> norm = (<span class="type">vec4</span>(normal, <span class="number">0.0</span>)).xyz;</span><br><span class="line">    <span class="type">vec3</span> l_pos = light.position - eye_position;</span><br><span class="line"></span><br><span class="line">    <span class="type">vec3</span> N = <span class="built_in">normalize</span>(norm);</span><br><span class="line">    <span class="type">vec3</span> V = <span class="built_in">normalize</span>(-pos);</span><br><span class="line">    <span class="type">vec3</span> L = <span class="built_in">normalize</span>(l_pos - pos);</span><br><span class="line">    <span class="type">vec3</span> R = <span class="built_in">reflect</span>(-L, N);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 环境光分量I_a</span></span><br><span class="line">    <span class="type">vec4</span> I_a = light.ambient * material.ambient;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @<span class="doctag">TODO:</span> Task2 计算系数和漫反射分量I_d</span></span><br><span class="line">    <span class="type">float</span> diffuse_dot = <span class="built_in">max</span>(<span class="built_in">dot</span>(L, N), <span class="number">0</span>);</span><br><span class="line">    <span class="type">vec4</span> I_d = diffuse_dot *  light.diffuse * material.diffuse;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @<span class="doctag">TODO:</span> Task2 计算系数和镜面反射分量I_s</span></span><br><span class="line">    <span class="type">float</span> specular_dot_pow = <span class="built_in">pow</span>(<span class="built_in">max</span>(<span class="built_in">dot</span>(R, V), <span class="number">0</span>), material.shininess);</span><br><span class="line">    <span class="type">vec4</span> I_s = specular_dot_pow * light.specular * material.specular;</span><br><span class="line"></span><br><span class="line">    <span class="type">vec4</span> I = I_a + I_d + I_s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="built_in">dot</span>(L, N) &lt; <span class="number">0.0</span> ) &#123;</span><br><span class="line">        I_s = <span class="type">vec4</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fColor = <span class="built_in">texture</span>(texture1, texCoord) * <span class="number">0.7</span> + I * <span class="number">0.3</span>;</span><br><span class="line">    fColor.a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="glsl"><span class="hljs-comment">// 贴图+Phong光照</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(type == <span class="hljs-number">3</span>)&#123;
+    <span class="hljs-comment">// 将顶点坐标、光源坐标和法向量转换到相机坐标系</span>
+    <span class="hljs-type">vec3</span> pos = position - eye_position;
+    <span class="hljs-type">vec3</span> norm = (<span class="hljs-type">vec4</span>(normal, <span class="hljs-number">0.0</span>)).xyz;
+    <span class="hljs-type">vec3</span> l_pos = light.position - eye_position;
+
+    <span class="hljs-type">vec3</span> N = <span class="hljs-built_in">normalize</span>(norm);
+    <span class="hljs-type">vec3</span> V = <span class="hljs-built_in">normalize</span>(-pos);
+    <span class="hljs-type">vec3</span> L = <span class="hljs-built_in">normalize</span>(l_pos - pos);
+    <span class="hljs-type">vec3</span> R = <span class="hljs-built_in">reflect</span>(-L, N);
+
+    <span class="hljs-comment">// 环境光分量I_a</span>
+    <span class="hljs-type">vec4</span> I_a = light.ambient * material.ambient;
+
+    <span class="hljs-comment">// @<span class="hljs-doctag">TODO:</span> Task2 计算系数和漫反射分量I_d</span>
+    <span class="hljs-type">float</span> diffuse_dot = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">dot</span>(L, N), <span class="hljs-number">0</span>);
+    <span class="hljs-type">vec4</span> I_d = diffuse_dot *  light.diffuse * material.diffuse;
+
+    <span class="hljs-comment">// @<span class="hljs-doctag">TODO:</span> Task2 计算系数和镜面反射分量I_s</span>
+    <span class="hljs-type">float</span> specular_dot_pow = <span class="hljs-built_in">pow</span>(<span class="hljs-built_in">max</span>(<span class="hljs-built_in">dot</span>(R, V), <span class="hljs-number">0</span>), material.shininess);
+    <span class="hljs-type">vec4</span> I_s = specular_dot_pow * light.specular * material.specular;
+
+    <span class="hljs-type">vec4</span> I = I_a + I_d + I_s;
+
+    <span class="hljs-keyword">if</span>( <span class="hljs-built_in">dot</span>(L, N) &lt; <span class="hljs-number">0.0</span> ) &#123;
+        I_s = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
+    &#125;
+
+    fColor = <span class="hljs-built_in">texture</span>(texture1, texCoord) * <span class="hljs-number">0.7</span> + I * <span class="hljs-number">0.3</span>;
+    fColor.a = <span class="hljs-number">1</span>;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>在init函数下设定光源</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置光源位置</span></span><br><span class="line">light-&gt;<span class="built_in">setTranslation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, waterScale / <span class="number">2</span>, -waterScale / <span class="number">2</span>));</span><br><span class="line">light-&gt;<span class="built_in">setAmbient</span>(glm::<span class="built_in">vec4</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>)); <span class="comment">// 环境光</span></span><br><span class="line">light-&gt;<span class="built_in">setDiffuse</span>(glm::<span class="built_in">vec4</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>)); <span class="comment">// 漫反射</span></span><br><span class="line">light-&gt;<span class="built_in">setSpecular</span>(glm::<span class="built_in">vec4</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>)); <span class="comment">// 镜面反射</span></span><br><span class="line">light-&gt;<span class="built_in">setAttenuation</span>(<span class="number">1.0</span>, <span class="number">0.45</span>, <span class="number">0.075</span>); <span class="comment">// 衰减系数</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-comment">// 设置光源位置</span>
+light-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, waterScale / <span class="hljs-number">2</span>, -waterScale / <span class="hljs-number">2</span>));
+light-&gt;<span class="hljs-built_in">setAmbient</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 环境光</span>
+light-&gt;<span class="hljs-built_in">setDiffuse</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 漫反射</span>
+light-&gt;<span class="hljs-built_in">setSpecular</span>(glm::<span class="hljs-built_in">vec4</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>)); <span class="hljs-comment">// 镜面反射</span>
+light-&gt;<span class="hljs-built_in">setAttenuation</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">0.45</span>, <span class="hljs-number">0.075</span>); <span class="hljs-comment">// 衰减系数</span>
+</code></pre>
 </li>
 <li>
 <p>设定船的材质参数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">glm::vec4 mat_ambient = &#123; <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,<span class="number">1.0f</span> &#125;;</span><br><span class="line">glm::vec4 mat_diffuse = &#123; <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line">glm::vec4 mat_specular = &#123; <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"><span class="type">float</span> shine = <span class="number">200.0f</span>;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">glm::vec4 mat_ambient = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1.0f</span> &#125;;
+glm::vec4 mat_diffuse = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1.0f</span> &#125;;
+glm::vec4 mat_specular = &#123; <span class="hljs-number">0.5f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span> &#125;;
+<span class="hljs-type">float</span> shine = <span class="hljs-number">200.0f</span>;
+</code></pre>
 </li>
 </ol>
 <h3 id="计算船的阴影并投影到平面上"><a class="markdownIt-Anchor" href="#计算船的阴影并投影到平面上"></a> 计算船的阴影并投影到平面上</h3>
 <ol>
 <li>
 <p>在meshPainter类下修改drawMesh函数，当类型为3时绘制阴影（投射到y=0的平面上）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 阴影绘制</span></span><br><span class="line"><span class="keyword">if</span> (type == <span class="number">3</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 三角形阴影绘制</span></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(object.vao);</span><br><span class="line">    <span class="comment">// 根据光源位置，计算阴影投影矩阵</span></span><br><span class="line">    glm::mat4 shadowProjMatrix = light-&gt;<span class="built_in">getShadowProjectionMatrix</span>();</span><br><span class="line">    modelMatrix = shadowProjMatrix * modelMatrix;</span><br><span class="line">    <span class="built_in">glUniform1i</span>(object.typeLocation, <span class="number">5</span>);</span><br><span class="line">    <span class="comment">// 传递 unifrom 关键字的矩阵数据。</span></span><br><span class="line">    <span class="built_in">glUniformMatrix4fv</span>(object.modelLocation, <span class="number">1</span>, GL_FALSE, &amp;modelMatrix[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">glUniformMatrix4fv</span>(object.viewLocation, <span class="number">1</span>, GL_TRUE, &amp;camera-&gt;viewMatrix[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">glUniformMatrix4fv</span>(object.projectionLocation, <span class="number">1</span>, GL_TRUE, &amp;camera-&gt;projMatrix[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">// 绘制</span></span><br><span class="line">    <span class="built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="number">0</span>, mesh-&gt;<span class="built_in">getPoints</span>().<span class="built_in">size</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-comment">// 阴影绘制</span>
+<span class="hljs-keyword">if</span> (type == <span class="hljs-number">3</span>)
+&#123;
+    <span class="hljs-comment">// 三角形阴影绘制</span>
+    <span class="hljs-built_in">glBindVertexArray</span>(object.vao);
+    <span class="hljs-comment">// 根据光源位置，计算阴影投影矩阵</span>
+    glm::mat4 shadowProjMatrix = light-&gt;<span class="hljs-built_in">getShadowProjectionMatrix</span>();
+    modelMatrix = shadowProjMatrix * modelMatrix;
+    <span class="hljs-built_in">glUniform1i</span>(object.typeLocation, <span class="hljs-number">5</span>);
+    <span class="hljs-comment">// 传递 unifrom 关键字的矩阵数据。</span>
+    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.modelLocation, <span class="hljs-number">1</span>, GL_FALSE, &amp;modelMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);
+    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.viewLocation, <span class="hljs-number">1</span>, GL_TRUE, &amp;camera-&gt;viewMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);
+    <span class="hljs-built_in">glUniformMatrix4fv</span>(object.projectionLocation, <span class="hljs-number">1</span>, GL_TRUE, &amp;camera-&gt;projMatrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);
+    <span class="hljs-comment">// 绘制</span>
+    <span class="hljs-built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="hljs-number">0</span>, mesh-&gt;<span class="hljs-built_in">getPoints</span>().<span class="hljs-built_in">size</span>());
+&#125;
+</code></pre>
 </li>
 <li>
 <p>修改fshader.frag（最好另开shader文件），当type为5时绘制阴影（颜色输出为黑色）：</p>
-<figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 阴影</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (type == <span class="number">5</span>) &#123;</span><br><span class="line">    fColor = <span class="type">vec4</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="glsl"><span class="hljs-comment">// 阴影</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type == <span class="hljs-number">5</span>) &#123;
+    fColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
+&#125;
+</code></pre>
 </li>
 </ol>
 <h3 id="船的移动与旋转"><a class="markdownIt-Anchor" href="#船的移动与旋转"></a> 船的移动与旋转</h3>
 <ol>
 <li>
 <p>在TriMesh类中添加Movement方法（因为模型读取不一定是摆正的，所以需要一个初始的修正），船的航行是向前的，不能像螃蟹一样横着走，所以他的位移要乘上当前旋转的角度：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">TriMesh::movement</span><span class="params">(<span class="type">float</span> speed)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> theta = <span class="number">0.005</span>;</span><br><span class="line">    <span class="built_in">setTranslation</span>(glm::<span class="built_in">vec3</span>(</span><br><span class="line">        translation.x + speed * theta * -<span class="built_in">sin</span>(glm::<span class="built_in">radians</span>(rotation.y + <span class="number">65</span>)),</span><br><span class="line">        translation.y,</span><br><span class="line">        translation.z + speed * theta * -<span class="built_in">cos</span>(glm::<span class="built_in">radians</span>(rotation.y + <span class="number">65</span>))));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::movement</span><span class="hljs-params">(<span class="hljs-type">float</span> speed)</span>
+</span>&#123;
+    <span class="hljs-type">float</span> theta = <span class="hljs-number">0.005</span>;
+    <span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(
+        translation.x + speed * theta * -<span class="hljs-built_in">sin</span>(glm::<span class="hljs-built_in">radians</span>(rotation.y + <span class="hljs-number">65</span>)),
+        translation.y,
+        translation.z + speed * theta * -<span class="hljs-built_in">cos</span>(glm::<span class="hljs-built_in">radians</span>(rotation.y + <span class="hljs-number">65</span>))));
+&#125;
+</code></pre>
 </li>
 <li>
 <p>添加changeDir方法，修改船在y轴上的旋转（Movement应用了y轴的旋转，所以可以做到转向航行）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">TriMesh::changeDir</span><span class="params">(<span class="type">float</span> dir)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> theta = <span class="number">0.2</span>;</span><br><span class="line">    rotation.y += dir * theta;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::changeDir</span><span class="hljs-params">(<span class="hljs-type">float</span> dir)</span>
+</span>&#123;
+    <span class="hljs-type">float</span> theta = <span class="hljs-number">0.2</span>;
+    rotation.y += dir * theta;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>添加键盘监听，修改全局变量speed和dir（w、s加速减速，a、d向左向右）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 键盘响应函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">key_callback</span><span class="params">(GLFWwindow* window, <span class="type">int</span> key, <span class="type">int</span> scancode, <span class="type">int</span> action, <span class="type">int</span> mode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (action == GLFW_PRESS) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (key)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_ESCAPE: <span class="built_in">exit</span>(EXIT_SUCCESS); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_H: <span class="built_in">printHelp</span>(); <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_2: controlShark = <span class="literal">true</span>; speed = <span class="number">0</span>; dir = <span class="number">0</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_1: controlShark = <span class="literal">false</span>; speed = <span class="number">0</span>; dir = <span class="number">0</span>; <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_W: speed += <span class="number">1</span>; <span class="built_in">printMsg</span>(); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_S: speed -= <span class="number">1</span>; <span class="built_in">printMsg</span>(); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_A: dir += <span class="number">1</span>; <span class="built_in">printMsg</span>(); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLFW_KEY_D: dir -= <span class="number">1</span>; <span class="built_in">printMsg</span>(); <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            camera-&gt;<span class="built_in">keyboard</span>(key, action, mode);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-comment">// 键盘响应函数</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">key_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> scancode, <span class="hljs-type">int</span> action, <span class="hljs-type">int</span> mode)</span>
+</span>&#123;
+    <span class="hljs-keyword">if</span> (action == GLFW_PRESS) &#123;
+        <span class="hljs-keyword">switch</span> (key)
+        &#123;
+        <span class="hljs-keyword">case</span> GLFW_KEY_ESCAPE: <span class="hljs-built_in">exit</span>(EXIT_SUCCESS); <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> GLFW_KEY_H: <span class="hljs-built_in">printHelp</span>(); <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> GLFW_KEY_2: controlShark = <span class="hljs-literal">true</span>; speed = <span class="hljs-number">0</span>; dir = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> GLFW_KEY_1: controlShark = <span class="hljs-literal">false</span>; speed = <span class="hljs-number">0</span>; dir = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> GLFW_KEY_W: speed += <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> GLFW_KEY_S: speed -= <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> GLFW_KEY_A: dir += <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> GLFW_KEY_D: dir -= <span class="hljs-number">1</span>; <span class="hljs-built_in">printMsg</span>(); <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">default</span>:
+            camera-&gt;<span class="hljs-built_in">keyboard</span>(key, action, mode);
+            <span class="hljs-keyword">break</span>;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>船只跟随水面高低波动，由于水面时高时低，在y轴上不会有位移的船很容易变成潜水艇或者飞船，所以要根据所在水面的顶点位置更新它的y轴位置，由于水面的网格的x，z值不会发生改变，我们只要根据船所在的位置映射到当前水面并获取周围的四个顶点的y值，计算出当前水面相对初始值的偏移量：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">float</span> <span class="title">Fluid::getOffset</span><span class="params">(glm::vec3 pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> x = pos.x;</span><br><span class="line">    <span class="type">float</span> z = pos.z;</span><br><span class="line">    <span class="type">int</span> i = (x + <span class="number">0.5</span>) * (numOfWidth + <span class="number">1.0</span>);</span><br><span class="line">    <span class="type">int</span> j = (z + <span class="number">0.5</span>) * (numOfWidth + <span class="number">1.0</span>);</span><br><span class="line">    <span class="keyword">if</span> (i &lt; numOfWidth + <span class="number">1</span> &amp;&amp; j &lt; numOfWidth + <span class="number">1</span> &amp;&amp; i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">float</span> ay = vertex_positions[i * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">        <span class="type">float</span> by = vertex_positions[i * (numOfWidth + <span class="number">1</span>) + j + <span class="number">1</span>].y;</span><br><span class="line">        <span class="type">float</span> cy = vertex_positions[(i + <span class="number">1</span>) * (numOfWidth + <span class="number">1</span>) + j].y;</span><br><span class="line">        <span class="type">float</span> dy = vertex_positions[(i + <span class="number">1</span>) * (numOfWidth + <span class="number">1</span>) + j + <span class="number">1</span>].y;</span><br><span class="line">        <span class="keyword">return</span> (ay + by + cy + dy) / <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.0f</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">float</span> <span class="hljs-title">Fluid::getOffset</span><span class="hljs-params">(glm::vec3 pos)</span>
+</span>&#123;
+    <span class="hljs-type">float</span> x = pos.x;
+    <span class="hljs-type">float</span> z = pos.z;
+    <span class="hljs-type">int</span> i = (x + <span class="hljs-number">0.5</span>) * (numOfWidth + <span class="hljs-number">1.0</span>);
+    <span class="hljs-type">int</span> j = (z + <span class="hljs-number">0.5</span>) * (numOfWidth + <span class="hljs-number">1.0</span>);
+    <span class="hljs-keyword">if</span> (i &lt; numOfWidth + <span class="hljs-number">1</span> &amp;&amp; j &lt; numOfWidth + <span class="hljs-number">1</span> &amp;&amp; i &gt;= <span class="hljs-number">0</span> &amp;&amp; j &gt;= <span class="hljs-number">0</span>)
+    &#123;
+        <span class="hljs-type">float</span> ay = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+        <span class="hljs-type">float</span> by = vertex_positions[i * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;
+        <span class="hljs-type">float</span> cy = vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j].y;
+        <span class="hljs-type">float</span> dy = vertex_positions[(i + <span class="hljs-number">1</span>) * (numOfWidth + <span class="hljs-number">1</span>) + j + <span class="hljs-number">1</span>].y;
+        <span class="hljs-keyword">return</span> (ay + by + cy + dy) / <span class="hljs-number">4</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0.0f</span>;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>根据offset加入船只的左右前后晃动，让它更有在海上的感觉：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">TriMesh::shake</span><span class="params">(<span class="type">float</span> offset)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    rotation.x = offset * <span class="number">60</span>;</span><br><span class="line">    rotation.z = offset * <span class="number">30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TriMesh::shake</span><span class="hljs-params">(<span class="hljs-type">float</span> offset)</span>
+</span>&#123;
+    rotation.x = offset * <span class="hljs-number">60</span>;
+    rotation.z = offset * <span class="hljs-number">30</span>;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>在main函数中根据速度和方向调用movement和changeDir函数并根据偏移值在main函数中实时更新船只的y轴坐标并调用：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ship-&gt;<span class="built_in">movement</span>(speed);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fabs</span>(speed) &gt; <span class="number">0.01f</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ship-&gt;<span class="built_in">changeDir</span>(dir);</span><br><span class="line">    glm::vec3 pos = ship-&gt;<span class="built_in">getTranslation</span>();</span><br><span class="line">    pos.y = <span class="number">0.5</span>;</span><br><span class="line">    camera-&gt;<span class="built_in">focus</span>(glm::<span class="built_in">vec4</span>(pos, <span class="number">1.0f</span>));</span><br><span class="line">    camera-&gt;<span class="built_in">updateCamera</span>();</span><br><span class="line">&#125;</span><br><span class="line">glm::vec3 pos = ship-&gt;<span class="built_in">getTranslation</span>();</span><br><span class="line"><span class="type">float</span> offset = water-&gt;<span class="built_in">getOffset</span>(pos / waterScale);</span><br><span class="line">pos.y = <span class="number">0.5</span> + offset / <span class="number">10</span>;</span><br><span class="line">ship-&gt;<span class="built_in">setTranslation</span>(pos);</span><br><span class="line">ship-&gt;<span class="built_in">shake</span>(offset);</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">ship-&gt;<span class="hljs-built_in">movement</span>(speed);
+<span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(speed) &gt; <span class="hljs-number">0.01f</span>)
+&#123;
+    ship-&gt;<span class="hljs-built_in">changeDir</span>(dir);
+    glm::vec3 pos = ship-&gt;<span class="hljs-built_in">getTranslation</span>();
+    pos.y = <span class="hljs-number">0.5</span>;
+    camera-&gt;<span class="hljs-built_in">focus</span>(glm::<span class="hljs-built_in">vec4</span>(pos, <span class="hljs-number">1.0f</span>));
+    camera-&gt;<span class="hljs-built_in">updateCamera</span>();
+&#125;
+glm::vec3 pos = ship-&gt;<span class="hljs-built_in">getTranslation</span>();
+<span class="hljs-type">float</span> offset = water-&gt;<span class="hljs-built_in">getOffset</span>(pos / waterScale);
+pos.y = <span class="hljs-number">0.5</span> + offset / <span class="hljs-number">10</span>;
+ship-&gt;<span class="hljs-built_in">setTranslation</span>(pos);
+ship-&gt;<span class="hljs-built_in">shake</span>(offset);
+</code></pre>
 </li>
 </ol>
 <h3 id="相机跟随"><a class="markdownIt-Anchor" href="#相机跟随"></a> 相机跟随</h3>
 <ol>
 <li>
 <p>为Camera类添加focus方法，修改at：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Camera::focus</span><span class="params">(glm::vec4 _at)</span> </span>&#123;</span><br><span class="line">    at = _at;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Camera::focus</span><span class="hljs-params">(glm::vec4 _at)</span> </span>&#123;
+    at = _at;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>修改updateCamera方法，让相机跟随焦点位置更新：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">eye = at + glm::<span class="built_in">vec4</span>(eyex, eyey, eyez, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">eye = at + glm::<span class="hljs-built_in">vec4</span>(eyex, eyey, eyez, <span class="hljs-number">1.0</span>);
+</code></pre>
 </li>
 </ol>
 <h3 id="天空盒的实现"><a class="markdownIt-Anchor" href="#天空盒的实现"></a> 天空盒的实现</h3>
@@ -2953,18 +3218,41 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </li>
 <li>
 <p>直接生成6个正方形平面拼起来，不想赘述了，简单的很</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">skybox1-&gt;<span class="built_in">generateSquare</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>));</span><br><span class="line"></span><br><span class="line">skybox1-&gt;<span class="built_in">setTranslation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, waterScale / <span class="number">15</span>, -waterScale / <span class="number">2</span>));</span><br><span class="line">skybox1-&gt;<span class="built_in">setRotation</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>));</span><br><span class="line">skybox1-&gt;<span class="built_in">setScale</span>(glm::<span class="built_in">vec3</span>(waterScale, waterScale, waterScale));</span><br><span class="line"></span><br><span class="line">painter-&gt;<span class="built_in">addMesh</span>(skybox1, <span class="string">&quot;skybox1&quot;</span>, <span class="string">&quot;./assets/_skybox_6.jpg&quot;</span>, vshader, fshader, <span class="number">1</span>);</span><br><span class="line">meshList.<span class="built_in">push_back</span>(skybox1);</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp">skybox1-&gt;<span class="hljs-built_in">generateSquare</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>));
+
+skybox1-&gt;<span class="hljs-built_in">setTranslation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, waterScale / <span class="hljs-number">15</span>, -waterScale / <span class="hljs-number">2</span>));
+skybox1-&gt;<span class="hljs-built_in">setRotation</span>(glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>));
+skybox1-&gt;<span class="hljs-built_in">setScale</span>(glm::<span class="hljs-built_in">vec3</span>(waterScale, waterScale, waterScale));
+
+painter-&gt;<span class="hljs-built_in">addMesh</span>(skybox1, <span class="hljs-string">&quot;skybox1&quot;</span>, <span class="hljs-string">&quot;./assets/_skybox_6.jpg&quot;</span>, vshader, fshader, <span class="hljs-number">1</span>);
+meshList.<span class="hljs-built_in">push_back</span>(skybox1);
+</code></pre>
 </li>
 </ol>
 <h3 id="水的半透明效果"><a class="markdownIt-Anchor" href="#水的半透明效果"></a> 水的半透明效果</h3>
 <ol>
 <li>
 <p>在fshader中修改水输出颜色的透明度：</p>
-<figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 水</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(type == <span class="number">2</span>)&#123;</span><br><span class="line">    fColor = <span class="built_in">texture</span>(texture1, texCoord);</span><br><span class="line">    fColor.a = <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="glsl"><span class="hljs-comment">// 水</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(type == <span class="hljs-number">2</span>)&#123;
+    fColor = <span class="hljs-built_in">texture</span>(texture1, texCoord);
+    fColor.a = <span class="hljs-number">0.7</span>;
+&#125;
+</code></pre>
 </li>
 <li>
 <p>透明效果详细来讲的话会涉及非常多的东西，简略地讲，我们就是将前面的透明物体与后面的物体的颜色进行混合，混合因子就是控制它们的系数，我们选择用透明度与1-透明度作为混合因子，启动混合功能并设置混合函数，最后在设置深度缓冲区为读写：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line">    <span class="built_in">glEnable</span>(GL_BLEND);</span><br><span class="line">    <span class="built_in">glBlendFunc</span>(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);</span><br><span class="line">    painter-&gt;<span class="built_in">drawMeshes</span>(light, camera);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glDepthMask</span>(GL_TRUE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span>
+</span>&#123;
+
+    <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    <span class="hljs-built_in">glEnable</span>(GL_BLEND);
+    <span class="hljs-built_in">glBlendFunc</span>(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    painter-&gt;<span class="hljs-built_in">drawMeshes</span>(light, camera);
+
+    <span class="hljs-built_in">glDepthMask</span>(GL_TRUE);
+&#125;
+</code></pre>
 </li>
 </ol>
 <h2 id="最终结果"><a class="markdownIt-Anchor" href="#最终结果"></a> 最终结果</h2>
@@ -3049,8 +3337,9 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 update: 
 
 
+
 tags后跟标签
-tag...</p>
+ta...</p>
         </a>
       
     </div>
@@ -3891,6 +4180,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3915,7 +4215,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

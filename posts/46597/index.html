@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678204097511),
+    lastupdate: new Date(1678254211067),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2787,26 +2787,42 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p>先检查是否安装了hexo-math</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm list hexo-math</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm list hexo-math
+</code></pre>
 </li>
 <li>
 <p>如果出现empty则表示没有安装，否则我们需要先卸载</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-math --save</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm uninstall hexo-math --save
+</code></pre>
 </li>
 <li>
 <p>安装hexo-filter-mathjax</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mathjax --save</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm install hexo-filter-mathjax --save
+</code></pre>
 </li>
 <li>
 <p>打开根目录下的_config.yml，不是主题的那个，添加如下代码，该代码的解释可以在hexo-filter-mathjax的reame文档找到</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Mathjax</span></span><br><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">none</span> <span class="comment"># or &#x27;ams&#x27; or &#x27;all&#x27;</span></span><br><span class="line">  <span class="attr">single_dollars:</span> <span class="literal">true</span> <span class="comment"># enable single dollar signs as in-line math delimiters</span></span><br><span class="line">  <span class="attr">cjk_width:</span> <span class="number">0.9</span> <span class="comment"># relative CJK char width</span></span><br><span class="line">  <span class="attr">normal_width:</span> <span class="number">0.6</span> <span class="comment"># relative normal (monospace) width</span></span><br><span class="line">  <span class="attr">append_css:</span> <span class="literal">true</span> <span class="comment"># add CSS to pages rendered by MathJax</span></span><br><span class="line">  <span class="attr">every_page:</span> <span class="literal">false</span> <span class="comment"># if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter</span></span><br><span class="line">  <span class="attr">packages:</span> <span class="comment"># extra packages to load</span></span><br><span class="line">  <span class="attr">extension_options:</span> &#123;&#125;</span><br><span class="line">    <span class="comment"># you can put your extension options here</span></span><br><span class="line">    <span class="comment"># see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># Mathjax</span>
+<span class="hljs-attr">mathjax:</span>
+  <span class="hljs-attr">tags:</span> <span class="hljs-string">none</span> <span class="hljs-comment"># or &#x27;ams&#x27; or &#x27;all&#x27;</span>
+  <span class="hljs-attr">single_dollars:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># enable single dollar signs as in-line math delimiters</span>
+  <span class="hljs-attr">cjk_width:</span> <span class="hljs-number">0.9</span> <span class="hljs-comment"># relative CJK char width</span>
+  <span class="hljs-attr">normal_width:</span> <span class="hljs-number">0.6</span> <span class="hljs-comment"># relative normal (monospace) width</span>
+  <span class="hljs-attr">append_css:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># add CSS to pages rendered by MathJax</span>
+  <span class="hljs-attr">every_page:</span> <span class="hljs-literal">false</span> <span class="hljs-comment"># if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter</span>
+  <span class="hljs-attr">packages:</span> <span class="hljs-comment"># extra packages to load</span>
+  <span class="hljs-attr">extension_options:</span> &#123;&#125;
+    <span class="hljs-comment"># you can put your extension options here</span>
+    <span class="hljs-comment"># see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail</span>
+</code></pre>
 </li>
 </ul>
 <h3 id="hexo-renderer-pandoc"><a class="markdownIt-Anchor" href="#hexo-renderer-pandoc"></a> hexo-renderer-pandoc</h3>
 <ul>
 <li>
 <p>卸载hexo-renderer-marked，不再赘述原生的渲染器有什么问题了</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm uninstall hexo-renderer-marked
+</code></pre>
 </li>
 <li>
 <p>安装Pandoc</p>
@@ -2814,11 +2830,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>npm安装hexo-renderer-pandoc</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm install hexo-renderer-pandoc
+</code></pre>
 </li>
 <li>
 <p>在根目录下的_config.yml指定pandoc的路径能够更快地找到pandoc（官方文档大概是这个意思）</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pandoc</span></span><br><span class="line"><span class="attr">pandoc:</span></span><br><span class="line">  <span class="comment"># 此处填的是你的pandoc的路径</span></span><br><span class="line">  <span class="attr">pandoc_path:</span> <span class="string">&quot;C:/Users/Jason/AppData/Local/Pandoc/pandoc.exe&quot;</span></span><br><span class="line">  <span class="attr">filters:</span></span><br><span class="line">  <span class="attr">extra:</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">  <span class="attr">meta:</span></span><br><span class="line">  <span class="attr">mathEngine:</span> <span class="comment"># 默认为mathjax</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># pandoc</span>
+<span class="hljs-attr">pandoc:</span>
+  <span class="hljs-comment"># 此处填的是你的pandoc的路径</span>
+  <span class="hljs-attr">pandoc_path:</span> <span class="hljs-string">&quot;C:/Users/Jason/AppData/Local/Pandoc/pandoc.exe&quot;</span>
+  <span class="hljs-attr">filters:</span>
+  <span class="hljs-attr">extra:</span>
+  <span class="hljs-attr">template:</span>
+  <span class="hljs-attr">meta:</span>
+  <span class="hljs-attr">mathEngine:</span> <span class="hljs-comment"># 默认为mathjax</span>
+</code></pre>
 </li>
 </ul>
 <h3 id="公式格式"><a class="markdownIt-Anchor" href="#公式格式"></a> 公式格式</h3>
@@ -2826,19 +2852,35 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p>在Front-matter中添加：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span>
+<span class="hljs-meta">---
+</span></code></pre>
 </li>
 <li>
 <p>行内公式<code>$</code>不要贴着加空格，也就是开头的<code>$</code>的后面以及结尾的<code>$</code>的前面不要加空格，例：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-$ \epsilon_0 $</span></span><br><span class="line"><span class="addition">+$\epsilon_0$</span></span><br><span class="line"><span class="deletion">-$ \frac&#123;\partial&#125;&#123;\partial t&#125; $</span></span><br><span class="line"><span class="addition">+$\frac&#123;\partial&#125;&#123;\partial t&#125;$</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="diff"><span class="hljs-deletion">-$ \epsilon_0 $</span>
+<span class="hljs-addition">+$\epsilon_0$</span>
+<span class="hljs-deletion">-$ \frac&#123;\partial&#125;&#123;\partial t&#125; $</span>
+<span class="hljs-addition">+$\frac&#123;\partial&#125;&#123;\partial t&#125;$</span>
+</code></pre>
 </li>
 <li>
 <p>行间公式的<code>$$</code>注意中间只能有一行，不要出现额外的回车，例：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+$$</span></span><br><span class="line"><span class="addition">+i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi</span></span><br><span class="line"><span class="addition">+$$</span></span><br><span class="line"><span class="deletion">-$$</span></span><br><span class="line"><span class="deletion">-i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi</span></span><br><span class="line"><span class="deletion">-</span></span><br><span class="line"><span class="deletion">-$$</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="diff"><span class="hljs-addition">+$$</span>
+<span class="hljs-addition">+i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi</span>
+<span class="hljs-addition">+$$</span>
+<span class="hljs-deletion">-$$</span>
+<span class="hljs-deletion">-i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-$$</span>
+</code></pre>
 </li>
 <li>
 <p>多行的显示在mathjax3.0中不再支持<code>\\</code>，可以用<code>\displaylines</code>，<a target="_blank" rel="noopener" href="https://github.com/mathjax/MathJax/issues/2312">issues链接</a>，例：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+\displaylines&#123;x+y=1\\2x+y=3&#125;</span></span><br><span class="line"><span class="deletion">-x+y=1\\2x+y=3</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="diff"><span class="hljs-addition">+\displaylines&#123;x+y=1\\2x+y=3&#125;</span>
+<span class="hljs-deletion">-x+y=1\\2x+y=3</span>
+</code></pre>
 </li>
 </ul>
 <h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> KateX</h2>
@@ -2850,22 +2892,47 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>安装渲染器<em>hexo-renderer-markdown-it-plus</em>，自动包含了<em>hexo-renderer-markdown-it-katex</em>该渲染器对katex支持得很好，同时比原生的marked渲染器还快，比pandoc就更快了</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-markdown-it-plus --save</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="shell">npm i hexo-renderer-markdown-it-plus --save
+</code></pre>
 </li>
 <li>
 <p>在根目录下的_config.yml文件中添加配置代码</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown_it_plus:</span></span><br><span class="line">    <span class="attr">highlight:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">langPrefix:</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">“”‘’</span></span><br><span class="line">    <span class="attr">pre_class:</span> <span class="string">highlight</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-attr">markdown_it_plus:</span>
+    <span class="hljs-attr">highlight:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">html:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">xhtmlOut:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">breaks:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">langPrefix:</span>
+    <span class="hljs-attr">linkify:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">typographer:</span>
+    <span class="hljs-attr">quotes:</span> <span class="hljs-string">“”‘’</span>
+    <span class="hljs-attr">pre_class:</span> <span class="hljs-string">highlight</span>
+</code></pre>
 </li>
 </ul>
 <h3 id="使用katex"><a class="markdownIt-Anchor" href="#使用katex"></a> 使用KateX</h3>
 <ul>
 <li>
 <p>在根目录下的_config.yml文件中添加math模块，指定engine</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Math Equations Render Support</span></span><br><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Default(true) will load mathjax/katex script on demand</span></span><br><span class="line">  <span class="comment"># That is it only render those page who has &#x27;mathjax: true&#x27; in Front Matter.</span></span><br><span class="line">  <span class="comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#engine: mathjax</span></span><br><span class="line">  <span class="attr">engine:</span> <span class="string">katex</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-comment"># Math Equations Render Support</span>
+<span class="hljs-attr">math:</span>
+  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-comment"># Default(true) will load mathjax/katex script on demand</span>
+  <span class="hljs-comment"># That is it only render those page who has &#x27;mathjax: true&#x27; in Front Matter.</span>
+  <span class="hljs-comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span>
+  <span class="hljs-attr">per_page:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-comment">#engine: mathjax</span>
+  <span class="hljs-attr">engine:</span> <span class="hljs-string">katex</span>
+</code></pre>
 </li>
 <li>
 <p>在文章的Front-matter中添加：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">katex:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">katex:</span> <span class="hljs-literal">true</span>
+<span class="hljs-meta">---
+</span></code></pre>
 </li>
 </ul>
 <h2 id="碎碎念"><a class="markdownIt-Anchor" href="#碎碎念"></a> 碎碎念</h2>
@@ -3784,6 +3851,17 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
   <script>
 
+  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
+
+
+  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
+    volantis.requestAnimationFrame(hljs.highlightAll)
+  })
+  volantis.pjax.push(()=>{
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  },"highlightjs")
 
 
   function pjax_highlightjs_copyCode(){
@@ -3808,7 +3886,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
