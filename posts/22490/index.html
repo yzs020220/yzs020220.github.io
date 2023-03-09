@@ -38,7 +38,7 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>Hexo美化|Cards主题 - 没有秃头基因的燊的博客</title>
-  <meta name="keywords" content="Hexo,折腾,Cards主题,图形学, Card主题, 编程, Developer, shader">
+  <meta name="keywords" content="Hexo,Cards主题,折腾,图形学, Card主题, 编程, Developer, shader">
   <meta desc name="description" content="记录了刚开始这个博客怎么美化主题的，希望后来人能少走弯路吧，遇到问题多看官方文档 - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
   
 <meta property="og:type" content="article">
@@ -52,8 +52,8 @@
 <meta property="article:modified_time" content="2023-03-03T05:45:46.569Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="折腾">
 <meta property="article:tag" content="Cards主题">
+<meta property="article:tag" content="折腾">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678254337044),
+    lastupdate: new Date(1678350535344),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2742,8 +2742,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
             
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Hexo/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Hexo</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%8A%98%E8%85%BE/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>折腾</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Cards%E4%B8%BB%E9%A2%98/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Cards主题</p></a></div>
-  <span hidden itemprop="keywords">Hexo 折腾 Cards主题</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Hexo/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Hexo</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Cards%E4%B8%BB%E9%A2%98/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Cards主题</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%8A%98%E8%85%BE/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>折腾</p></a></div>
+  <span hidden itemprop="keywords">Hexo Cards主题 折腾</span>
 
 
           
@@ -2782,125 +2782,125 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/config/">基本配置 | Theme Cards (ichr.me)</a></p>
 <h3 id="网站图标"><a class="markdownIt-Anchor" href="#网站图标"></a> 网站图标</h3>
 <p>favicon的路径设置在source下的目录，打开Card主题文件夹下的_config.yml文件，例：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">head:</span> 
+<pre class="highlight"><code class="yml">head: 
 
-  <span class="hljs-comment"># 网站图标</span>
-  <span class="hljs-attr">favicon:</span>
-    <span class="hljs-attr">ico:</span> <span class="hljs-string">/img/icon.ico</span>
-    <span class="hljs-attr">small:</span> <span class="hljs-string">/img/icon.png</span>
-    <span class="hljs-attr">medium:</span> 
-    <span class="hljs-attr">apple_touch_icon:</span> 
-    <span class="hljs-attr">safari_pinned_tab:</span> 
+  # 网站图标
+  favicon:
+    ico: /img/icon.ico
+    small: /img/icon.png
+    medium: 
+    apple_touch_icon: 
+    safari_pinned_tab: 
 </code></pre>
 <p>具体关于图像尺寸格式请查阅官方文档</p>
 <h3 id="封面头像"><a class="markdownIt-Anchor" href="#封面头像"></a> 封面头像</h3>
 <p>在cover下：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-comment"># 封面 cover 设置</span>
-<span class="hljs-attr">cover:</span> 
+<pre class="highlight"><code class="yml"># 封面 cover 设置
+cover: 
 
-  <span class="hljs-comment"># 显示在最上方 cover 处的站点名称</span>
-  <span class="hljs-attr">sitename:</span> <span class="hljs-string">的博客</span>
+  # 显示在最上方 cover 处的站点名称
+  sitename: 的博客
 
-  <span class="hljs-comment"># 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename</span>
-  <span class="hljs-attr">avatar:</span> <span class="hljs-string">/img/avatar.jpg</span>
+  # 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename
+  avatar: /img/avatar.jpg
 
-  <span class="hljs-comment"># sitename/avatar 下方的一句话介绍</span>
-  <span class="hljs-attr">description:</span> 
+  # sitename/avatar 下方的一句话介绍
+  description: 
 </code></pre>
 <h3 id="颜色配置与代码高亮主题"><a class="markdownIt-Anchor" href="#颜色配置与代码高亮主题"></a> 颜色配置与代码高亮主题</h3>
 <p>style下可以设置颜色配置，[色号查询网站](<a target="_blank" rel="noopener" href="https://www.qtccolor.com/secaiku/search?word#&amp;colorPage">查询色号“null”相关结果 - 千通彩色库 (qtccolor.com)</a>)：</p>
-<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 颜色配置</span>
-  <span class="hljs-attr">color:</span> 
-    <span class="hljs-attr">main_color:</span> <span class="hljs-string">&#x27;#26251c&#x27;</span>
-    <span class="hljs-attr">main_color_dark:</span> <span class="hljs-string">&#x27;#ded7a2&#x27;</span>
+<pre class="highlight"><code class="yml">  # 颜色配置
+  color: 
+    main_color: '#26251c'
+    main_color_dark: '#ded7a2'
 </code></pre>
 <p>在highlight中指定默认模式和深色模式使用的代码高亮主题，主题样式可在<em>node_modules-&gt;highlight.js-&gt;styles</em>中查看：</p>
-<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 默认代码高亮</span>
-  <span class="hljs-attr">highlight:</span> 
+<pre class="highlight"><code class="yml">  # 默认代码高亮
+  highlight: 
 
-    <span class="hljs-comment"># 默认代码高亮主题</span>
-    <span class="hljs-attr">default:</span> <span class="hljs-string">atom-one-light</span>
+    # 默认代码高亮主题
+    default: atom-one-light
 
-    <span class="hljs-comment"># 暗色代码高亮主题</span>
-    <span class="hljs-attr">darkmode:</span> <span class="hljs-string">atom-one-dark</span>
+    # 暗色代码高亮主题
+    darkmode: atom-one-dark
 </code></pre>
 <h3 id="文章缩略图"><a class="markdownIt-Anchor" href="#文章缩略图"></a> 文章缩略图</h3>
 <p>在meta中启用thumbnail：</p>
-<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 文章缩略图</span>
-  <span class="hljs-attr">thumbnail:</span> 
-    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">default:</span>   <span class="hljs-comment"># 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数</span>
+<pre class="highlight"><code class="yml">  # 文章缩略图
+  thumbnail: 
+    enable: true
+    default:   # 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数
 </code></pre>
 <p>之后只要在front-matter中指定thumbnail即可：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">thumbnail:</span> <span class="hljs-string">/img/.png</span>
+<pre class="highlight"><code class="yml">thumbnail: /img/.png
 </code></pre>
 <h3 id="博客自动更新日期"><a class="markdownIt-Anchor" href="#博客自动更新日期"></a> 博客自动更新日期</h3>
 <p>我也不太确定是什么时候我博客的更新日期不需要专门指定updated就可以通过博客的更改来更新日期，大概是在_config.yml文件中指定timezone即可：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">timezone:</span> <span class="hljs-string">&quot;Asia/Shanghai&quot;</span>
+<pre class="highlight"><code class="yml">timezone: &quot;Asia/Shanghai&quot;
 </code></pre>
 <h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录"></a> 文章目录</h3>
 <p>meta中启用toc：</p>
-<pre class="highlight"><code class="yml">  <span class="hljs-comment"># 文章目录</span>
-  <span class="hljs-attr">toc:</span> 
-    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">list_number:</span> <span class="hljs-literal">false</span>
+<pre class="highlight"><code class="yml">  # 文章目录
+  toc: 
+    enable: true
+    list_number: false
 </code></pre>
 <p><strong>注：文章目录不要使用一级标题，不要跨级使用标题否则会出现乱码，如2级到5级到2级，请严格一级一级使用如2级到3级到2级（hexo博客的特性）</strong></p>
 <h3 id="插件"><a class="markdownIt-Anchor" href="#插件"></a> 插件</h3>
 <h4 id="启用站内搜索"><a class="markdownIt-Anchor" href="#启用站内搜索"></a> 启用站内搜索</h4>
 <p>启用站内搜索插件：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-comment"># 站内搜索插件</span>
-<span class="hljs-attr">search:</span>
-  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
-  <span class="hljs-attr">path:</span> <span class="hljs-string">search.json</span>
-  <span class="hljs-attr">field:</span> <span class="hljs-string">All</span>  <span class="hljs-comment"># Page | Post | All</span>
+<pre class="highlight"><code class="yml"># 站内搜索插件
+search:
+  enable: true
+  path: search.json
+  field: All  # Page | Post | All
 </code></pre>
 <p>使用cmd新建页面</p>
 <pre class="highlight"><code class="shell">hexo new page &quot;search&quot;
 </code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">layout:</span> <span class="hljs-string">search</span>
-<span class="hljs-meta">---
-</span></code></pre>
+<pre class="highlight"><code class="yml">---
+layout: search
+---
+</code></pre>
 <h4 id="启用标签页"><a class="markdownIt-Anchor" href="#启用标签页"></a> 启用标签页</h4>
 <p>cmd新建页面：</p>
 <pre class="highlight"><code class="shell">hexo new page &quot;tags&quot;
 </code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">layout:</span> <span class="hljs-string">tags</span>
-<span class="hljs-meta">---
-</span></code></pre>
+<pre class="highlight"><code class="yml">---
+layout: tags
+---
+</code></pre>
 <h4 id="启用友链"><a class="markdownIt-Anchor" href="#启用友链"></a> 启用友链</h4>
 <p>cmd新建页面：</p>
 <pre class="highlight"><code class="shell">hexo new page &quot;friends&quot;
 </code></pre>
 <p>在新建页面下的index.md文档中修改front-matter，详见<a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/pages/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">独立页面 | Theme Cards </a>：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">layout:</span> <span class="hljs-string">links</span>
-<span class="hljs-attr">links:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">HCY-ASLEEP</span>
-      <span class="hljs-attr">url:</span> <span class="hljs-string">https://hcy-asleep.github.io</span>
-      <span class="hljs-attr">avatar:</span> <span class="hljs-string">https://hcy-asleep.github.io/images/logo.svg</span>
-      <span class="hljs-attr">desc:</span> <span class="hljs-string">喜欢ctrl+c（chicken）的男人</span>
-      <span class="hljs-attr">tags:</span> [<span class="hljs-string">唱</span>, <span class="hljs-string">跳</span>, <span class="hljs-string">rap</span>, <span class="hljs-string">篮球</span>]
-      <span class="hljs-attr">target:</span> <span class="hljs-string">_blank</span>
-      <span class="hljs-attr">backgroundColor:</span> <span class="hljs-string">&#x27;#226&#x27;</span>
-      <span class="hljs-attr">textColor:</span> <span class="hljs-string">&#x27;#CC8&#x27;</span>
-<span class="hljs-meta">---
-</span></code></pre>
+<pre class="highlight"><code class="yml">---
+layout: links
+links:
+    - name: HCY-ASLEEP
+      url: https://hcy-asleep.github.io
+      avatar: https://hcy-asleep.github.io/images/logo.svg
+      desc: 喜欢ctrl+c（chicken）的男人
+      tags: [唱, 跳, rap, 篮球]
+      target: _blank
+      backgroundColor: '#226'
+      textColor: '#CC8'
+---
+</code></pre>
 <h4 id="设置返回顶部按钮"><a class="markdownIt-Anchor" href="#设置返回顶部按钮"></a> 设置返回顶部按钮</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-comment"># 返回顶部</span>
-<span class="hljs-attr">back_to_top:</span> <span class="hljs-literal">true</span>
+<pre class="highlight"><code class="yml"># 返回顶部
+back_to_top: true
 </code></pre>
 <h4 id="折叠内容"><a class="markdownIt-Anchor" href="#折叠内容"></a> 折叠内容</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">fold:</span> 
-  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
-  <span class="hljs-attr">summary:</span> 
-  <span class="hljs-attr">motion:</span>
+<pre class="highlight"><code class="yml">fold: 
+  enable: true
+  summary: 
+  motion:
 </code></pre>
 <p>在文章中需要折叠的内容前后分别添加</p>
 <pre class="highlight"><code class="markdown">&#123;% fold 摘要内容 %&#125;
@@ -2916,15 +2916,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>点击<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">申请链接</a>，<code>HomepageUrl</code>填写你的repo的地址，<code>Authorization callback URL</code> 填写当前使用插件页面的域名，申请后会出现<code>clientID</code>与<code>clientSecret</code>（需要generate一下）</p>
 <p><img src="/img/HexoEnhance/application.png" class="lazyload" data-srcset="/img/HexoEnhance/application.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml"> <span class="hljs-attr">comments:</span> 
-  <span class="hljs-attr">use:</span> <span class="hljs-string">gitalk</span>
-<span class="hljs-meta">--- </span>
-  <span class="hljs-comment"># Gitalk</span>
-  <span class="hljs-attr">gitalk:</span>
-    <span class="hljs-attr">repo:</span> <span class="hljs-string">yzs020220.github.io</span> <span class="hljs-comment"># 存放评论的仓库（评论会上传到issues上）</span>
-    <span class="hljs-attr">owner:</span> <span class="hljs-string">yzs020220</span> <span class="hljs-comment"># github的id</span>
-    <span class="hljs-attr">clientID:</span> <span class="hljs-string">*****</span>
-    <span class="hljs-attr">clientSecret:</span> <span class="hljs-string">********</span>
+<pre class="highlight"><code class="yml"> comments: 
+  use: gitalk
+--- 
+  # Gitalk
+  gitalk:
+    repo: yzs020220.github.io # 存放评论的仓库（评论会上传到issues上）
+    owner: yzs020220 # github的id
+    clientID: *****
+    clientSecret: ********
 </code></pre>
 <p>完成以上步骤基本就可以显示了，初次打开会需要使用github账号登录，生成的评论也都可以在issues中查看，但还会有一个关于中文的问题</p>
 <h5 id="解决error-validation-failed"><a class="markdownIt-Anchor" href="#解决error-validation-failed"></a> 解决Error: Validation Failed</h5>
@@ -2940,9 +2940,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>在右边输入你的网址进入html验证</p>
 <p><img src="/img/HexoEnhance/html.png" class="lazyload" data-srcset="/img/HexoEnhance/html.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>下载html文件放到source下，在根目录下的_config.yml文件中跳过该文件的渲染</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">skip_render:</span> 
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;README.md&#x27;</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;google9f6e9cf05881a1e4.html&#x27;</span>
+<pre class="highlight"><code class="yml">skip_render: 
+  - 'README.md'
+  - 'google9f6e9cf05881a1e4.html'
 </code></pre>
 <p>同步博客后点击验证即可</p>
 <h4 id="bing"><a class="markdownIt-Anchor" href="#bing"></a> Bing</h4>
@@ -2952,10 +2952,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <pre class="highlight"><code class="shell">npm install sitemap --save
 </code></pre>
 <p>在根目录的_config.yml中设置sitemap的路径：</p>
-<pre class="highlight"><code class="yml"><span class="hljs-attr">sitemap:</span>
-  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span>
-  <span class="hljs-attr">tag:</span> <span class="hljs-literal">false</span>
-  <span class="hljs-attr">category:</span> <span class="hljs-literal">false</span>
+<pre class="highlight"><code class="yml">sitemap:
+  path: sitemap.xml
+  tag: false
+  category: false
 </code></pre>
 <p>我们只需要在站点地图中，添加新的站点地图中输入sitemap.xml即可</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -3891,7 +3891,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/HollowKnight3.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic3.jpg","/img/inside2.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic4.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg","/img/inside1.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4118,7 +4118,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Hexo/","name":"Hexo"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/22490/","name":"Hexo美化|Cards主题"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hexo美化|Cards主题","description":"记录了刚开始这个博客怎么美化主题的，希望后来人能少走弯路吧，遇到问题多看官方文档","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/22490/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/22490/","wordCount":40,"datePublished":"2023-01-05T03:43:09.000Z","dateModified":"2023-03-03T05:45:46.569Z","articleSection":"Hexo","keywords":"Hexo,折腾,Cards主题","image":{"@type":"ImageObject","url":"/img/Card-Enhance.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Hexo/","name":"Hexo"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/22490/","name":"Hexo美化|Cards主题"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hexo美化|Cards主题","description":"记录了刚开始这个博客怎么美化主题的，希望后来人能少走弯路吧，遇到问题多看官方文档","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/22490/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/22490/","wordCount":40,"datePublished":"2023-01-05T03:43:09.000Z","dateModified":"2023-03-03T05:45:46.569Z","articleSection":"Hexo","keywords":"Hexo,Cards主题,折腾","image":{"@type":"ImageObject","url":"/img/Card-Enhance.png","width":1024,"height":768}}]</script>
 
 
 

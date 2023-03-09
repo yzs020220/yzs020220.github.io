@@ -108,21 +108,21 @@
 </li>
 </ul>
 <p>textures_order.json</p>
-<pre class="highlight"><code class="json"><span class="hljs-punctuation">[</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_01&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_03&quot;</span><span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">]</span>
+<pre class="highlight"><code class="json">[
+    [&quot;texture_00&quot;],
+    [&quot;texture_01&quot;,&quot;texture_02&quot;],
+    [&quot;texture_03&quot;]
+]
 </code></pre>
 <p>textures.cache</p>
-<pre class="highlight"><code class="json"><span class="hljs-punctuation">[</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/00.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/01.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/01.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/01.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/00.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/01.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/01.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/01.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/02.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/02.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/00.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;texture_00/00.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_01/02.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_02/02.png&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;texture_03/01.png&quot;</span><span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">]</span>
+<pre class="highlight"><code class="json">[
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/00.png&quot;,&quot;texture_02/00.png&quot;,&quot;texture_03/00.png&quot;],
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/00.png&quot;,&quot;texture_02/00.png&quot;,&quot;texture_03/01.png&quot;],
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/01.png&quot;,&quot;texture_02/01.png&quot;,&quot;texture_03/00.png&quot;],
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/01.png&quot;,&quot;texture_02/01.png&quot;,&quot;texture_03/01.png&quot;],
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/02.png&quot;,&quot;texture_02/02.png&quot;,&quot;texture_03/00.png&quot;],
+    [&quot;texture_00/00.png&quot;,&quot;texture_01/02.png&quot;,&quot;texture_02/02.png&quot;,&quot;texture_03/01.png&quot;]
+]
 </code></pre>
 <ul>
 <li>同分组 多个模型 或 多个路径 切换
@@ -154,20 +154,20 @@
 │
 </code></pre>
 <p>model_list.json</p>
-<pre class="highlight"><code class="json"><span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;models&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-        <span class="hljs-string">&quot;GroupName/ModelName&quot;</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-punctuation">[</span>
-            <span class="hljs-string">&quot;Group1/Model1&quot;</span><span class="hljs-punctuation">,</span>
-            <span class="hljs-string">&quot;Group1/Model2&quot;</span><span class="hljs-punctuation">,</span>
-            <span class="hljs-string">&quot;Group2/Model1&quot;</span>
-        <span class="hljs-punctuation">]</span>
-    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;messages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-        <span class="hljs-string">&quot;Example 1&quot;</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-string">&quot;Example 2&quot;</span>
-    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span>
+<pre class="highlight"><code class="json">{
+    &quot;models&quot;: [
+        &quot;GroupName/ModelName&quot;,
+        [
+            &quot;Group1/Model1&quot;,
+            &quot;Group1/Model2&quot;,
+            &quot;Group2/Model1&quot;
+        ]
+    ],
+    &quot;messages&quot;: [
+        &quot;Example 1&quot;,
+        &quot;Example 2&quot;
+    ]
+}
 </code></pre>
 <h3 id="接口用法"><a class="markdownIt-Anchor" href="#接口用法"></a> 接口用法</h3>
 <ul>
