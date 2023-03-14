@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2787,42 +2787,37 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p>先检查是否安装了hexo-math</p>
-<pre class="highlight"><code class="shell">npm list hexo-math
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> list hexo-math<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>如果出现empty则表示没有安装，否则我们需要先卸载</p>
-<pre class="highlight"><code class="shell">npm uninstall hexo-math --save
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> uninstall hexo-math <span class="token parameter variable">--save</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>安装hexo-filter-mathjax</p>
-<pre class="highlight"><code class="shell">npm install hexo-filter-mathjax --save
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-filter-mathjax <span class="token parameter variable">--save</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>打开根目录下的_config.yml，不是主题的那个，添加如下代码，该代码的解释可以在hexo-filter-mathjax的reame文档找到</p>
-<pre class="highlight"><code class="yml"># Mathjax
-mathjax:
-  tags: none # or 'ams' or 'all'
-  single_dollars: true # enable single dollar signs as in-line math delimiters
-  cjk_width: 0.9 # relative CJK char width
-  normal_width: 0.6 # relative normal (monospace) width
-  append_css: true # add CSS to pages rendered by MathJax
-  every_page: false # if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter
-  packages: # extra packages to load
-  extension_options: &#123;&#125;
-    # you can put your extension options here
-    # see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Mathjax</span>
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span> none <span class="token comment"># or 'ams' or 'all'</span>
+  <span class="token key atrule">single_dollars</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># enable single dollar signs as in-line math delimiters</span>
+  <span class="token key atrule">cjk_width</span><span class="token punctuation">:</span> <span class="token number">0.9</span> <span class="token comment"># relative CJK char width</span>
+  <span class="token key atrule">normal_width</span><span class="token punctuation">:</span> <span class="token number">0.6</span> <span class="token comment"># relative normal (monospace) width</span>
+  <span class="token key atrule">append_css</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># add CSS to pages rendered by MathJax</span>
+  <span class="token key atrule">every_page</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter</span>
+  <span class="token key atrule">packages</span><span class="token punctuation">:</span> <span class="token comment"># extra packages to load</span>
+  <span class="token key atrule">extension_options</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    <span class="token comment"># you can put your extension options here</span>
+    <span class="token comment"># see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h3 id="hexo-renderer-pandoc"><a class="markdownIt-Anchor" href="#hexo-renderer-pandoc"></a> hexo-renderer-pandoc</h3>
 <ul>
 <li>
 <p>卸载hexo-renderer-marked，不再赘述原生的渲染器有什么问题了</p>
-<pre class="highlight"><code class="shell">npm uninstall hexo-renderer-marked
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> uninstall hexo-renderer-marked<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>安装Pandoc</p>
@@ -2830,21 +2825,19 @@ mathjax:
 </li>
 <li>
 <p>npm安装hexo-renderer-pandoc</p>
-<pre class="highlight"><code class="shell">npm install hexo-renderer-pandoc
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-renderer-pandoc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>在根目录下的_config.yml指定pandoc的路径能够更快地找到pandoc（官方文档大概是这个意思）</p>
-<pre class="highlight"><code class="yml"># pandoc
-pandoc:
-  # 此处填的是你的pandoc的路径
-  pandoc_path: &quot;C:/Users/Jason/AppData/Local/Pandoc/pandoc.exe&quot;
-  filters:
-  extra:
-  template:
-  meta:
-  mathEngine: # 默认为mathjax
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># pandoc</span>
+<span class="token key atrule">pandoc</span><span class="token punctuation">:</span>
+  <span class="token comment"># 此处填的是你的pandoc的路径</span>
+  <span class="token key atrule">pandoc_path</span><span class="token punctuation">:</span> <span class="token string">"C:/Users/Jason/AppData/Local/Pandoc/pandoc.exe"</span>
+  <span class="token key atrule">filters</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extra</span><span class="token punctuation">:</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+  <span class="token key atrule">meta</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mathEngine</span><span class="token punctuation">:</span> <span class="token comment"># 默认为mathjax</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h3 id="公式格式"><a class="markdownIt-Anchor" href="#公式格式"></a> 公式格式</h3>
@@ -2852,35 +2845,31 @@ pandoc:
 <ul>
 <li>
 <p>在Front-matter中添加：</p>
-<pre class="highlight"><code class="yml">---
-mathjax: true
----
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>行内公式<code>$</code>不要贴着加空格，也就是开头的<code>$</code>的后面以及结尾的<code>$</code>的前面不要加空格，例：</p>
-<pre class="highlight"><code class="diff">-$ \epsilon_0 $
-+$\epsilon_0$
--$ \frac&#123;\partial&#125;&#123;\partial t&#125; $
-+$\frac&#123;\partial&#125;&#123;\partial t&#125;$
-</code></pre>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">$ \epsilon_0 $
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">$\epsilon_0$
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">$ \frac&#123;\partial&#125;&#123;\partial t&#125; $
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">$\frac&#123;\partial&#125;&#123;\partial t&#125;$</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>行间公式的<code>$$</code>注意中间只能有一行，不要出现额外的回车，例：</p>
-<pre class="highlight"><code class="diff">+$$
-+i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi
-+$$
--$$
--i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi
--
--$$
-</code></pre>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">$$
+</span><span class="token prefix inserted">+</span><span class="token line">i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi
+</span><span class="token prefix inserted">+</span><span class="token line">$$
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">$$
+</span><span class="token prefix deleted">-</span><span class="token line">i\hbar\frac&#123;\partial&#125;&#123;\partial t&#125;\psi=-\frac&#123;\hbar^2&#125;&#123;2m&#125;\nabla^2\psi+V\psi
+</span><span class="token prefix deleted">-</span><span class="token line">
+</span><span class="token prefix deleted">-</span><span class="token line">$$</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>多行的显示在mathjax3.0中不再支持<code>\\</code>，可以用<code>\displaylines</code>，<a target="_blank" rel="noopener" href="https://github.com/mathjax/MathJax/issues/2312">issues链接</a>，例：</p>
-<pre class="highlight"><code class="diff">+\displaylines&#123;x+y=1\\2x+y=3&#125;
--x+y=1\\2x+y=3
-</code></pre>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">\displaylines&#123;x+y=1\\2x+y=3&#125;
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">x+y=1\\2x+y=3</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> KateX</h2>
@@ -2892,47 +2881,43 @@ mathjax: true
 </li>
 <li>
 <p>安装渲染器<em>hexo-renderer-markdown-it-plus</em>，自动包含了<em>hexo-renderer-markdown-it-katex</em>该渲染器对katex支持得很好，同时比原生的marked渲染器还快，比pandoc就更快了</p>
-<pre class="highlight"><code class="shell">npm i hexo-renderer-markdown-it-plus --save
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i hexo-renderer-markdown-it-plus <span class="token parameter variable">--save</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>在根目录下的_config.yml文件中添加配置代码</p>
-<pre class="highlight"><code class="yml">markdown_it_plus:
-    highlight: true
-    html: true
-    xhtmlOut: true
-    breaks: true
-    langPrefix:
-    linkify: true
-    typographer:
-    quotes: “”‘’
-    pre_class: highlight
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">markdown_it_plus</span><span class="token punctuation">:</span>
+    <span class="token key atrule">highlight</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">html</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">xhtmlOut</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">breaks</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">langPrefix</span><span class="token punctuation">:</span>
+    <span class="token key atrule">linkify</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">typographer</span><span class="token punctuation">:</span>
+    <span class="token key atrule">quotes</span><span class="token punctuation">:</span> “”‘’
+    <span class="token key atrule">pre_class</span><span class="token punctuation">:</span> highlight<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h3 id="使用katex"><a class="markdownIt-Anchor" href="#使用katex"></a> 使用KateX</h3>
 <ul>
 <li>
 <p>在根目录下的_config.yml文件中添加math模块，指定engine</p>
-<pre class="highlight"><code class="yml"># Math Equations Render Support
-math:
-  enable: true
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Math Equations Render Support</span>
+<span class="token key atrule">math</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
 
-  # Default(true) will load mathjax/katex script on demand
-  # That is it only render those page who has 'mathjax: true' in Front Matter.
-  # If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.
-  per_page: true
+  <span class="token comment"># Default(true) will load mathjax/katex script on demand</span>
+  <span class="token comment"># That is it only render those page who has 'mathjax: true' in Front Matter.</span>
+  <span class="token comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span>
+  <span class="token key atrule">per_page</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
 
-  #engine: mathjax
-  engine: katex
-</code></pre>
+  <span class="token comment">#engine: mathjax</span>
+  <span class="token key atrule">engine</span><span class="token punctuation">:</span> katex<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在文章的Front-matter中添加：</p>
-<pre class="highlight"><code class="yml">---
-katex: true
----
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">katex</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h2 id="碎碎念"><a class="markdownIt-Anchor" href="#碎碎念"></a> 碎碎念</h2>
@@ -3849,30 +3834,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -3886,7 +3886,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

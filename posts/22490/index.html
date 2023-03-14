@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2782,155 +2782,134 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/config/">基本配置 | Theme Cards (ichr.me)</a></p>
 <h3 id="网站图标"><a class="markdownIt-Anchor" href="#网站图标"></a> 网站图标</h3>
 <p>favicon的路径设置在source下的目录，打开Card主题文件夹下的_config.yml文件，例：</p>
-<pre class="highlight"><code class="yml">head: 
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">head</span><span class="token punctuation">:</span> 
 
-  # 网站图标
-  favicon:
-    ico: /img/icon.ico
-    small: /img/icon.png
-    medium: 
-    apple_touch_icon: 
-    safari_pinned_tab: 
-</code></pre>
+  <span class="token comment"># 网站图标</span>
+  <span class="token key atrule">favicon</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ico</span><span class="token punctuation">:</span> /img/icon.ico
+    <span class="token key atrule">small</span><span class="token punctuation">:</span> /img/icon.png
+    <span class="token key atrule">medium</span><span class="token punctuation">:</span> 
+    <span class="token key atrule">apple_touch_icon</span><span class="token punctuation">:</span> 
+    <span class="token key atrule">safari_pinned_tab</span><span class="token punctuation">:</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>具体关于图像尺寸格式请查阅官方文档</p>
 <h3 id="封面头像"><a class="markdownIt-Anchor" href="#封面头像"></a> 封面头像</h3>
 <p>在cover下：</p>
-<pre class="highlight"><code class="yml"># 封面 cover 设置
-cover: 
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 封面 cover 设置</span>
+<span class="token key atrule">cover</span><span class="token punctuation">:</span> 
 
-  # 显示在最上方 cover 处的站点名称
-  sitename: 的博客
+  <span class="token comment"># 显示在最上方 cover 处的站点名称</span>
+  <span class="token key atrule">sitename</span><span class="token punctuation">:</span> 的博客
 
-  # 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename
-  avatar: /img/avatar.jpg
+  <span class="token comment"># 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename</span>
+  <span class="token key atrule">avatar</span><span class="token punctuation">:</span> /img/avatar.jpg
 
-  # sitename/avatar 下方的一句话介绍
-  description: 
-</code></pre>
+  <span class="token comment"># sitename/avatar 下方的一句话介绍</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="颜色配置与代码高亮主题"><a class="markdownIt-Anchor" href="#颜色配置与代码高亮主题"></a> 颜色配置与代码高亮主题</h3>
 <p>style下可以设置颜色配置，[色号查询网站](<a target="_blank" rel="noopener" href="https://www.qtccolor.com/secaiku/search?word#&amp;colorPage">查询色号“null”相关结果 - 千通彩色库 (qtccolor.com)</a>)：</p>
-<pre class="highlight"><code class="yml">  # 颜色配置
-  color: 
-    main_color: '#26251c'
-    main_color_dark: '#ded7a2'
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 颜色配置</span>
+<span class="token key atrule">color</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">main_color</span><span class="token punctuation">:</span> <span class="token string">'#26251c'</span>
+  <span class="token key atrule">main_color_dark</span><span class="token punctuation">:</span> <span class="token string">'#ded7a2'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在highlight中指定默认模式和深色模式使用的代码高亮主题，主题样式可在<em>node_modules-&gt;highlight.js-&gt;styles</em>中查看：</p>
-<pre class="highlight"><code class="yml">  # 默认代码高亮
-  highlight: 
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 默认代码高亮</span>
+<span class="token key atrule">highlight</span><span class="token punctuation">:</span> 
 
-    # 默认代码高亮主题
-    default: atom-one-light
+  <span class="token comment"># 默认代码高亮主题</span>
+  <span class="token key atrule">default</span><span class="token punctuation">:</span> atom<span class="token punctuation">-</span>one<span class="token punctuation">-</span>light
 
-    # 暗色代码高亮主题
-    darkmode: atom-one-dark
-</code></pre>
+  <span class="token comment"># 暗色代码高亮主题</span>
+  <span class="token key atrule">darkmode</span><span class="token punctuation">:</span> atom<span class="token punctuation">-</span>one<span class="token punctuation">-</span>dark<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="文章缩略图"><a class="markdownIt-Anchor" href="#文章缩略图"></a> 文章缩略图</h3>
 <p>在meta中启用thumbnail：</p>
-<pre class="highlight"><code class="yml">  # 文章缩略图
-  thumbnail: 
-    enable: true
-    default:   # 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 文章缩略图</span>
+<span class="token key atrule">thumbnail</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">default</span><span class="token punctuation">:</span>   <span class="token comment"># 默认缩略图，当页面 `thumbnail` 字段为空时 fallback 至此参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>之后只要在front-matter中指定thumbnail即可：</p>
-<pre class="highlight"><code class="yml">thumbnail: /img/.png
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">thumbnail</span><span class="token punctuation">:</span> /img/.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="博客自动更新日期"><a class="markdownIt-Anchor" href="#博客自动更新日期"></a> 博客自动更新日期</h3>
 <p>我也不太确定是什么时候我博客的更新日期不需要专门指定updated就可以通过博客的更改来更新日期，大概是在_config.yml文件中指定timezone即可：</p>
-<pre class="highlight"><code class="yml">timezone: &quot;Asia/Shanghai&quot;
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">timezone</span><span class="token punctuation">:</span> <span class="token string">"Asia/Shanghai"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录"></a> 文章目录</h3>
 <p>meta中启用toc：</p>
-<pre class="highlight"><code class="yml">  # 文章目录
-  toc: 
-    enable: true
-    list_number: false
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 文章目录</span>
+<span class="token key atrule">toc</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">list_number</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注：文章目录不要使用一级标题，不要跨级使用标题否则会出现乱码，如2级到5级到2级，请严格一级一级使用如2级到3级到2级（hexo博客的特性）</strong></p>
 <h3 id="插件"><a class="markdownIt-Anchor" href="#插件"></a> 插件</h3>
 <h4 id="启用站内搜索"><a class="markdownIt-Anchor" href="#启用站内搜索"></a> 启用站内搜索</h4>
 <p>启用站内搜索插件：</p>
-<pre class="highlight"><code class="yml"># 站内搜索插件
-search:
-  enable: true
-  path: search.json
-  field: All  # Page | Post | All
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 站内搜索插件</span>
+<span class="token key atrule">search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.json
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> All  <span class="token comment"># Page | Post | All</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用cmd新建页面</p>
-<pre class="highlight"><code class="shell">hexo new page &quot;search&quot;
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"search"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<pre class="highlight"><code class="yml">---
-layout: search
----
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">layout</span><span class="token punctuation">:</span> search
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h4 id="启用标签页"><a class="markdownIt-Anchor" href="#启用标签页"></a> 启用标签页</h4>
 <p>cmd新建页面：</p>
-<pre class="highlight"><code class="shell">hexo new page &quot;tags&quot;
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"tags"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在新建页面下的index.md文档中修改front-matter：</p>
-<pre class="highlight"><code class="yml">---
-layout: tags
----
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">layout</span><span class="token punctuation">:</span> tags
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h4 id="启用友链"><a class="markdownIt-Anchor" href="#启用友链"></a> 启用友链</h4>
 <p>cmd新建页面：</p>
-<pre class="highlight"><code class="shell">hexo new page &quot;friends&quot;
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"friends"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在新建页面下的index.md文档中修改front-matter，详见<a target="_blank" rel="noopener" href="https://theme-cards.ichr.me/pages/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">独立页面 | Theme Cards </a>：</p>
-<pre class="highlight"><code class="yml">---
-layout: links
-links:
-    - name: HCY-ASLEEP
-      url: https://hcy-asleep.github.io
-      avatar: https://hcy-asleep.github.io/images/logo.svg
-      desc: 喜欢ctrl+c（chicken）的男人
-      tags: [唱, 跳, rap, 篮球]
-      target: _blank
-      backgroundColor: '#226'
-      textColor: '#CC8'
----
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">layout</span><span class="token punctuation">:</span> links
+<span class="token key atrule">links</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> HCY<span class="token punctuation">-</span>ASLEEP
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//hcy<span class="token punctuation">-</span>asleep.github.io
+      <span class="token key atrule">avatar</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//hcy<span class="token punctuation">-</span>asleep.github.io/images/logo.svg
+      <span class="token key atrule">desc</span><span class="token punctuation">:</span> 喜欢ctrl+c（chicken）的男人
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>唱<span class="token punctuation">,</span> 跳<span class="token punctuation">,</span> rap<span class="token punctuation">,</span> 篮球<span class="token punctuation">]</span>
+      <span class="token key atrule">target</span><span class="token punctuation">:</span> _blank
+      <span class="token key atrule">backgroundColor</span><span class="token punctuation">:</span> <span class="token string">'#226'</span>
+      <span class="token key atrule">textColor</span><span class="token punctuation">:</span> <span class="token string">'#CC8'</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="设置返回顶部按钮"><a class="markdownIt-Anchor" href="#设置返回顶部按钮"></a> 设置返回顶部按钮</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml"># 返回顶部
-back_to_top: true
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 返回顶部</span>
+<span class="token key atrule">back_to_top</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="折叠内容"><a class="markdownIt-Anchor" href="#折叠内容"></a> 折叠内容</h4>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml">fold: 
-  enable: true
-  summary: 
-  motion:
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">fold</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">summary</span><span class="token punctuation">:</span> 
+  motion<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在文章中需要折叠的内容前后分别添加</p>
-<pre class="highlight"><code class="markdown">&#123;% fold 摘要内容 %&#125;
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">&#123;% fold 摘要内容 %&#125;
 正文
-&#123;% endfold %&#125;
-</code></pre>
+&#123;% endfold %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h4 id="评论系统"><a class="markdownIt-Anchor" href="#评论系统"></a> 评论系统</h4>
 <p>这一个颇为麻烦，我本来满心欢喜的点进gitment，gitment用的是github的issues系统来实现评论的，配好之后才发现作者的服务器过期，gitment得转自己的域名，issues里的人都在推荐gitalk，那么就搞gitalk吧<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md#%E8%AE%BE%E7%BD%AE">gitalk/readme-cn.md at master · gitalk/gitalk (github.com)</a></p>
 <h5 id="安装gitalk"><a class="markdownIt-Anchor" href="#安装gitalk"></a> 安装gitalk</h5>
-<pre class="highlight"><code class="shell">npm i --save gitalk
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">--save</span> gitalk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h5 id="创建github-application并配置"><a class="markdownIt-Anchor" href="#创建github-application并配置"></a> 创建Github Application并配置</h5>
 <p>点击<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">申请链接</a>，<code>HomepageUrl</code>填写你的repo的地址，<code>Authorization callback URL</code> 填写当前使用插件页面的域名，申请后会出现<code>clientID</code>与<code>clientSecret</code>（需要generate一下）</p>
 <p><img src="/img/HexoEnhance/application.png" class="lazyload" data-srcset="/img/HexoEnhance/application.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>在主题目录下的_config.yml文件中设置：</p>
-<pre class="highlight"><code class="yml"> comments: 
-  use: gitalk
---- 
-  # Gitalk
-  gitalk:
-    repo: yzs020220.github.io # 存放评论的仓库（评论会上传到issues上）
-    owner: yzs020220 # github的id
-    clientID: *****
-    clientSecret: ********
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"> <span class="token key atrule">comments</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">use</span><span class="token punctuation">:</span> gitalk
+<span class="token punctuation">---</span> 
+  <span class="token comment"># Gitalk</span>
+  <span class="token key atrule">gitalk</span><span class="token punctuation">:</span>
+    <span class="token key atrule">repo</span><span class="token punctuation">:</span> yzs020220.github.io <span class="token comment"># 存放评论的仓库（评论会上传到issues上）</span>
+    <span class="token key atrule">owner</span><span class="token punctuation">:</span> yzs020220 <span class="token comment"># github的id</span>
+    <span class="token key atrule">clientID</span><span class="token punctuation">:</span> <span class="token important">*****</span>
+    <span class="token key atrule">clientSecret</span><span class="token punctuation">:</span> <span class="token important">********</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>完成以上步骤基本就可以显示了，初次打开会需要使用github账号登录，生成的评论也都可以在issues中查看，但还会有一个关于中文的问题</p>
 <h5 id="解决error-validation-failed"><a class="markdownIt-Anchor" href="#解决error-validation-failed"></a> 解决Error: Validation Failed</h5>
 <p>中文标题会被转码到很长，而issues的label长度限制在了50个字符，在项目的<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/102">issues</a>中我找到了解决办法，在<code>cards/layout/_plugins/comments/gitalk</code>目录下打开source.ejs，在gitalk的构造函数中给id加上decodeURI即可。</p>
-<pre class="highlight"><code class="ejs">id: decodeURI(window.location.pathname),
-</code></pre>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">id: decodeURI(window.location.pathname),<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="数学公式"><a class="markdownIt-Anchor" href="#数学公式"></a> 数学公式</h4>
 <p>见<a href="https://yzs020220.github.io/2022/12/30/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-Card%E4%B8%BB%E9%A2%98/">Hexo博客显示数学公式|Card主题</a></p>
 <h3 id="让你的网站能被搜到seo但无优化"><a class="markdownIt-Anchor" href="#让你的网站能被搜到seo但无优化"></a> 让你的网站能被搜到（SEO但无优化）</h3>
@@ -2940,23 +2919,20 @@ back_to_top: true
 <p>在右边输入你的网址进入html验证</p>
 <p><img src="/img/HexoEnhance/html.png" class="lazyload" data-srcset="/img/HexoEnhance/html.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <p>下载html文件放到source下，在根目录下的_config.yml文件中跳过该文件的渲染</p>
-<pre class="highlight"><code class="yml">skip_render: 
-  - 'README.md'
-  - 'google9f6e9cf05881a1e4.html'
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">skip_render</span><span class="token punctuation">:</span> 
+  <span class="token punctuation">-</span> <span class="token string">'README.md'</span>
+  <span class="token punctuation">-</span> <span class="token string">'google9f6e9cf05881a1e4.html'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>同步博客后点击验证即可</p>
 <h4 id="bing"><a class="markdownIt-Anchor" href="#bing"></a> Bing</h4>
 <p>进入webMaster tools直接导入gsc即可</p>
 <h4 id="sitemap"><a class="markdownIt-Anchor" href="#sitemap"></a> Sitemap</h4>
 <p>生成站点地图能更好地索引，使用npm命令安装sitemap</p>
-<pre class="highlight"><code class="shell">npm install sitemap --save
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> sitemap <span class="token parameter variable">--save</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在根目录的_config.yml中设置sitemap的路径：</p>
-<pre class="highlight"><code class="yml">sitemap:
-  path: sitemap.xml
-  tag: false
-  category: false
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">sitemap</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> sitemap.xml
+  <span class="token key atrule">tag</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">category</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们只需要在站点地图中，添加新的站点地图中输入sitemap.xml即可</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
@@ -3854,30 +3830,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -3891,7 +3882,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

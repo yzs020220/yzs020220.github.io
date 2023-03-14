@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2784,51 +2784,43 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p>文章更新日期</p>
-<pre class="highlight"><code class="yml">update: 
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">update</span><span class="token punctuation">:</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>tags后跟标签</p>
-<pre class="highlight"><code class="yml">tags: [标签1, 标签2]
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">tags</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>标签1<span class="token punctuation">,</span> 标签2<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>文章缩略图（根目录为source），或者在线图片链接，以下为本地方法</p>
-<pre class="highlight"><code class="yml">thumbnail: /img/文件路径
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">thumbnail</span><span class="token punctuation">:</span> /img/文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>文章详细信息，要在结尾添加</p>
-<pre class="highlight"><code class="yml">&lt;!-- more --&gt;
-</code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;<span class="token tag">!--</span> more <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 <h2 id="文章上传"><a class="markdownIt-Anchor" href="#文章上传"></a> 文章上传</h2>
 <ul>
 <li>
 <p>新建文章</p>
-<pre class="highlight"><code class="shell">hexo new &quot;title&quot; // 标题替换掉title
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new <span class="token string">"title"</span> // 标题替换掉title<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>同步博客</p>
-<pre class="highlight"><code class="shell">hexo clean    // 清楚静态页面缓存（清除public文件夹）
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo clean    // 清楚静态页面缓存（清除public文件夹）
 hexo g        // 在本地生成静态页面（生成public文件夹）
-hexo d        // 远程部署，同步到github
-</code></pre>
+hexo d        // 远程部署，同步到github<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>（可选）启动本地服务，Ctrl+C终止服务</p>
-<pre class="highlight"><code class="shell">hexo s        // 本地服务 http://localhost:4000
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo s        // 本地服务 http://localhost:4000<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 <ul>
 <li>
 <p>给cmd挂代理(用于装包装不上的时候)</p>
-<pre class="highlight"><code class="shell">set http_proxy=&quot;http://127.0.0.1:7890&quot;
-set https_proxy=&quot;http://127.0.0.1:7890&quot;
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> <span class="token assign-left variable">http_proxy</span><span class="token operator">=</span><span class="token string">"http://127.0.0.1:7890"</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">https_proxy</span><span class="token operator">=</span><span class="token string">"http://127.0.0.1:7890"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -3728,30 +3720,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -3765,7 +3772,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2784,109 +2784,95 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><a target="_blank" rel="noopener" href="https://github.com/yzs020220/my-unity-shaders-book">yzs020220/my-unity-shaders-book</a></p>
 <h3 id="p35-342最聪明的孩子顶点片元着色器"><a class="markdownIt-Anchor" href="#p35-342最聪明的孩子顶点片元着色器"></a> P35 3.4.2最聪明的孩子：顶点/片元着色器</h3>
 <p>之后也会用到的，在顶点着色器中将坐标从模型空间转换到世界空间中。代码需include “UnityCG.cginc”（在其他库中经常会被include，比如Lighting.cginc）</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">#include &quot;UnityCG.cginc&quot;
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"UnityCG.cginc"</span></span>
 ···
-return UnityWorldToClipPos(v);
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">return mul(UNITY_MATRIX_MVP, v);
-</code></pre></div></div></div>
+<span class="token keyword">return</span> <span class="token function">UnityWorldToClipPos</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token keyword">return</span> <span class="token function">mul</span><span class="token punctuation">(</span>UNITY_MATRIX_MVP<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></div>
 <h3 id="p101-521-去掉天空盒"><a class="markdownIt-Anchor" href="#p101-521-去掉天空盒"></a> P101 5.2.1 去掉天空盒</h3>
 <p>在<em>Window-&gt;Rendering-&gt;Lighting-&gt;Environment-&gt;skybox</em>中</p>
 <h3 id="p113-553最新利器帧调节器"><a class="markdownIt-Anchor" href="#p113-553最新利器帧调节器"></a> P113 5.5.3最新利器：帧调节器</h3>
 <p>在<em>Window-&gt;Analysis-&gt;Frame Debugger</em>中</p>
 <h3 id="p128-641逐顶点漫反射光照"><a class="markdownIt-Anchor" href="#p128-641逐顶点漫反射光照"></a> P128 6.4.1逐顶点漫反射光照</h3>
 <p>在顶点着色器中将法线从模型空间变换到世界空间中</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">fixed3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">fixed3 worldNormal = normalize(mul(v.normal, (float3x3)_World2Object));
-</code></pre></div></div></div>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl">fixed3 worldNormal <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span><span class="token function">mul</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>normal<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">float3x3</span><span class="token punctuation">)</span>unity_WorldToObject<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl">fixed3 worldNormal <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span><span class="token function">mul</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>normal<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">float3x3</span><span class="token punctuation">)</span>_World2Object<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></div>
 <h3 id="p134-651逐顶点高光反射光照"><a class="markdownIt-Anchor" href="#p134-651逐顶点高光反射光照"></a> P134 6.5.1逐顶点高光反射光照</h3>
 <p>在顶点着色器中将顶点位置从模型空间变换到世界空间中</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, v.vertex).xyz);
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(Object2World, v.vertex).xyz);
-</code></pre></div></div></div>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl">fixed3 viewDir <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>_WorldSpaceCameraPos<span class="token punctuation">.</span>xyz <span class="token operator">-</span> <span class="token function">mul</span><span class="token punctuation">(</span>unity_ObjectToWorld<span class="token punctuation">,</span> v<span class="token punctuation">.</span>vertex<span class="token punctuation">)</span><span class="token punctuation">.</span>xyz<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl">fixed3 viewDir <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>_WorldSpaceCameraPos<span class="token punctuation">.</span>xyz <span class="token operator">-</span> <span class="token function">mul</span><span class="token punctuation">(</span>Object2World<span class="token punctuation">,</span> v<span class="token punctuation">.</span>vertex<span class="token punctuation">)</span><span class="token punctuation">.</span>xyz<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></div>
 <h3 id="p180-91渲染路径"><a class="markdownIt-Anchor" href="#p180-91渲染路径"></a> P180 9.1渲染路径</h3>
 <p>Unity的<em>Edit-&gt;Project Settings-&gt;Graphics</em>中能看到不同图像质量下对应的<em>Rendering Path</em></p>
 <h3 id="p192-922处理不同光源的衰减"><a class="markdownIt-Anchor" href="#p192-922处理不同光源的衰减"></a> P192 9.2.2处理不同光源的衰减</h3>
 <p>在Additional Pass的片元着色器中计算不同光源的衰减前，要将片元的坐标转换到光源空间，在采样衰减纹理来得到衰减值</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">float3 lightCoord = mul(unity_WorldToLight, float4(i.worldPos, 1)).xyz;
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">float3 lightCoord = mul(_LightMatrix0, float4(i.worldPos, 1)).xyz;
-</code></pre></div></div></div>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token keyword">float3</span> lightCoord <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>unity_WorldToLight<span class="token punctuation">,</span> <span class="token keyword">float4</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>worldPos<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>xyz<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token keyword">float3</span> lightCoord <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>_LightMatrix0<span class="token punctuation">,</span> <span class="token keyword">float4</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>worldPos<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>xyz<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></div>
 <h3 id="p226-1031声明程序纹理参数"><a class="markdownIt-Anchor" href="#p226-1031声明程序纹理参数"></a> P226 10.3.1声明程序纹理参数</h3>
 <p>书中使用了一个开源插件，我个人没有去尝试这个开源插件，可能这个开源插件能够让修改更丝滑一点，考虑到其实我们就是检测inspector中是否被修改，然后调用_UpdateMaterial方法就好，要实现这个我们可以使用onValidate方法，这个方法在inspector中参数被修改时会被调用，这个写法也能让代码简洁很多：</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="csharp">[SerializeField] private int textureWidth = 512;
-[SerializeField] private Color backgroundColor = Color.white;
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">SerializeField</span></span><span class="token punctuation">]</span> <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> textureWidth <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">SerializeField</span></span><span class="token punctuation">]</span> <span class="token keyword">private</span> <span class="token class-name">Color</span> backgroundColor <span class="token operator">=</span> Color<span class="token punctuation">.</span>white<span class="token punctuation">;</span>
 ···
-private void OnValidate()
-{
-    _UpdateMaterial();
-}
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="csharp">[SerializeField, SetProperty(&quot;textureWidth&quot;)]
-private int m_textureWidth = 512;-
-public int textureWidth {
-    get {
-        return m_textureWidth;
-    }
-    set {
-        m_textureWidth = value;
-        _UpdateMaterial();
-    }
-}
-</code></pre></div></div></div>
+<span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnValidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">_UpdateMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">SerializeField</span><span class="token punctuation">,</span> <span class="token class-name">SetProperty</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"textureWidth"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+<span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> m_textureWidth <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">;</span><span class="token operator">-</span>
+<span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> textureWidth <span class="token punctuation">&#123;</span>
+    <span class="token keyword">get</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> m_textureWidth<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">set</span> <span class="token punctuation">&#123;</span>
+        m_textureWidth <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
+        <span class="token function">_UpdateMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div></div>
 <h3 id="p245-121posteffectsbasecs"><a class="markdownIt-Anchor" href="#p245-121posteffectsbasecs"></a> P245 12.1PostEffectsBase.cs</h3>
 <p>检查各种资源和条件的代码，在新版本中已经被弃用，返回值总会是True，所以可以不写</p>
-<pre class="highlight"><code class="csharp">using UnityEngine;
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
 
-[ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
-public class PostEffectBase : MonoBehaviour
-&#123;
-    protected Material CheckShaderAndCreateMaterial(Shader shader, Material material)
-    &#123;
-        if (shader == null) return null;
-        if (shader.isSupported &amp;&amp; material &amp;&amp; material.shader == shader) return material;
-        if (!shader.isSupported) return null;
-        else
-        &#123;
-            material = new Material(shader);
-            material.hideFlags = HideFlags.DontSave;
-            if (material) return material;
-            else return null;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
+<span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">ExecuteInEditMode</span></span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">RequireComponent</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Camera</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PostEffectBase</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">protected</span> <span class="token return-type class-name">Material</span> <span class="token function">CheckShaderAndCreateMaterial</span><span class="token punctuation">(</span><span class="token class-name">Shader</span> shader<span class="token punctuation">,</span> <span class="token class-name">Material</span> material<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>shader <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>shader<span class="token punctuation">.</span>isSupported <span class="token operator">&amp;&amp;</span> material <span class="token operator">&amp;&amp;</span> material<span class="token punctuation">.</span>shader <span class="token operator">==</span> shader<span class="token punctuation">)</span> <span class="token keyword">return</span> material<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>shader<span class="token punctuation">.</span>isSupported<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            material <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Material</span><span class="token punctuation">(</span>shader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            material<span class="token punctuation">.</span>hideFlags <span class="token operator">=</span> HideFlags<span class="token punctuation">.</span>DontSave<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>material<span class="token punctuation">)</span> <span class="token keyword">return</span> material<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="p264-126运动模糊"><a class="markdownIt-Anchor" href="#p264-126运动模糊"></a> P264 12.6运动模糊</h3>
 <p>RenderTexture.MarkRestoreExpected会显示已被弃用，具体可以查看官方文档<a target="_blank" rel="noopener" href="https://docs.unity3d.com/ScriptReference/RenderTexture.MarkRestoreExpected.html">Unity - Scripting API: RenderTexture.MarkRestoreExpected</a>，大概意思是在移动端，Unity会对还原renderTexture的操作进行警告，因为恢复发生在渲染纹理的时候，不将内容清除或丢弃在许多移动端GPU和多GPU系统中需要很大消耗，不过如果你确实需要（就像我们现在写运动模糊），我们仍可以使用该方法禁用警告（感觉好像没完全被禁用，不过是否使用该代码都不会影响运行结果）。</p>
-<pre class="highlight"><code class="csharp">// We are accumulating motion over frames without clear/discard
-// by design, so silence any performance warnings from Unity
-accumulationTexture.MarkRestoreExpected();
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// We are accumulating motion over frames without clear/discard</span>
+<span class="token comment">// by design, so silence any performance warnings from Unity</span>
+accumulationTexture<span class="token punctuation">.</span><span class="token function">MarkRestoreExpected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="p275-132再谈运动模糊中的片元着色器"><a class="markdownIt-Anchor" href="#p275-132再谈运动模糊中的片元着色器"></a> P275 13.2再谈运动模糊中的片元着色器</h3>
 <p>如果直接使用书本的代码会有一种很奇怪的感觉，会感觉只是有一大堆重影，总而言之会觉得不对，这是因为物体的运动是有方向的，而书中的代码直接将前两帧和当前帧取平均会让人不知道往哪个方向运动，我在<a target="_blank" rel="noopener" href="https://github.com/candycat1992/Unity_Shaders_Book/issues/195">“再谈运动模糊”效果改进建议 · Issue #195 </a>中找到了改进方法，我们可以设置权重，当前帧的权重调大，后两帧权重调小，这样我们就能从三帧混合的图像中知道画面中知道哪一帧在前，我们只需要修改最后对三帧取平均的代码即可</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token keyword">float2</span> velocity <span class="token operator">=</span> <span class="token punctuation">(</span>currentPos<span class="token punctuation">.</span>xy <span class="token operator">-</span> previousPos<span class="token punctuation">.</span>xy<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2.0f</span><span class="token punctuation">;</span>
             
-float2 uv = i.uv;
-float vecColRate[3] = { 0.7,0.2,0.1 };
-float4 c = tex2D(_MainTex, uv) * vecColRate[0];
-uv += velocity * _BlurSize;
-for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) {
-    float4 currentColor = tex2D(_MainTex, uv);
-    c += currentColor * vecColRate[it];
-}
+<span class="token keyword">float2</span> uv <span class="token operator">=</span> i<span class="token punctuation">.</span>uv<span class="token punctuation">;</span>
+<span class="token keyword">float</span> vecColRate<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">0.7</span><span class="token punctuation">,</span><span class="token number">0.2</span><span class="token punctuation">,</span><span class="token number">0.1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">float4</span> c <span class="token operator">=</span> <span class="token function">tex2D</span><span class="token punctuation">(</span>_MainTex<span class="token punctuation">,</span> uv<span class="token punctuation">)</span> <span class="token operator">*</span> vecColRate<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+uv <span class="token operator">+=</span> velocity <span class="token operator">*</span> _BlurSize<span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> it <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> it <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">,</span> uv <span class="token operator">+=</span> velocity <span class="token operator">*</span> _BlurSize<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float4</span> currentColor <span class="token operator">=</span> <span class="token function">tex2D</span><span class="token punctuation">(</span>_MainTex<span class="token punctuation">,</span> uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    c <span class="token operator">+=</span> currentColor <span class="token operator">*</span> vecColRate<span class="token punctuation">[</span>it<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
             
-return fixed4(c.rgb, 1.0);
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">float2 velocity = (currentPos.xy - previousPos.xy)/2.0f;
+<span class="token keyword">return</span> <span class="token function">fixed4</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>rgb<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token keyword">float2</span> velocity <span class="token operator">=</span> <span class="token punctuation">(</span>currentPos<span class="token punctuation">.</span>xy <span class="token operator">-</span> previousPos<span class="token punctuation">.</span>xy<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2.0f</span><span class="token punctuation">;</span>
             
-float2 uv = i.uv;
-float4 c = tex2D(_MainTex, uv);
-uv += velocity * _BlurSize;
-for (int it = 1; it &lt; 3; it++, uv += velocity * _BlurSize) {
-    float4 currentColor = tex2D(_MainTex, uv);
-    c += currentColor;
-}
-c /= 3;
+<span class="token keyword">float2</span> uv <span class="token operator">=</span> i<span class="token punctuation">.</span>uv<span class="token punctuation">;</span>
+<span class="token keyword">float4</span> c <span class="token operator">=</span> <span class="token function">tex2D</span><span class="token punctuation">(</span>_MainTex<span class="token punctuation">,</span> uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+uv <span class="token operator">+=</span> velocity <span class="token operator">*</span> _BlurSize<span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> it <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> it <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">,</span> uv <span class="token operator">+=</span> velocity <span class="token operator">*</span> _BlurSize<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float4</span> currentColor <span class="token operator">=</span> <span class="token function">tex2D</span><span class="token punctuation">(</span>_MainTex<span class="token punctuation">,</span> uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    c <span class="token operator">+=</span> currentColor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+c <span class="token operator">/=</span> <span class="token number">3</span><span class="token punctuation">;</span>
 
-return fixed4(c.rgb, 1.0);
-</code></pre></div></div></div>
+<span class="token keyword">return</span> <span class="token function">fixed4</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>rgb<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div></div>
 <h3 id="p302-152水波效果"><a class="markdownIt-Anchor" href="#p302-152水波效果"></a> P302 15.2水波效果</h3>
 <p>难绷，这个地方不能算是一个错误，但还是提上一嘴，看彩图的图片可能会自然地以为地板是经过水的折射形成这个颜色，但其实地板和墙的贴图颜色是不一样的，地板对应的贴图是Wall04那一张贴图（其实观察墙经过水面和地板经过水面的颜色估计也能察觉到了，但是看着图片太想当然了）。</p>
 <p><img src="/img/ShaderLearn/water.png" class="lazyload" data-srcset="/img/ShaderLearn/water.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
@@ -2898,10 +2884,8 @@ return fixed4(c.rgb, 1.0);
 <p><img src="/img/ShaderLearn/FrameDebugger.png" class="lazyload" data-srcset="/img/ShaderLearn/FrameDebugger.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></p>
 <h3 id="p336-175-编译指令指定参数不要换行"><a class="markdownIt-Anchor" href="#p336-175-编译指令指定参数不要换行"></a> P336 17.5 编译指令指定参数不要换行</h3>
 <p>由于书本的排版原因，会让人误以为这个地方要换行，这一句指定参数的编译指令如果换行会报错（在作者github中的代码是正确的）</p>
-<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="highlight"><code class="hlsl">#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow exclude_path:deferred exclude_path:prepass nometa
-</code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="highlight"><code class="hlsl">#pragma surface surf CustomLambert vertex:myvert finalColor:mycolor addshadow 
-exclude_path:deferred exclude_path:prepass nometa
-</code></pre></div></div></div>
+<div class="tabs" id="tab-tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">修改后代码</a></li><li class="tab"><a class="#tab-id-2">原代码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">surface surf CustomLambert vertex<span class="token operator">:</span>myvert finalColor<span class="token operator">:</span>mycolor addshadow exclude_path<span class="token operator">:</span>deferred exclude_path<span class="token operator">:</span>prepass nometa</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><div class="tab-pane" id="tab-id-2"><pre class="line-numbers language-hlsl" data-language="hlsl"><code class="language-hlsl"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">surface surf CustomLambert vertex<span class="token operator">:</span>myvert finalColor<span class="token operator">:</span>mycolor addshadow </span></span>
+exclude_path<span class="token operator">:</span>deferred exclude_path<span class="token operator">:</span>prepass nometa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div></div>
 <h3 id="p348-182-unity5的standard-shaderstandardshader"><a class="markdownIt-Anchor" href="#p348-182-unity5的standard-shaderstandardshader"></a> P348 18.2 Unity5的Standard Shader（Standard.Shader）</h3>
 <p>书上说Standard的Shader源代码可以在DefaultResourcesExtra文件夹下找到，但是在新版本中，虽然可以在安装路径下的<em>Editor-&gt;Data-&gt;CGIncludes</em>中查看到相关头文件，但是却找不到DefaultResourcesExtra这个文件夹，根据在网上论坛上翻的一些讨论，这个文件夹应该是被打包了，我们可以在<em>Editor-&gt;Data-&gt;Resources</em>中找到一个叫unity-builtin-extra的文件，这个文件是打不开的。如果真的要查看Standard.Shader的源代码，我在github上找到一个项目是比较全的：<a target="_blank" rel="noopener" href="https://github.com/chsxf/unity-built-in-shaders/tree/master/Shaders">unity-built-in-shaders</a>，各个版本也可以在branches中查看。</p>
 <h3 id="p352-183一个更加复杂的例子"><a class="markdownIt-Anchor" href="#p352-183一个更加复杂的例子"></a> P352 18.3一个更加复杂的例子</h3>
@@ -3839,30 +3823,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -3876,7 +3875,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

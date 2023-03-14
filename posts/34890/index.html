@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2796,52 +2796,49 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>根据我们每一条边的顶点数n+1，计算出每个相邻顶点的间距，然后再根据顺序计算出各顶点的坐标与纹理坐标：</p>
-<pre class="highlight"><code class="cpp">float step = 1.0f / n;
-// 计算顶点位置
-for (float i = 0; i &lt; n + 1; i++)
-&#123;
-    for (float j = 0; j &lt; n + 1; j++)
-    &#123;
-        vertex_positions.push_back(glm::vec3(-0.5f + step * j, 0, -0.5f + step * i));
-        vertex_colors.push_back(color);
-        vertex_textures.push_back(glm::vec2(step * j, step * i));
-    &#125;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">float</span> step <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">/</span> n<span class="token punctuation">;</span>
+<span class="token comment">// 计算顶点位置</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">float</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">float</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        vertex_positions<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.5f</span> <span class="token operator">+</span> step <span class="token operator">*</span> j<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.5f</span> <span class="token operator">+</span> step <span class="token operator">*</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vertex_colors<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vertex_textures<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec2</span><span class="token punctuation">(</span>step <span class="token operator">*</span> j<span class="token punctuation">,</span> step <span class="token operator">*</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>根据网格的坐标计算出每个三角面片的顶点下标，颜色法向纹理的下标跟面片的顶点下标相同，最后调用storeFacesPoints方法将信息存储到需要传入GPU的数据：</p>
-<pre class="highlight"><code class="cpp">// 每个三角面片的顶点下标
-for (int i = 0; i &lt; n; i++)
-&#123;
-    for (int j = 0; j &lt; n; j++)
-    &#123;
-        int a, b, c, d;
-        a = i * (n + 1) + j;
-        b = a + 1;
-        c = b + n;
-        d = c + 1;
-        faces.push_back(vec3i(a, b, c));
-        faces.push_back(vec3i(b, c, d));
-    &#125;
-&#125;
-normal_index = faces;
-color_index = faces;
-texture_index = faces;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 每个三角面片的顶点下标</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">;</span>
+        a <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">;</span>
+        b <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        c <span class="token operator">=</span> b <span class="token operator">+</span> n<span class="token punctuation">;</span>
+        d <span class="token operator">=</span> c <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        faces<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">vec3i</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        faces<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">vec3i</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+normal_index <span class="token operator">=</span> faces<span class="token punctuation">;</span>
+color_index <span class="token operator">=</span> faces<span class="token punctuation">;</span>
+texture_index <span class="token operator">=</span> faces<span class="token punctuation">;</span>
 
-storeFacesPoints();
-</code></pre>
+<span class="token function">storeFacesPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在main.cpp中的init方法中生成水平面，设置坐标旋转与大小，并将其与贴图加载到painter容器中：</p>
-<pre class="highlight"><code class="cpp">water-&gt;generateSurface(30, glm::vec3(0.0, 0.0, 0.0), 0.03f, 0.0f, 0.05f);
-water-&gt;coefficientCount(0.1f);
-water-&gt;setTranslation(glm::vec3(0, 0.25, 0));
-water-&gt;setRotation(glm::vec3(0, 0, 0));
-water-&gt;setScale(glm::vec3(waterScale, 1.0, waterScale));
-painter-&gt;addMesh(water, &quot;mesh_water&quot;, &quot;./assets/water1.jpg&quot;, vshader, fshader, 2);
-meshList.push_back(water);
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">water<span class="token operator">-></span><span class="token function">generateSurface</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.03f</span><span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">,</span> <span class="token number">0.05f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+water<span class="token operator">-></span><span class="token function">coefficientCount</span><span class="token punctuation">(</span><span class="token number">0.1f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+water<span class="token operator">-></span><span class="token function">setTranslation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.25</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+water<span class="token operator">-></span><span class="token function">setRotation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+water<span class="token operator">-></span><span class="token function">setScale</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span>waterScale<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> waterScale<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+painter<span class="token operator">-></span><span class="token function">addMesh</span><span class="token punctuation">(</span>water<span class="token punctuation">,</span> <span class="token string">"mesh_water"</span><span class="token punctuation">,</span> <span class="token string">"./assets/water1.jpg"</span><span class="token punctuation">,</span> vshader<span class="token punctuation">,</span> fshader<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+meshList<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>water<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>完成这一步骤之后我们应该能生成一个网格，如果直接生成应该能看到一个平面，想看到网格我们可以调整mesh的绘制模式，在MeshPainter.cpp文件下的drawMesh函数下调用glDrawArrays的参数中将GL_TRIANGLES换成GL_LINE_STRIP即可（可能需要更多参数，如报错请自行上网搜索），该步骤非必须，但是我建议你如果出现不知道什么问题试一下这个方法能让你更直观地观察这个平面是长什么样的</p>
 </li>
 </ol>
@@ -2889,98 +2886,93 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <ol start="4">
 <li>
 <p>接下来只需要跟据位移公式写出对应代码即可，在coefficientCount方法下计算出2）中公式的三个系数k1，k2，k3，这一步在初始化水平面时计算一次即可：</p>
-<pre class="highlight"><code class="cpp">void Fluid::coefficientCount(float t)
-&#123;
-    float f1 = c * c * t * t / d / d;
-    float f2 = 1.0f / (u * t + 2);
-    k1 = (4 - 8 * f1) * f2;
-    k2 = (u * t - 2) * f2;
-    k3 = 2 * f1 * f2;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Fluid</span><span class="token double-colon punctuation">::</span><span class="token function">coefficientCount</span><span class="token punctuation">(</span><span class="token keyword">float</span> t<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> f1 <span class="token operator">=</span> c <span class="token operator">*</span> c <span class="token operator">*</span> t <span class="token operator">*</span> t <span class="token operator">/</span> d <span class="token operator">/</span> d<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> f2 <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>u <span class="token operator">*</span> t <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    k1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">-</span> <span class="token number">8</span> <span class="token operator">*</span> f1<span class="token punctuation">)</span> <span class="token operator">*</span> f2<span class="token punctuation">;</span>
+    k2 <span class="token operator">=</span> <span class="token punctuation">(</span>u <span class="token operator">*</span> t <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> f2<span class="token punctuation">;</span>
+    k3 <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> f1 <span class="token operator">*</span> f2<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在generateSurface方法下随机化vpb的坐标（即上一帧，若与当前帧相同则水面保持稳定），在openGL水面高度对应的是y轴坐标：</p>
-<pre class="highlight"><code class="cpp">    // 随机化之前的坐标
-    for (int i = 1; i &lt; n; i++)
-    &#123;
-        for (int j = 1; j &lt; n; j++)
-        &#123;
-            tmp = rand() % 2;
-            vpb[i * (n + 1) + j].y = d * (tmp - 0.5f) * 0.5f;
-        &#125;
-    &#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 随机化之前的坐标</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        tmp <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        vpb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y <span class="token operator">=</span> d <span class="token operator">*</span> <span class="token punctuation">(</span>tmp <span class="token operator">-</span> <span class="token number">0.5f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在方法updateSurfacePosition中根据公式更新顶点位置，其中vertex_positions存储当前顶点位置，vpa和vpb分别存储下一帧与上一帧的顶点位置信息。最后将坐标值转换成需要传入GPU的信息：</p>
-<pre class="highlight"><code class="cpp">void Fluid::updateSurfacePosition()
-&#123;
-    // 顶点位置为最新的顶点
-    vertex_positions = vpa;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Fluid</span><span class="token double-colon punctuation">::</span><span class="token function">updateSurfacePosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 顶点位置为最新的顶点</span>
+    vertex_positions <span class="token operator">=</span> vpa<span class="token punctuation">;</span>
 
-    for (int i = 0; i &lt; numOfWidth + 1; i++)
-    &#123;
-        for (int j = 0; j &lt; numOfWidth + 1; j++)
-        &#123;
-            float curY = vertex_positions[i * (numOfWidth + 1) + j].y;
-            float beforeY = vpb[i * (numOfWidth + 1) + j].y;
-            float updateY = k1 * curY + k2 * beforeY;
-            float deltaY = 0.0f;
-            if (i &gt; 0) deltaY += vertex_positions[(i - 1) * (numOfWidth + 1) + j].y;
-            if (i &lt; numOfWidth) deltaY += vertex_positions[(i + 1) * (numOfWidth + 1) + j].y;
-            if (j &gt; 0) deltaY += vertex_positions[i * (numOfWidth + 1) + j - 1].y;
-            if (j &lt; numOfWidth) deltaY += vertex_positions[i * (numOfWidth + 1) + j + 1].y;
-            updateY += deltaY * k3;
-            vpa[i * (numOfWidth + 1) + j].y = updateY;
-        &#125;
-    &#125;
-    // 之前的顶点位置变成当前顶点位置，当前更新为计算出后的顶点位置
-    vpb = vertex_positions;
-    vertex_positions = vpa;
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> curY <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> beforeY <span class="token operator">=</span> vpb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> updateY <span class="token operator">=</span> k1 <span class="token operator">*</span> curY <span class="token operator">+</span> k2 <span class="token operator">*</span> beforeY<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> deltaY <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> deltaY <span class="token operator">+=</span> vertex_positions<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> numOfWidth<span class="token punctuation">)</span> deltaY <span class="token operator">+=</span> vertex_positions<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> deltaY <span class="token operator">+=</span> vertex_positions<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> numOfWidth<span class="token punctuation">)</span> deltaY <span class="token operator">+=</span> vertex_positions<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+            updateY <span class="token operator">+=</span> deltaY <span class="token operator">*</span> k3<span class="token punctuation">;</span>
+            vpa<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y <span class="token operator">=</span> updateY<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 之前的顶点位置变成当前顶点位置，当前更新为计算出后的顶点位置</span>
+    vpb <span class="token operator">=</span> vertex_positions<span class="token punctuation">;</span>
+    vertex_positions <span class="token operator">=</span> vpa<span class="token punctuation">;</span>
 
-    int j = 0;
+    <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    for (int i = 0; i &lt; faces.size(); i++)
-    &#123;
-        // 坐标
-        points[j++] = vertex_positions[faces[i].x];
-        points[j++] = vertex_positions[faces[i].y];
-        points[j++] = vertex_positions[faces[i].z];
-    &#125;
-&#125;
-</code></pre>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> faces<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 坐标</span>
+        points<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>faces<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>faces<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>faces<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>z<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>给MeshPainter类添加replaceMesh方法，弹出最后一个mesh并添加新的mesh来更新水面的顶点信息（修改顶点位置不是通过模式变化矩阵来完成，而是直接修改了mesh的points变量，所以只能用这个方法），此处使用的方法其实有非常大的内存隐患，这个vector容器使用的类型是TriMesh而压入栈与弹出栈的是Fluid类，不过这毕竟只是一个作业所以我觉得能跑起来比什么都重要，这种地方要改都是牵一发而动全身：</p>
-<pre class="highlight"><code class="cpp">void MeshPainter::replaceMesh(TriMesh* mesh, const std::string&amp; name, const std::string&amp; texture_image, const std::string&amp; vshader, const std::string&amp; fshader, int type) &#123;
-    mesh_names.pop_back();
-    mesh_names.push_back(name);
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">MeshPainter</span><span class="token double-colon punctuation">::</span><span class="token function">replaceMesh</span><span class="token punctuation">(</span>TriMesh<span class="token operator">*</span> mesh<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> name<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> texture_image<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> vshader<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> fshader<span class="token punctuation">,</span> <span class="token keyword">int</span> type<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    mesh_names<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mesh_names<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    meshes.pop_back();
-    meshes.push_back(mesh);
+    meshes<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    meshes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>mesh<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    mesh_types.pop_back();
-    mesh_types.push_back(type);
+    mesh_types<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mesh_types<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    openGLObject object;
-    // 绑定openGL对象，并传递顶点属性的数据
+    openGLObject object<span class="token punctuation">;</span>
+    <span class="token comment">// 绑定openGL对象，并传递顶点属性的数据</span>
 
-    bindObjectAndData(mesh, object, texture_image, vshader, fshader);
-    opengl_objects.pop_back();
-    opengl_objects.push_back(object);
-&#125;;
-</code></pre>
+    <span class="token function">bindObjectAndData</span><span class="token punctuation">(</span>mesh<span class="token punctuation">,</span> object<span class="token punctuation">,</span> texture_image<span class="token punctuation">,</span> vshader<span class="token punctuation">,</span> fshader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    opengl_objects<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    opengl_objects<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在main函数中打开窗口的循环中调用replaceMesh方法将更新顶点后的水替换上去，t表示循环3次更新一次顶点，如果更新频率太高水会非常的鬼畜：</p>
-<pre class="highlight"><code class="cpp">if (t &gt; 3)
-&#123;
-    t = 0;
-    water-&gt;updateSurfacePosition();
-    painter-&gt;replaceMesh(water, &quot;mesh_water&quot;, &quot;./assets/water1.jpg&quot;, vshader, fshader, 2);
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    t <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    water<span class="token operator">-></span><span class="token function">updateSurfacePosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token operator">-></span><span class="token function">replaceMesh</span><span class="token punctuation">(</span>water<span class="token punctuation">,</span> <span class="token string">"mesh_water"</span><span class="token punctuation">,</span> <span class="token string">"./assets/water1.jpg"</span><span class="token punctuation">,</span> vshader<span class="token punctuation">,</span> fshader<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="船的模型读取与添加贴图"><a class="markdownIt-Anchor" href="#船的模型读取与添加贴图"></a> 船的模型读取与添加贴图</h3>
@@ -2990,224 +2982,210 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </li>
 <li>
 <p>使用readObj读取🚢模型文件，并在addMesh中指定贴图文件即可（🦈和🪨也是同理）：</p>
-<pre class="highlight"><code class="cpp">ship-&gt;setNormalize(true);
-ship-&gt;readObj(&quot;./assets/ship.obj&quot;);
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ship<span class="token operator">-></span><span class="token function">setNormalize</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ship<span class="token operator">-></span><span class="token function">readObj</span><span class="token punctuation">(</span><span class="token string">"./assets/ship.obj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-// 设置物体的旋转位移
-ship-&gt;setTranslation(glm::vec3(0.0, 0.5, 0.0));
-ship-&gt;setRotation(glm::vec3(0.0, -65.0, 0.0));
-ship-&gt;setScale(glm::vec3(1.0, 1.0, 1.0));
+<span class="token comment">// 设置物体的旋转位移</span>
+ship<span class="token operator">-></span><span class="token function">setTranslation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ship<span class="token operator">-></span><span class="token function">setRotation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">65.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ship<span class="token operator">-></span><span class="token function">setScale</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-// 设置材质
-ship-&gt;setAmbient(mat_ambient); // 环境光
-ship-&gt;setDiffuse(mat_diffuse); // 漫反射
-ship-&gt;setSpecular(mat_specular); // 镜面反射
-ship-&gt;setShininess(shine); //高光系数
+<span class="token comment">// 设置材质</span>
+ship<span class="token operator">-></span><span class="token function">setAmbient</span><span class="token punctuation">(</span>mat_ambient<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 环境光</span>
+ship<span class="token operator">-></span><span class="token function">setDiffuse</span><span class="token punctuation">(</span>mat_diffuse<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 漫反射</span>
+ship<span class="token operator">-></span><span class="token function">setSpecular</span><span class="token punctuation">(</span>mat_specular<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 镜面反射</span>
+ship<span class="token operator">-></span><span class="token function">setShininess</span><span class="token punctuation">(</span>shine<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//高光系数</span>
 
-painter-&gt;addMesh(ship, &quot;mesh_ship&quot;, &quot;./assets/Texture_01_A.png&quot;, vshader, fshader, 3);
-meshList.push_back(ship);
-</code></pre>
+painter<span class="token operator">-></span><span class="token function">addMesh</span><span class="token punctuation">(</span>ship<span class="token punctuation">,</span> <span class="token string">"mesh_ship"</span><span class="token punctuation">,</span> <span class="token string">"./assets/Texture_01_A.png"</span><span class="token punctuation">,</span> vshader<span class="token punctuation">,</span> fshader<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+meshList<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>ship<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="将phong着色应用在船上"><a class="markdownIt-Anchor" href="#将phong着色应用在船上"></a> 将Phong着色应用在船上</h3>
 <ol>
 <li>
 <p>在shader文件fshader.frag中（修改后缀名有语法提示方便修改代码，只需要修改后缀名并安装glsl扩展即可）实现Phong光照模型（如不了解可以去看看博客里的光照模型文章），取一个权重将它和纹理混合起来（本来shader中应该避免用if等条件判断，gpu执行逻辑计算需要绕弯而且都是对多个顶点或片元来执行，但是由于时间问题来不及重构代码，建议开多个shader文件并在drawmesh的时候根据类型指定使用的shader）：</p>
-<pre class="highlight"><code class="glsl">// 贴图+Phong光照
-else if(type == 3)&#123;
-    // 将顶点坐标、光源坐标和法向量转换到相机坐标系
-    vec3 pos = position - eye_position;
-    vec3 norm = (vec4(normal, 0.0)).xyz;
-    vec3 l_pos = light.position - eye_position;
+<pre class="line-numbers language-glsl" data-language="glsl"><code class="language-glsl"><span class="token comment">// 贴图+Phong光照</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 将顶点坐标、光源坐标和法向量转换到相机坐标系</span>
+    <span class="token keyword">vec3</span> pos <span class="token operator">=</span> position <span class="token operator">-</span> eye_position<span class="token punctuation">;</span>
+    <span class="token keyword">vec3</span> norm <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">vec4</span><span class="token punctuation">(</span>normal<span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>xyz<span class="token punctuation">;</span>
+    <span class="token keyword">vec3</span> l_pos <span class="token operator">=</span> light<span class="token punctuation">.</span>position <span class="token operator">-</span> eye_position<span class="token punctuation">;</span>
 
-    vec3 N = normalize(norm);
-    vec3 V = normalize(-pos);
-    vec3 L = normalize(l_pos - pos);
-    vec3 R = reflect(-L, N);
+    <span class="token keyword">vec3</span> N <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>norm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">vec3</span> V <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span><span class="token operator">-</span>pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">vec3</span> L <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>l_pos <span class="token operator">-</span> pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">vec3</span> R <span class="token operator">=</span> <span class="token function">reflect</span><span class="token punctuation">(</span><span class="token operator">-</span>L<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 环境光分量I_a
-    vec4 I_a = light.ambient * material.ambient;
+    <span class="token comment">// 环境光分量I_a</span>
+    <span class="token keyword">vec4</span> I_a <span class="token operator">=</span> light<span class="token punctuation">.</span>ambient <span class="token operator">*</span> material<span class="token punctuation">.</span>ambient<span class="token punctuation">;</span>
 
-    // @TODO: Task2 计算系数和漫反射分量I_d
-    float diffuse_dot = max(dot(L, N), 0);
-    vec4 I_d = diffuse_dot *  light.diffuse * material.diffuse;
+    <span class="token comment">// @TODO: Task2 计算系数和漫反射分量I_d</span>
+    <span class="token keyword">float</span> diffuse_dot <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">dot</span><span class="token punctuation">(</span>L<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">vec4</span> I_d <span class="token operator">=</span> diffuse_dot <span class="token operator">*</span>  light<span class="token punctuation">.</span>diffuse <span class="token operator">*</span> material<span class="token punctuation">.</span>diffuse<span class="token punctuation">;</span>
 
-    // @TODO: Task2 计算系数和镜面反射分量I_s
-    float specular_dot_pow = pow(max(dot(R, V), 0), material.shininess);
-    vec4 I_s = specular_dot_pow * light.specular * material.specular;
+    <span class="token comment">// @TODO: Task2 计算系数和镜面反射分量I_s</span>
+    <span class="token keyword">float</span> specular_dot_pow <span class="token operator">=</span> <span class="token function">pow</span><span class="token punctuation">(</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">dot</span><span class="token punctuation">(</span>R<span class="token punctuation">,</span> V<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> material<span class="token punctuation">.</span>shininess<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">vec4</span> I_s <span class="token operator">=</span> specular_dot_pow <span class="token operator">*</span> light<span class="token punctuation">.</span>specular <span class="token operator">*</span> material<span class="token punctuation">.</span>specular<span class="token punctuation">;</span>
 
-    vec4 I = I_a + I_d + I_s;
+    <span class="token keyword">vec4</span> I <span class="token operator">=</span> I_a <span class="token operator">+</span> I_d <span class="token operator">+</span> I_s<span class="token punctuation">;</span>
 
-    if( dot(L, N) &lt; 0.0 ) &#123;
-        I_s = vec4(0.0, 0.0, 0.0, 1.0);
-    &#125;
+    <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">dot</span><span class="token punctuation">(</span>L<span class="token punctuation">,</span> N<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        I_s <span class="token operator">=</span> <span class="token keyword">vec4</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    fColor = texture(texture1, texCoord) * 0.7 + I * 0.3;
-    fColor.a = 1;
-&#125;
-</code></pre>
+    fColor <span class="token operator">=</span> <span class="token function">texture</span><span class="token punctuation">(</span>texture1<span class="token punctuation">,</span> texCoord<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.7</span> <span class="token operator">+</span> I <span class="token operator">*</span> <span class="token number">0.3</span><span class="token punctuation">;</span>
+    fColor<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在init函数下设定光源</p>
-<pre class="highlight"><code class="cpp">// 设置光源位置
-light-&gt;setTranslation(glm::vec3(0.0, waterScale / 2, -waterScale / 2));
-light-&gt;setAmbient(glm::vec4(1.0, 1.0, 1.0, 1.0)); // 环境光
-light-&gt;setDiffuse(glm::vec4(1.0, 1.0, 1.0, 1.0)); // 漫反射
-light-&gt;setSpecular(glm::vec4(1.0, 1.0, 1.0, 1.0)); // 镜面反射
-light-&gt;setAttenuation(1.0, 0.45, 0.075); // 衰减系数
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 设置光源位置</span>
+light<span class="token operator">-></span><span class="token function">setTranslation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> waterScale <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span>waterScale <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+light<span class="token operator">-></span><span class="token function">setAmbient</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 环境光</span>
+light<span class="token operator">-></span><span class="token function">setDiffuse</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 漫反射</span>
+light<span class="token operator">-></span><span class="token function">setSpecular</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 镜面反射</span>
+light<span class="token operator">-></span><span class="token function">setAttenuation</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">0.45</span><span class="token punctuation">,</span> <span class="token number">0.075</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 衰减系数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>设定船的材质参数</p>
-<pre class="highlight"><code class="cpp">glm::vec4 mat_ambient = &#123; 1, 1, 1,1.0f &#125;;
-glm::vec4 mat_diffuse = &#123; 1, 1, 1, 1.0f &#125;;
-glm::vec4 mat_specular = &#123; 0.5f, 0.5f, 0.5f, 1.0f &#125;;
-float shine = 200.0f;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">glm<span class="token double-colon punctuation">::</span>vec4 mat_ambient <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1.0f</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+glm<span class="token double-colon punctuation">::</span>vec4 mat_diffuse <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1.0f</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+glm<span class="token double-colon punctuation">::</span>vec4 mat_specular <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">0.5f</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> shine <span class="token operator">=</span> <span class="token number">200.0f</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="计算船的阴影并投影到平面上"><a class="markdownIt-Anchor" href="#计算船的阴影并投影到平面上"></a> 计算船的阴影并投影到平面上</h3>
 <ol>
 <li>
 <p>在meshPainter类下修改drawMesh函数，当类型为3时绘制阴影（投射到y=0的平面上）：</p>
-<pre class="highlight"><code class="cpp">// 阴影绘制
-if (type == 3)
-&#123;
-    // 三角形阴影绘制
-    glBindVertexArray(object.vao);
-    // 根据光源位置，计算阴影投影矩阵
-    glm::mat4 shadowProjMatrix = light-&gt;getShadowProjectionMatrix();
-    modelMatrix = shadowProjMatrix * modelMatrix;
-    glUniform1i(object.typeLocation, 5);
-    // 传递 unifrom 关键字的矩阵数据。
-    glUniformMatrix4fv(object.modelLocation, 1, GL_FALSE, &amp;modelMatrix[0][0]);
-    glUniformMatrix4fv(object.viewLocation, 1, GL_TRUE, &amp;camera-&gt;viewMatrix[0][0]);
-    glUniformMatrix4fv(object.projectionLocation, 1, GL_TRUE, &amp;camera-&gt;projMatrix[0][0]);
-    // 绘制
-    glDrawArrays(GL_TRIANGLES, 0, mesh-&gt;getPoints().size());
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 阴影绘制</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 三角形阴影绘制</span>
+    <span class="token function">glBindVertexArray</span><span class="token punctuation">(</span>object<span class="token punctuation">.</span>vao<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 根据光源位置，计算阴影投影矩阵</span>
+    glm<span class="token double-colon punctuation">::</span>mat4 shadowProjMatrix <span class="token operator">=</span> light<span class="token operator">-></span><span class="token function">getShadowProjectionMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    modelMatrix <span class="token operator">=</span> shadowProjMatrix <span class="token operator">*</span> modelMatrix<span class="token punctuation">;</span>
+    <span class="token function">glUniform1i</span><span class="token punctuation">(</span>object<span class="token punctuation">.</span>typeLocation<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 传递 unifrom 关键字的矩阵数据。</span>
+    <span class="token function">glUniformMatrix4fv</span><span class="token punctuation">(</span>object<span class="token punctuation">.</span>modelLocation<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> GL_FALSE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>modelMatrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glUniformMatrix4fv</span><span class="token punctuation">(</span>object<span class="token punctuation">.</span>viewLocation<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> GL_TRUE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>camera<span class="token operator">-></span>viewMatrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glUniformMatrix4fv</span><span class="token punctuation">(</span>object<span class="token punctuation">.</span>projectionLocation<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> GL_TRUE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>camera<span class="token operator">-></span>projMatrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 绘制</span>
+    <span class="token function">glDrawArrays</span><span class="token punctuation">(</span>GL_TRIANGLES<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> mesh<span class="token operator">-></span><span class="token function">getPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>修改fshader.frag（最好另开shader文件），当type为5时绘制阴影（颜色输出为黑色）：</p>
-<pre class="highlight"><code class="glsl">// 阴影
-else if (type == 5) &#123;
-    fColor = vec4(0.0, 0.0, 0.0, 1.0);
-&#125;
-</code></pre>
+<pre class="line-numbers language-glsl" data-language="glsl"><code class="language-glsl"><span class="token comment">// 阴影</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fColor <span class="token operator">=</span> <span class="token keyword">vec4</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="船的移动与旋转"><a class="markdownIt-Anchor" href="#船的移动与旋转"></a> 船的移动与旋转</h3>
 <ol>
 <li>
 <p>在TriMesh类中添加Movement方法（因为模型读取不一定是摆正的，所以需要一个初始的修正），船的航行是向前的，不能像螃蟹一样横着走，所以他的位移要乘上当前旋转的角度：</p>
-<pre class="highlight"><code class="cpp">void TriMesh::movement(float speed)
-&#123;
-    float theta = 0.005;
-    setTranslation(glm::vec3(
-        translation.x + speed * theta * -sin(glm::radians(rotation.y + 65)),
-        translation.y,
-        translation.z + speed * theta * -cos(glm::radians(rotation.y + 65))));
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">TriMesh</span><span class="token double-colon punctuation">::</span><span class="token function">movement</span><span class="token punctuation">(</span><span class="token keyword">float</span> speed<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> theta <span class="token operator">=</span> <span class="token number">0.005</span><span class="token punctuation">;</span>
+    <span class="token function">setTranslation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span>
+        translation<span class="token punctuation">.</span>x <span class="token operator">+</span> speed <span class="token operator">*</span> theta <span class="token operator">*</span> <span class="token operator">-</span><span class="token function">sin</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">radians</span><span class="token punctuation">(</span>rotation<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        translation<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+        translation<span class="token punctuation">.</span>z <span class="token operator">+</span> speed <span class="token operator">*</span> theta <span class="token operator">*</span> <span class="token operator">-</span><span class="token function">cos</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">radians</span><span class="token punctuation">(</span>rotation<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>添加changeDir方法，修改船在y轴上的旋转（Movement应用了y轴的旋转，所以可以做到转向航行）：</p>
-<pre class="highlight"><code class="cpp">void TriMesh::changeDir(float dir)
-&#123;
-    float theta = 0.2;
-    rotation.y += dir * theta;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">TriMesh</span><span class="token double-colon punctuation">::</span><span class="token function">changeDir</span><span class="token punctuation">(</span><span class="token keyword">float</span> dir<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> theta <span class="token operator">=</span> <span class="token number">0.2</span><span class="token punctuation">;</span>
+    rotation<span class="token punctuation">.</span>y <span class="token operator">+=</span> dir <span class="token operator">*</span> theta<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>添加键盘监听，修改全局变量speed和dir（w、s加速减速，a、d向左向右）：</p>
-<pre class="highlight"><code class="cpp">// 键盘响应函数
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
-&#123;
-    if (action == GLFW_PRESS) &#123;
-        switch (key)
-        &#123;
-        case GLFW_KEY_ESCAPE: exit(EXIT_SUCCESS); break;
-        case GLFW_KEY_H: printHelp(); break;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 键盘响应函数</span>
+<span class="token keyword">void</span> <span class="token function">key_callback</span><span class="token punctuation">(</span>GLFWwindow<span class="token operator">*</span> window<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> scancode<span class="token punctuation">,</span> <span class="token keyword">int</span> action<span class="token punctuation">,</span> <span class="token keyword">int</span> mode<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>action <span class="token operator">==</span> GLFW_PRESS<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> GLFW_KEY_ESCAPE<span class="token operator">:</span> <span class="token function">exit</span><span class="token punctuation">(</span>EXIT_SUCCESS<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> GLFW_KEY_H<span class="token operator">:</span> <span class="token function">printHelp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
 
-        case GLFW_KEY_2: controlShark = true; speed = 0; dir = 0; break;
-        case GLFW_KEY_1: controlShark = false; speed = 0; dir = 0; break;
+        <span class="token keyword">case</span> GLFW_KEY_2<span class="token operator">:</span> controlShark <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> speed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> dir <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> GLFW_KEY_1<span class="token operator">:</span> controlShark <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> speed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> dir <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
 
-        case GLFW_KEY_W: speed += 1; printMsg(); break;
-        case GLFW_KEY_S: speed -= 1; printMsg(); break;
-        case GLFW_KEY_A: dir += 1; printMsg(); break;
-        case GLFW_KEY_D: dir -= 1; printMsg(); break;
+        <span class="token keyword">case</span> GLFW_KEY_W<span class="token operator">:</span> speed <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> GLFW_KEY_S<span class="token operator">:</span> speed <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> GLFW_KEY_A<span class="token operator">:</span> dir <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> GLFW_KEY_D<span class="token operator">:</span> dir <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
 
-        default:
-            camera-&gt;keyboard(key, action, mode);
-            break;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            camera<span class="token operator">-></span><span class="token function">keyboard</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> action<span class="token punctuation">,</span> mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>船只跟随水面高低波动，由于水面时高时低，在y轴上不会有位移的船很容易变成潜水艇或者飞船，所以要根据所在水面的顶点位置更新它的y轴位置，由于水面的网格的x，z值不会发生改变，我们只要根据船所在的位置映射到当前水面并获取周围的四个顶点的y值，计算出当前水面相对初始值的偏移量：</p>
-<pre class="highlight"><code class="cpp">float Fluid::getOffset(glm::vec3 pos)
-&#123;
-    float x = pos.x;
-    float z = pos.z;
-    int i = (x + 0.5) * (numOfWidth + 1.0);
-    int j = (z + 0.5) * (numOfWidth + 1.0);
-    if (i &lt; numOfWidth + 1 &amp;&amp; j &lt; numOfWidth + 1 &amp;&amp; i &gt;= 0 &amp;&amp; j &gt;= 0)
-    &#123;
-        float ay = vertex_positions[i * (numOfWidth + 1) + j].y;
-        float by = vertex_positions[i * (numOfWidth + 1) + j + 1].y;
-        float cy = vertex_positions[(i + 1) * (numOfWidth + 1) + j].y;
-        float dy = vertex_positions[(i + 1) * (numOfWidth + 1) + j + 1].y;
-        return (ay + by + cy + dy) / 4;
-    &#125;
-    return 0.0f;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">float</span> <span class="token class-name">Fluid</span><span class="token double-colon punctuation">::</span><span class="token function">getOffset</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span>vec3 pos<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> x <span class="token operator">=</span> pos<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> z <span class="token operator">=</span> pos<span class="token punctuation">.</span>z<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token punctuation">(</span>z <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> numOfWidth <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> numOfWidth <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">float</span> ay <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+        <span class="token keyword">float</span> by <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+        <span class="token keyword">float</span> cy <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+        <span class="token keyword">float</span> dy <span class="token operator">=</span> vertex_positions<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>numOfWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>ay <span class="token operator">+</span> by <span class="token operator">+</span> cy <span class="token operator">+</span> dy<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>根据offset加入船只的左右前后晃动，让它更有在海上的感觉：</p>
-<pre class="highlight"><code class="cpp">void TriMesh::shake(float offset)
-&#123;
-    rotation.x = offset * 60;
-    rotation.z = offset * 30;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">TriMesh</span><span class="token double-colon punctuation">::</span><span class="token function">shake</span><span class="token punctuation">(</span><span class="token keyword">float</span> offset<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    rotation<span class="token punctuation">.</span>x <span class="token operator">=</span> offset <span class="token operator">*</span> <span class="token number">60</span><span class="token punctuation">;</span>
+    rotation<span class="token punctuation">.</span>z <span class="token operator">=</span> offset <span class="token operator">*</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>在main函数中根据速度和方向调用movement和changeDir函数并根据偏移值在main函数中实时更新船只的y轴坐标并调用：</p>
-<pre class="highlight"><code class="cpp">ship-&gt;movement(speed);
-if(fabs(speed) &gt; 0.01f)
-&#123;
-    ship-&gt;changeDir(dir);
-    glm::vec3 pos = ship-&gt;getTranslation();
-    pos.y = 0.5;
-    camera-&gt;focus(glm::vec4(pos, 1.0f));
-    camera-&gt;updateCamera();
-&#125;
-glm::vec3 pos = ship-&gt;getTranslation();
-float offset = water-&gt;getOffset(pos / waterScale);
-pos.y = 0.5 + offset / 10;
-ship-&gt;setTranslation(pos);
-ship-&gt;shake(offset);
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ship<span class="token operator">-></span><span class="token function">movement</span><span class="token punctuation">(</span>speed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">fabs</span><span class="token punctuation">(</span>speed<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0.01f</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    ship<span class="token operator">-></span><span class="token function">changeDir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    glm<span class="token double-colon punctuation">::</span>vec3 pos <span class="token operator">=</span> ship<span class="token operator">-></span><span class="token function">getTranslation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pos<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+    camera<span class="token operator">-></span><span class="token function">focus</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec4</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    camera<span class="token operator">-></span><span class="token function">updateCamera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+glm<span class="token double-colon punctuation">::</span>vec3 pos <span class="token operator">=</span> ship<span class="token operator">-></span><span class="token function">getTranslation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> offset <span class="token operator">=</span> water<span class="token operator">-></span><span class="token function">getOffset</span><span class="token punctuation">(</span>pos <span class="token operator">/</span> waterScale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pos<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0.5</span> <span class="token operator">+</span> offset <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+ship<span class="token operator">-></span><span class="token function">setTranslation</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ship<span class="token operator">-></span><span class="token function">shake</span><span class="token punctuation">(</span>offset<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="相机跟随"><a class="markdownIt-Anchor" href="#相机跟随"></a> 相机跟随</h3>
 <ol>
 <li>
 <p>为Camera类添加focus方法，修改at：</p>
-<pre class="highlight"><code class="cpp">void Camera::focus(glm::vec4 _at) &#123;
-    at = _at;
-&#125;
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Camera</span><span class="token double-colon punctuation">::</span><span class="token function">focus</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span>vec4 _at<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    at <span class="token operator">=</span> _at<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>修改updateCamera方法，让相机跟随焦点位置更新：</p>
-<pre class="highlight"><code class="cpp">eye = at + glm::vec4(eyex, eyey, eyez, 1.0);
-</code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">eye <span class="token operator">=</span> at <span class="token operator">+</span> glm<span class="token double-colon punctuation">::</span><span class="token function">vec4</span><span class="token punctuation">(</span>eyex<span class="token punctuation">,</span> eyey<span class="token punctuation">,</span> eyez<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="天空盒的实现"><a class="markdownIt-Anchor" href="#天空盒的实现"></a> 天空盒的实现</h3>
@@ -3218,41 +3196,38 @@ ship-&gt;shake(offset);
 </li>
 <li>
 <p>直接生成6个正方形平面拼起来，不想赘述了，简单的很</p>
-<pre class="highlight"><code class="cpp">skybox1-&gt;generateSquare(glm::vec3(0.0, 0.0, 0.0));
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">skybox1<span class="token operator">-></span><span class="token function">generateSquare</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-skybox1-&gt;setTranslation(glm::vec3(0.0, waterScale / 15, -waterScale / 2));
-skybox1-&gt;setRotation(glm::vec3(0.0, 0.0, 0.0));
-skybox1-&gt;setScale(glm::vec3(waterScale, waterScale, waterScale));
+skybox1<span class="token operator">-></span><span class="token function">setTranslation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> waterScale <span class="token operator">/</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token operator">-</span>waterScale <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+skybox1<span class="token operator">-></span><span class="token function">setRotation</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+skybox1<span class="token operator">-></span><span class="token function">setScale</span><span class="token punctuation">(</span>glm<span class="token double-colon punctuation">::</span><span class="token function">vec3</span><span class="token punctuation">(</span>waterScale<span class="token punctuation">,</span> waterScale<span class="token punctuation">,</span> waterScale<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-painter-&gt;addMesh(skybox1, &quot;skybox1&quot;, &quot;./assets/_skybox_6.jpg&quot;, vshader, fshader, 1);
-meshList.push_back(skybox1);
-</code></pre>
+painter<span class="token operator">-></span><span class="token function">addMesh</span><span class="token punctuation">(</span>skybox1<span class="token punctuation">,</span> <span class="token string">"skybox1"</span><span class="token punctuation">,</span> <span class="token string">"./assets/_skybox_6.jpg"</span><span class="token punctuation">,</span> vshader<span class="token punctuation">,</span> fshader<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+meshList<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>skybox1<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h3 id="水的半透明效果"><a class="markdownIt-Anchor" href="#水的半透明效果"></a> 水的半透明效果</h3>
 <ol>
 <li>
 <p>在fshader中修改水输出颜色的透明度：</p>
-<pre class="highlight"><code class="glsl">// 水
-else if(type == 2)&#123;
-    fColor = texture(texture1, texCoord);
-    fColor.a = 0.7;
-&#125;
-</code></pre>
+<pre class="line-numbers language-glsl" data-language="glsl"><code class="language-glsl"><span class="token comment">// 水</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    fColor <span class="token operator">=</span> <span class="token function">texture</span><span class="token punctuation">(</span>texture1<span class="token punctuation">,</span> texCoord<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fColor<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">0.7</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>透明效果详细来讲的话会涉及非常多的东西，简略地讲，我们就是将前面的透明物体与后面的物体的颜色进行混合，混合因子就是控制它们的系数，我们选择用透明度与1-透明度作为混合因子，启动混合功能并设置混合函数，最后在设置深度缓冲区为读写：</p>
-<pre class="highlight"><code class="cpp">void display()
-&#123;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    painter-&gt;drawMeshes(light, camera);
+    <span class="token function">glClear</span><span class="token punctuation">(</span>GL_COLOR_BUFFER_BIT <span class="token operator">|</span> GL_DEPTH_BUFFER_BIT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glEnable</span><span class="token punctuation">(</span>GL_BLEND<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">glBlendFunc</span><span class="token punctuation">(</span>GL_SRC_ALPHA<span class="token punctuation">,</span> GL_ONE_MINUS_SRC_ALPHA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token operator">-></span><span class="token function">drawMeshes</span><span class="token punctuation">(</span>light<span class="token punctuation">,</span> camera<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    glDepthMask(GL_TRUE);
-&#125;
-</code></pre>
+    <span class="token function">glDepthMask</span><span class="token punctuation">(</span>GL_TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <h2 id="最终结果"><a class="markdownIt-Anchor" href="#最终结果"></a> 最终结果</h2>
@@ -3337,9 +3312,8 @@ else if(type == 2)&#123;
 update: 
 
 
-
 tags后跟标签
-ta...</p>
+tag...</p>
         </a>
       
     </div>
@@ -4178,30 +4152,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -4215,7 +4204,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 

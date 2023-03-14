@@ -1880,7 +1880,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678778088224),
+    lastupdate: new Date(1678781964964),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2798,12 +2798,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>如果你没有多设备，也没有多个Action Maps，那么只看Actions和Bindings就够了。</p>
 <h5 id="action的使用方法"><a class="markdownIt-Anchor" href="#action的使用方法"></a> Action的使用方法</h5>
 <p>Action的创建在该栏的右上角的加号，一般地对于一个Action，在名字前加上On就是它的调用方法，例如名字为Move，它在脚本中的调用方法为(其实起名可以不这样起，但是传入的参数都是context)</p>
-<pre class="highlight"><code class="csharp">public void OnMove(InputAction.CallbackContext context)
-&#123;
-    // 根据Action Type的不同，context的属性也会
-    Vector2 dir = context.ReadValue&lt;Vector2&gt;();
-&#125;
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnMove</span><span class="token punctuation">(</span><span class="token class-name">InputAction<span class="token punctuation">.</span>CallbackContext</span> context<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根据Action Type的不同，context的属性也会</span>
+    <span class="token class-name">Vector2</span> dir <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">ReadValue</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Vector2<span class="token punctuation">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当你在这个窗口选择其中一个Action时，右边的窗口就会出现Action Properties</p>
 <h5 id="action-properties属性说明"><a class="markdownIt-Anchor" href="#action-properties属性说明"></a> Action Properties属性说明</h5>
 <ul>
@@ -2813,18 +2812,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>
 <p>Value: 一个值</p>
 <p>代码用法(以二维向量为例)</p>
-<pre class="highlight"><code class="csharp">Vector2 vec2 = context.ReadValue&lt;Vector2&gt;();
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token class-name">Vector2</span> vec2 <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">ReadValue</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Vector2<span class="token punctuation">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li>
 <p>Button: 一个按钮，按下一次按钮方法会被调用三次并更改三个bool值属性</p>
-<pre class="highlight"><code class="csharp">public void OnTouch(InputAction.CallbackContext context)
-&#123;
-    bool started = context.started; // 按钮开始被按下
-    bool performed = context.performed; // 按钮正在被按下
-    bool canceled = context.canceled; // 按钮被释放
-&#125;
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnTouch</span><span class="token punctuation">(</span><span class="token class-name">InputAction<span class="token punctuation">.</span>CallbackContext</span> context<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> started <span class="token operator">=</span> context<span class="token punctuation">.</span>started<span class="token punctuation">;</span> <span class="token comment">// 按钮开始被按下</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> performed <span class="token operator">=</span> context<span class="token punctuation">.</span>performed<span class="token punctuation">;</span> <span class="token comment">// 按钮正在被按下</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> canceled <span class="token operator">=</span> context<span class="token punctuation">.</span>canceled<span class="token punctuation">;</span> <span class="token comment">// 按钮被释放</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>Pass Through: 跟Value相似，但是同时接受多个设备的输入</p>
@@ -2846,9 +2843,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>Control Schemes(控制方案)位于窗口的左上角，打开下拉菜单，在这里你可以选择或新建设备的控制方案，并在之后的binding(绑定)中勾选对应的控制方案(例如左操纵杆就只勾选Gamepad)，当使用该设备时，Actions将自动选择对应的binding</p>
 <h4 id="action-maps"><a class="markdownIt-Anchor" href="#action-maps"></a> Action Maps</h4>
 <p>在最左边的是Action Maps，这里存放的是输入与操作对应的映射图，主要用在例如角色开启菜单就可以将原本控制角色的输入设备用于UI的点击，这时就需要转换映射关系，例如我们这里将映射从Player转换到UI，代码如下：</p>
-<pre class="highlight"><code class="csharp">public PlayerInput playerInput;
-playerInput.SwitchCurrentActionMap(&quot;UI&quot;);
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token class-name">PlayerInput</span> playerInput<span class="token punctuation">;</span>
+playerInput<span class="token punctuation">.</span><span class="token function">SwitchCurrentActionMap</span><span class="token punctuation">(</span><span class="token string">"UI"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="在场景中调用方法"><a class="markdownIt-Anchor" href="#在场景中调用方法"></a> 在场景中调用方法</h3>
 <p>在场景中的PlayerInput选择使用的Actions，Behavior选择Invoke Unity Events，在Events下我们可以找到我们创建的映射图(Action Map)，展开后就能看到我们的各个Action了，在对应的Action中选择当前控制的对象以及对象上要相应的方法(先选择控制的对象，再选择对象脚本内的方法)。例如：</p>
 <div galleryFlag itemscope itemtype="http://schema.org/ImageGallery" class="gallery " data-group='default'><div class='fancybox'><a class='fancybox' pjax-fancybox itemscope itemtype="http://schema.org/ImageObject" itemprop="url" href='/img/InputSystem/Events.png' data-fancybox='default' data-caption='这里展示的是鼠标控制相机旋转以及角色旋转的Action'><img fancybox itemprop="contentUrl" src="/img/InputSystem/Events.png" class="lazyload" data-srcset="/img/InputSystem/Events.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="这里展示的是鼠标控制相机旋转以及角色旋转的Action" /></a><span class='image-caption'>这里展示的是鼠标控制相机旋转以及角色旋转的Action</span></div></div>
@@ -2858,83 +2854,77 @@ playerInput.SwitchCurrentActionMap(&quot;UI&quot;);
 <p>新建Action命名为Look，Action Type为Value(或Pass Through)，Control Type为Vector2，Action下新建binding，Path选择为Delta[Mouse]</p>
 <div galleryFlag itemscope itemtype="http://schema.org/ImageGallery" class="gallery " data-group='default'><div class='fancybox'><a class='fancybox' pjax-fancybox itemscope itemtype="http://schema.org/ImageObject" itemprop="url" href='/img/InputSystem/LookAction.png' data-fancybox='default' data-caption=''><img fancybox itemprop="contentUrl" src="/img/InputSystem/LookAction.png" class="lazyload" data-srcset="/img/InputSystem/LookAction.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></a><span></span></div></div>
 <p>在相机控制脚本中编写OnLook方法</p>
-<pre class="highlight"><code class="csharp">private Vector2 _delta; // 鼠标偏移量
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token class-name">Vector2</span> _delta<span class="token punctuation">;</span> <span class="token comment">// 鼠标偏移量</span>
 
-public void OnLook(InputSystem.CallbackContext context)
-&#123;
-  _delta = context.ReadValue&lt;Vector2&gt;();
-&#125;
-</code></pre>
+<span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnLook</span><span class="token punctuation">(</span><span class="token class-name">InputSystem<span class="token punctuation">.</span>CallbackContext</span> context<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  _delta <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">ReadValue</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Vector2<span class="token punctuation">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="获取鼠标右键是否按下"><a class="markdownIt-Anchor" href="#获取鼠标右键是否按下"></a> 获取鼠标右键是否按下</h3>
 <p>新建Action命名为Rotate，Action Type选择为Button，Action下新建binding，Path选择为Right Button[Mouse]</p>
 <p>在相机控制脚本中编写OnRotate方法</p>
-<pre class="highlight"><code class="csharp">private bool _isRotating;
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">bool</span></span> _isRotating<span class="token punctuation">;</span>
 
-public void OnRotate(InputSystem.CallbackContext context)
-&#123;
-  // 监听右键是否按下
-  _isRotating = context.started || context.performed;
-&#125;
-</code></pre>
+<span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnRotate</span><span class="token punctuation">(</span><span class="token class-name">InputSystem<span class="token punctuation">.</span>CallbackContext</span> context<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">// 监听右键是否按下</span>
+  _isRotating <span class="token operator">=</span> context<span class="token punctuation">.</span>started <span class="token operator">||</span> context<span class="token punctuation">.</span>performed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="相机旋转实现"><a class="markdownIt-Anchor" href="#相机旋转实现"></a> 相机旋转实现</h3>
 <p>我们获得了鼠标相对上一个位置的偏移量，以及目前是否在按下右键，那么就像当于我们或去了是否在按下右键拖拽鼠标的信息，接下来只需要实现相机的旋转(这里实现的是相机的横向旋转，即只改变相机旋转的y值)即可。</p>
-<pre class="highlight"><code class="csharp">private float _xRotation;
-[SerializeField] private float rotationSpeed = .5f;
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">float</span></span> _xRotation<span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">SerializeField</span></span><span class="token punctuation">]</span> <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">float</span></span> rotationSpeed <span class="token operator">=</span> <span class="token number">.5f</span><span class="token punctuation">;</span>
 
-private void Awake()
-&#123;
-    _xRotation = transform.rotation.eulerAngles.x;
-&#125;
+<span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Awake</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    _xRotation <span class="token operator">=</span> transform<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>eulerAngles<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-private void LateUpdate()
-&#123;
-    if (_isRotating)
-    &#123;
-      // 只修改Rotation的y
-      transform.rotation = Quaternion.Euler(_xRotation, transform.rotation.eulerAngles.y + _delta.x * rotationSpeed, 0.0f);
-    &#125;
-&#125;
-</code></pre>
+<span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">LateUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_isRotating<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 只修改Rotation的y</span>
+      transform<span class="token punctuation">.</span>rotation <span class="token operator">=</span> Quaternion<span class="token punctuation">.</span><span class="token function">Euler</span><span class="token punctuation">(</span>_xRotation<span class="token punctuation">,</span> transform<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>eulerAngles<span class="token punctuation">.</span>y <span class="token operator">+</span> _delta<span class="token punctuation">.</span>x <span class="token operator">*</span> rotationSpeed<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>到了这一步就已经可以实现相机的旋转了，不过如果需要吸附相机的y值到45、135、225、315度，那么就看一下下面的步骤。</p>
 <h3 id="相机吸附"><a class="markdownIt-Anchor" href="#相机吸附"></a> 相机吸附</h3>
 <p>判断当前角度在哪个区间，要吸附到哪个角度</p>
-<pre class="highlight"><code class="csharp">private Vector3 SnappedVector()
-&#123;
-    var endValue = 0.0f;
-    var currentY = Mathf.Ceil(transform.rotation.eulerAngles.y);
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name">Vector3</span> <span class="token function">SnappedVector</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> endValue <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> currentY <span class="token operator">=</span> Mathf<span class="token punctuation">.</span><span class="token function">Ceil</span><span class="token punctuation">(</span>transform<span class="token punctuation">.</span>rotation<span class="token punctuation">.</span>eulerAngles<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
-    endValue = currentY switch
-    &#123;
-        &gt;= 0 and &lt;= 90 =&gt; 45.0f,
-        &gt;= 91 and &lt;= 180 =&gt; 135.0f,
-        &gt;= 181 and &lt;= 270 =&gt; 225.0f,
-        _ =&gt; 315.0f
-    &#125;;
+    endValue <span class="token operator">=</span> currentY <span class="token keyword">switch</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">and</span> <span class="token operator">&lt;=</span> <span class="token number">90</span> <span class="token operator">=></span> <span class="token number">45.0f</span><span class="token punctuation">,</span>
+        <span class="token operator">>=</span> <span class="token number">91</span> <span class="token keyword">and</span> <span class="token operator">&lt;=</span> <span class="token number">180</span> <span class="token operator">=></span> <span class="token number">135.0f</span><span class="token punctuation">,</span>
+        <span class="token operator">>=</span> <span class="token number">181</span> <span class="token keyword">and</span> <span class="token operator">&lt;=</span> <span class="token number">270</span> <span class="token operator">=></span> <span class="token number">225.0f</span><span class="token punctuation">,</span>
+        _ <span class="token operator">=></span> <span class="token number">315.0f</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
-    return new Vector3(_xRotation, endValue, 0f);
-&#125;
-</code></pre>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vector3</span><span class="token punctuation">(</span>_xRotation<span class="token punctuation">,</span> endValue<span class="token punctuation">,</span> <span class="token number">0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用DoTween将为相机吸附做一个流畅的动画(DoTween调用OnComplete方法记得O是大写，isBusy用于判断是否完成动画了)</p>
-<pre class="highlight"><code class="csharp">private void SnapRotation()
-&#123;
-    transform.DORotate(SnappedVector(), 0.5f)
-        .SetEase(Ease.OutBounce)
-        .OnComplete(() =&gt; &#123; isBusy = false; &#125;);
-&#125;
-</code></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SnapRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    transform<span class="token punctuation">.</span><span class="token function">DORotate</span><span class="token punctuation">(</span><span class="token function">SnappedVector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">SetEase</span><span class="token punctuation">(</span>Ease<span class="token punctuation">.</span>OutBounce<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">OnComplete</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> isBusy <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后再在OnRotate方法中，当右键释放时执行这两个方法</p>
-<pre class="highlight"><code class="csharp">public void OnRotate(InputAction.CallbackContext context)
-&#123;
-    _isRotating = context.started || context.performed;
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnRotate</span><span class="token punctuation">(</span><span class="token class-name">InputAction<span class="token punctuation">.</span>CallbackContext</span> context<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    _isRotating <span class="token operator">=</span> context<span class="token punctuation">.</span>started <span class="token operator">||</span> context<span class="token punctuation">.</span>performed<span class="token punctuation">;</span>
 
-    if (context.canceled)
-    &#123;
-        isBusy = true;
-        SnapRotation();
-    &#125;
-&#125;
-</code></pre>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>context<span class="token punctuation">.</span>canceled<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        isBusy <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">SnapRotation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>到这里右键点击旋转相机，松开右键相机吸附的效果就完成了</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
@@ -3826,30 +3816,45 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script>
-
-  volantis.css("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/night-owl.min.css");
-
-
-  volantis.js("https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js").then(()=>{
-    volantis.requestAnimationFrame(hljs.highlightAll)
-  })
-  volantis.pjax.push(()=>{
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  },"highlightjs")
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
 
 
-  function pjax_highlightjs_copyCode(){
-    if (!(document.querySelector(".highlight .code pre") ||
-      document.querySelector(".article pre code"))) {
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-lucario.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+
+<script>
+
+  function pjax_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
       return;
     }
-    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
   }
-  volantis.requestAnimationFrame(pjax_highlightjs_copyCode)
-  volantis.pjax.push(pjax_highlightjs_copyCode)
+  volantis.requestAnimationFrame(pjax_prismjs_copyCode)
+  volantis.pjax.push(pjax_prismjs_copyCode)
 
 </script>
 
@@ -3863,7 +3868,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic7.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/inside1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/inside2.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic2.png","/img/inside1.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
