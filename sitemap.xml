@@ -236,13 +236,6 @@
 
   
   <url>
-    <loc>https://yzs020220.github.io/tags/C/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yzs020220.github.io/tags/Hexo/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -278,6 +271,13 @@
   </url>
   
   <url>
+    <loc>https://yzs020220.github.io/tags/C/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yzs020220.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -286,6 +286,20 @@
   
   <url>
     <loc>https://yzs020220.github.io/tags/Unity-Shader/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/Unity/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yzs020220.github.io/tags/PlasticSCM/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -314,20 +328,6 @@
   
   <url>
     <loc>https://yzs020220.github.io/tags/%E6%8A%98%E8%85%BE/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/Unity/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yzs020220.github.io/tags/PlasticSCM/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -369,14 +369,14 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/%E6%9D%82/</loc>
+    <loc>https://yzs020220.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://yzs020220.github.io/tags/%E6%9D%82/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -392,14 +392,14 @@
 
   
   <url>
-    <loc>https://yzs020220.github.io/categories/C/</loc>
+    <loc>https://yzs020220.github.io/categories/Hexo/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/categories/Hexo/</loc>
+    <loc>https://yzs020220.github.io/categories/C/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -420,14 +420,14 @@
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/categories/%E6%9D%82/</loc>
+    <loc>https://yzs020220.github.io/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yzs020220.github.io/categories/%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://yzs020220.github.io/categories/%E6%9D%82/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
