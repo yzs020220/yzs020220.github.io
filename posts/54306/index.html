@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2023-03-13T06:44:36.000Z">
-<meta property="article:modified_time" content="2023-03-14T07:12:26.400Z">
+<meta property="article:modified_time" content="2023-03-23T02:36:10.194Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="Unity">
 <meta name="twitter:card" content="summary">
@@ -1880,7 +1880,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1679410625655),
+    lastupdate: new Date(1679545357890),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2870,6 +2870,7 @@ playerInput<span class="token punctuation">.</span><span class="token function">
   <span class="token comment">// 监听右键是否按下</span>
   _isRotating <span class="token operator">=</span> context<span class="token punctuation">.</span>started <span class="token operator">||</span> context<span class="token punctuation">.</span>performed<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>记得在PlayerInput中调用方法</p>
 <h3 id="相机旋转实现"><a class="markdownIt-Anchor" href="#相机旋转实现"></a> 相机旋转实现</h3>
 <p>我们获得了鼠标相对上一个位置的偏移量，以及目前是否在按下右键，那么就像当于我们或去了是否在按下右键拖拽鼠标的信息，接下来只需要实现相机的旋转(这里实现的是相机的横向旋转，即只改变相机旋转的y值)即可。</p>
 <pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">float</span></span> _xRotation<span class="token punctuation">;</span>
@@ -2950,10 +2951,10 @@ playerInput<span class="token punctuation">.</span><span class="token function">
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-14T15:12:26+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-23T10:36:10+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年3月14日</p>
+    <p>更新于：2023年3月23日</p>
   </a>
 </div>
 
@@ -3875,7 +3876,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic8.jpg","/img/inside1.jpg","/img/inside2.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic4.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight2.jpg"];
+  let imgs = ["/img/HollowKnight3.jpg","/img/Wallpaper/pic5.png","/img/HollowKnight2.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic6.jpg","/img/inside1.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic1.jpg","/img/inside2.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic7.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4102,7 +4103,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Unity/","name":"Unity"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/54306/","name":"初识Unity Input System"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"初识Unity Input System","description":"在一次想做鼠标拖拽摄像机旋转的时候，了解到Unity Input System，就大致介绍一下Unity Input System的基本使用以及如何实现一个简单的右键拖拽控制相机旋转","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/54306/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/54306/","wordCount":91,"datePublished":"2023-03-13T06:44:36.000Z","dateModified":"2023-03-14T07:12:26.400Z","articleSection":"Unity","keywords":"Unity","image":{"@type":"ImageObject","url":"/img/InputSystem/headimg.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"折腾、学习shader中"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Unity/","name":"Unity"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/54306/","name":"初识Unity Input System"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, Card主题, 编程, Developer, shader","description":"折腾、学习shader中","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"折腾、学习shader中"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"初识Unity Input System","description":"在一次想做鼠标拖拽摄像机旋转的时候，了解到Unity Input System，就大致介绍一下Unity Input System的基本使用以及如何实现一个简单的右键拖拽控制相机旋转","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/54306/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/54306/","wordCount":91,"datePublished":"2023-03-13T06:44:36.000Z","dateModified":"2023-03-23T02:36:10.194Z","articleSection":"Unity","keywords":"Unity","image":{"@type":"ImageObject","url":"/img/InputSystem/headimg.png","width":1024,"height":768}}]</script>
 
 
 
