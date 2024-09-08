@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-08-07T15:07:38.000Z">
-<meta property="article:modified_time" content="2024-09-08T14:21:23.781Z">
+<meta property="article:modified_time" content="2024-09-08T14:32:11.426Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="Unity">
 <meta property="article:tag" content="C#">
@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1725805685692),
+    lastupdate: new Date(1725805941604),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2690,7 +2690,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class='headimg-div'>
       <a class='headimg-a'>
-        <img itemprop="image" class='headimg' src='/img/ECS/ECS.gif'/>
+        <img itemprop="image" class='headimg' src='/img/ecs/ECS.gif'/>
       </a>
     </div>
   
@@ -2803,7 +2803,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>行为：System会找到有对应Component的Entity并执行行为</p>
 </li>
 </ul>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ECS/ECS.png" class="lazyload" data-srcset="/img/ECS/ECS.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ECS.png" class="lazyload" data-srcset="/img/ecs/ECS.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
 <h2 id="ecs实践详细步骤"><a class="markdownIt-Anchor" href="#ecs实践详细步骤"></a> ECS实践详细步骤</h2>
 <p>以下内容参考官方示例</p>
 <p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Packages/com.unity.entities@1.2/manual/ecs-workflow-example.html">Spawner example | Entities | 1.2.4 (unity3d.com)</a></p>
@@ -2841,7 +2841,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="spawner生成entity"><a class="markdownIt-Anchor" href="#spawner生成entity"></a> Spawner生成Entity</h4>
 <p>创建类<code>SpawnerAuthoring</code>，其会调用Bake方法新建一个实体并将<code>CubeSpawnerComponent</code>挂载到实体上，这时候运行场景会看到场景中出现了Spawner，<em>记得给Spawner设置Prefab，此处使用方块</em></p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ECS/ECS1.png" class="lazyload" data-srcset="/img/ECS/ECS1.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:300px;"/></div></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ECS1.png" class="lazyload" data-srcset="/img/ecs/ECS1.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:300px;"/></div></div>
 <pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Unity<span class="token punctuation">.</span>Entities</span><span class="token punctuation">;</span>
 <span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
 
@@ -2956,7 +2956,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     ecb<span class="token punctuation">.</span><span class="token function">Playback</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>EntityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后示例如下</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ECS/ECS.gif" class="lazyload" data-srcset="/img/ECS/ECS.gif" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ECS.gif" class="lazyload" data-srcset="/img/ecs/ECS.gif" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
   
@@ -2981,7 +2981,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-09-08T22:21:23+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-09-08T22:32:11+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年9月8日</p>
@@ -3902,7 +3902,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic4.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic1.jpg"];
+  let imgs = ["/img/inside1.jpg","/img/Wallpaper/pic5.png","/img/inside2.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic2.png","/img/HollowKnight2.jpg","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic3.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4129,7 +4129,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/47772/","name":"Unity ECS实践"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践","description":"稍微聊聊ECS架构并简单罗一下Unity中的ECS的几个步骤","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/47772/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/47772/","wordCount":30,"datePublished":"2024-08-07T15:07:38.000Z","dateModified":"2024-09-08T14:21:23.781Z","articleSection":"框架","keywords":"Unity,C#,框架","image":{"@type":"ImageObject","url":"/img/ECS/ECS.gif","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/47772/","name":"Unity ECS实践"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践","description":"稍微聊聊ECS架构并简单罗一下Unity中的ECS的几个步骤","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/47772/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/47772/","wordCount":30,"datePublished":"2024-08-07T15:07:38.000Z","dateModified":"2024-09-08T14:32:11.426Z","articleSection":"框架","keywords":"Unity,C#,框架","image":{"@type":"ImageObject","url":"/img/ecs/ECS.gif","width":1024,"height":768}}]</script>
 
 
 
