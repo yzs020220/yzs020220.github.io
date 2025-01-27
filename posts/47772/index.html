@@ -38,7 +38,7 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>Unity ECS实践 - 没有秃头基因的燊的博客</title>
-  <meta name="keywords" content="Unity,C#,框架,图形学, 编程, Developer, Unity">
+  <meta name="keywords" content="C#,Unity,框架,图形学, 编程, Developer, Unity">
   <meta desc name="description" content="稍微聊聊ECS架构并简单罗一下Unity中的ECS的几个步骤 - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
   
 <meta property="og:type" content="article">
@@ -49,10 +49,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-08-07T15:07:38.000Z">
-<meta property="article:modified_time" content="2024-09-08T14:32:11.426Z">
+<meta property="article:modified_time" content="2025-01-27T06:01:44.530Z">
 <meta property="article:author" content="没有秃头基因的燊">
-<meta property="article:tag" content="Unity">
 <meta property="article:tag" content="C#">
+<meta property="article:tag" content="Unity">
 <meta property="article:tag" content="框架">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -1882,7 +1882,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1737949090204),
+    lastupdate: new Date(1737957726105),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2742,8 +2742,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
             
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Unity/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Unity</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/C/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>C#</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%A1%86%E6%9E%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>框架</p></a></div>
-  <span hidden itemprop="keywords">Unity C# 框架</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/C/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>C#</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Unity/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Unity</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%A1%86%E6%9E%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>框架</p></a></div>
+  <span hidden itemprop="keywords">C# Unity 框架</span>
 
 
           
@@ -2941,9 +2941,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <span class="token punctuation">&#125;</span>
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="随机运动"><a class="markdownIt-Anchor" href="#随机运动"></a> 随机运动</h4>
 <p>在原先的<code>SpawnerSystem</code>中，生成<code>entity</code>后挂载<code>Component</code>并设置参数（随机数的写法会有点奇怪是要传入一个index）</p>
 <pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>spawner<span class="token punctuation">.</span>ValueRO<span class="token punctuation">.</span>nextSpawnTime <span class="token operator">&lt;</span> SystemAPI<span class="token punctuation">.</span>Time<span class="token punctuation">.</span>ElapsedTime<span class="token punctuation">)</span>
@@ -2951,12 +2949,27 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <span class="token class-name">Entity</span> cubeEntity <span class="token operator">=</span> ecb<span class="token punctuation">.</span><span class="token function">Instantiate</span><span class="token punctuation">(</span>spawner<span class="token punctuation">.</span>ValueRO<span class="token punctuation">.</span>prefab<span class="token punctuation">)</span><span class="token punctuation">;</span>
     ecb<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>cubeEntity<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CubeComponent</span> <span class="token punctuation">&#123;</span> moveDir <span class="token operator">=</span> 
         Random<span class="token punctuation">.</span><span class="token function">CreateFromIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">uint</span><span class="token punctuation">)</span><span class="token punctuation">(</span>SystemAPI<span class="token punctuation">.</span>Time<span class="token punctuation">.</span>ElapsedTime <span class="token operator">/</span> SystemAPI<span class="token punctuation">.</span>Time<span class="token punctuation">.</span>DeltaTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">NextFloat3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> moveSpd <span class="token operator">=</span> <span class="token number">10f</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            
+
     spawner<span class="token punctuation">.</span>ValueRW<span class="token punctuation">.</span>nextSpawnTime <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>SystemAPI<span class="token punctuation">.</span>Time<span class="token punctuation">.</span>ElapsedTime <span class="token operator">+</span> spawner<span class="token punctuation">.</span>ValueRO<span class="token punctuation">.</span>spawnRate<span class="token punctuation">;</span>
     ecb<span class="token punctuation">.</span><span class="token function">Playback</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>EntityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后示例如下</p>
 <div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ECS.gif" class="lazyload" data-srcset="/img/ecs/ECS.gif" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
+<h2 id="报错说明与解决方法"><a class="markdownIt-Anchor" href="#报错说明与解决方法"></a> 报错说明与解决方法</h2>
+<ul>
+<li>
+<p>Null Reference Exception</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">NullReferenceException: Object reference not set to an instance of an object
+Unity.Entities.Editor.HierarchyWindow.OnCleanup () (at ./Library/PackageCache/com.unity.entities@1.0.16/Unity.Entities.Editor/Hierarchy/HierarchyWindow.cs:113)
+Unity.Entities.Editor.DOTSEditorWindow.OnDisable () (at ./Library/PackageCache/com.unity.entities@1.0.16/Unity.Entities.Editor/Common/DOTSEditorWindow.cs:201)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>关闭编辑器中的Hirerachy窗口即可</p>
+<p><a target="_blank" rel="noopener" href="https://discussions.unity.com/t/dots-random-memory-leaks-and-null-reference-exception-error/946208">原帖地址</a></p>
+</li>
+<li>
+<p>Entities.Graphics should be used with URP Forward+.</p>
+<p>找到项目使用渲染品质对应的URP-quality-Renderer，将<code>Rendering Path</code>改为<code>forward+</code></p>
+</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
   
@@ -2981,10 +2994,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-09-08T22:32:11+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-01-27T14:01:44+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年9月8日</p>
+    <p>更新于：2025年1月27日</p>
   </a>
 </div>
 
@@ -3077,7 +3090,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E7%AE%80%E4%BB%8B"><span class="toc-text"> ECS简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E4%B8%8E%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%E7%B1%BB%E6%AF%94"><span class="toc-text"> ECS与建造者模式类比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs-%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text"> ECS 优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E5%AE%9E%E8%B7%B5%E7%A4%BA%E6%84%8F"><span class="toc-text"> ECS实践示意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E5%AE%9E%E8%B7%B5%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-text"> ECS实践详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-text"> 插件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E5%AD%90%E5%9C%BA%E6%99%AF"><span class="toc-text"> 新建子场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-text"> 构造</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#component%E6%95%B0%E6%8D%AE"><span class="toc-text"> Component数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spawner%E7%94%9F%E6%88%90entity"><span class="toc-text"> Spawner生成Entity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system%E6%8C%82%E8%BD%BDcomponent%E5%B9%B6%E6%89%A7%E8%A1%8C%E8%A1%8C%E4%B8%BA"><span class="toc-text"> System挂载Component并执行行为</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA"><span class="toc-text"> 行为</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#componet"><span class="toc-text"> Componet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system"><span class="toc-text"> System</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%90%E5%8A%A8"><span class="toc-text"> 随机运动</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E7%AE%80%E4%BB%8B"><span class="toc-text"> ECS简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E4%B8%8E%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%E7%B1%BB%E6%AF%94"><span class="toc-text"> ECS与建造者模式类比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs-%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text"> ECS 优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E5%AE%9E%E8%B7%B5%E7%A4%BA%E6%84%8F"><span class="toc-text"> ECS实践示意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ecs%E5%AE%9E%E8%B7%B5%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-text"> ECS实践详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-text"> 插件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E5%AD%90%E5%9C%BA%E6%99%AF"><span class="toc-text"> 新建子场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-text"> 构造</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#component%E6%95%B0%E6%8D%AE"><span class="toc-text"> Component数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spawner%E7%94%9F%E6%88%90entity"><span class="toc-text"> Spawner生成Entity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system%E6%8C%82%E8%BD%BDcomponent%E5%B9%B6%E6%89%A7%E8%A1%8C%E8%A1%8C%E4%B8%BA"><span class="toc-text"> System挂载Component并执行行为</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA"><span class="toc-text"> 行为</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#componet"><span class="toc-text"> Componet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system"><span class="toc-text"> System</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%90%E5%8A%A8"><span class="toc-text"> 随机运动</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E8%AF%B4%E6%98%8E%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text"> 报错说明与解决方法</span></a></li></ol>
     </div>
   </section>
 
@@ -3910,7 +3923,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic7.jpg","/img/inside1.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic5.png","/img/HollowKnight2.jpg"];
+  let imgs = ["/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic2.png","/img/HollowKnight3.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic5.png","/img/inside2.jpg","/img/inside1.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight2.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4137,7 +4150,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/47772/","name":"Unity ECS实践"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践","description":"稍微聊聊ECS架构并简单罗一下Unity中的ECS的几个步骤","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/47772/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/47772/","wordCount":30,"datePublished":"2024-08-07T15:07:38.000Z","dateModified":"2024-09-08T14:32:11.426Z","articleSection":"框架","keywords":"Unity,C#,框架","image":{"@type":"ImageObject","url":"/img/ecs/ECS.gif","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/47772/","name":"Unity ECS实践"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践","description":"稍微聊聊ECS架构并简单罗一下Unity中的ECS的几个步骤","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/47772/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/47772/","wordCount":30,"datePublished":"2024-08-07T15:07:38.000Z","dateModified":"2025-01-27T06:01:44.530Z","articleSection":"框架","keywords":"C#,Unity,框架","image":{"@type":"ImageObject","url":"/img/ecs/ECS.gif","width":1024,"height":768}}]</script>
 
 
 
