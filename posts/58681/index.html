@@ -37,19 +37,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>git clone失败解决-科学上网 - 没有秃头基因的燊的博客</title>
+  <title>git clone失败解决-端口相关设置 - 没有秃头基因的燊的博客</title>
   <meta name="keywords" content="自用,杂,图形学, 编程, Developer, Unity">
-  <meta desc name="description" content="设置下端口就好 - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
+  <meta desc name="description" content="有关报错的解决方法，对应http与ssh两种 - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="git clone失败解决-科学上网">
+<meta property="og:title" content="git clone失败解决-端口相关设置">
 <meta property="og:url" content="https://yzs020220.github.io/posts/58681/index.html">
 <meta property="og:site_name" content="没有秃头基因的燊的博客">
-<meta property="og:description" content="设置下端口就好">
+<meta property="og:description" content="有关报错的解决方法，对应http与ssh两种">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-02-02T13:56:45.000Z">
-<meta property="article:modified_time" content="2025-02-02T14:00:45.579Z">
+<meta property="article:modified_time" content="2025-02-02T15:51:02.597Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="自用">
 <meta property="article:tag" content="杂">
@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1738504854447),
+    lastupdate: new Date(1738511471961),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2696,7 +2696,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        git clone失败解决-科学上网
+        git clone失败解决-端口相关设置
       </h1>
       <div class='new-meta-box'>
         
@@ -2774,11 +2774,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>设置下端口就好<span id="more"></span></p>
-<h2 id="设置端口"><a class="markdownIt-Anchor" href="#设置端口"></a> 设置端口</h2>
-<p>cmd或git bash打开复制代码并回车，一般<code>clash</code>的端口是<code>7890</code>，其他端口请自行设置</p>
+    <p>有关报错的解决方法，对应http与ssh两种<span id="more"></span></p>
+<h2 id="设置代理端口"><a class="markdownIt-Anchor" href="#设置代理端口"></a> 设置代理端口</h2>
+<p>有时速度太慢或连接不上，cmd或git bash打开复制代码并回车，一般<code>clash</code>的端口是<code>7890</code>，其他端口请自行设置（替换以下<code>7890</code>）</p>
 <pre class="line-numbers language-git" data-language="git"><code class="language-git">git config --global http.proxy http://127.0.0.1:7890
 git config --global https.proxy http://127.0.0.1:7890<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="关于ssh的端口问题"><a class="markdownIt-Anchor" href="#关于ssh的端口问题"></a> 关于ssh的端口问题</h2>
+<p>有时会出现这个报错<code>ssh: connect to host github.com port 22: Connection timed out</code></p>
+<p>解决方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/kuilaurence/article/details/135909974">原帖地址</a>，将端口转为443</p>
+<p>打开git bash，输入</p>
+<pre class="line-numbers language-git" data-language="git"><code class="language-git">ssh -T -p 443 git@ssh.github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>确保你看到<code>Hi xxxx! You've successfully authenticated, but GitHub does not provide shell access.</code></p>
+<p>说明端口可用了，接下来编辑<code>config</code></p>
+<pre class="line-numbers language-git" data-language="git"><code class="language-git">vim ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>按<code>i</code>输入以下内容，<code>esc</code>后<code>:wq</code>保存并退出（复习了属于是）</p>
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">Host github.com
+    Hostname ssh.github.com
+    Port 443<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>再次用以下指令尝试，成功后即可</p>
+<pre class="line-numbers language-git" data-language="git"><code class="language-git">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
   
@@ -2803,7 +2817,7 @@ git config --global https.proxy http://127.0.0.1:7890<span aria-hidden="true" cl
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-02-02T22:00:45+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-02-02T23:51:02+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2025年2月2日</p>
@@ -2887,7 +2901,7 @@ git config --global https.proxy http://127.0.0.1:7890<span aria-hidden="true" cl
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%AB%AF%E5%8F%A3"><span class="toc-text"> 设置端口</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E7%AB%AF%E5%8F%A3"><span class="toc-text"> 设置代理端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Essh%E7%9A%84%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98"><span class="toc-text"> 关于ssh的端口问题</span></a></li></ol>
     </div>
   </section>
 
@@ -3720,7 +3734,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/Wallpaper/pic6.jpg","/img/inside1.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic5.png","/img/HollowKnight3.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic2.png","/img/inside2.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic1.jpg"];
+  let imgs = ["/img/Wallpaper/pic8.jpg","/img/inside2.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic3.jpg","/img/inside1.jpg","/img/Wallpaper/pic5.png","/img/HollowKnight3.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -3947,7 +3961,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/杂/","name":"杂"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/58681/","name":"git clone失败解决-科学上网"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"git clone失败解决-科学上网","description":"设置下端口就好","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/58681/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/58681/","wordCount":7,"datePublished":"2025-02-02T13:56:45.000Z","dateModified":"2025-02-02T14:00:45.579Z","articleSection":"杂","keywords":"自用,杂","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/杂/","name":"杂"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/58681/","name":"git clone失败解决-端口相关设置"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"git clone失败解决-端口相关设置","description":"有关报错的解决方法，对应http与ssh两种","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/58681/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/58681/","wordCount":22,"datePublished":"2025-02-02T13:56:45.000Z","dateModified":"2025-02-02T15:51:02.597Z","articleSection":"杂","keywords":"自用,杂","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
