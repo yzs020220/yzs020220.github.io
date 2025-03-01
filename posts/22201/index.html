@@ -37,19 +37,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Unity ECS实践(二)-如何找到你需要访问的组件 - 没有秃头基因的燊的博客</title>
+  <title>Unity ECS实践(二)-如何找到你需要访问的组件与碰撞实现 - 没有秃头基因的燊的博客</title>
   <meta name="keywords" content="C#,Unity,框架,ECS,RigidBody,图形学, 编程, Developer, Unity">
   <meta desc name="description" content="如果实践过官方教程，或者看过上一篇Unity ECS实践，那么其实基本就可以开始编程了，但是这部分很容易找不到重点（主要是中文教程不够多），那其实只要讲完这里基本也就能明白如何着手下一步了 - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity ECS实践(二)-如何找到你需要访问的组件">
+<meta property="og:title" content="Unity ECS实践(二)-如何找到你需要访问的组件与碰撞实现">
 <meta property="og:url" content="https://yzs020220.github.io/posts/22201/index.html">
 <meta property="og:site_name" content="没有秃头基因的燊的博客">
 <meta property="og:description" content="如果实践过官方教程，或者看过上一篇Unity ECS实践，那么其实基本就可以开始编程了，但是这部分很容易找不到重点（主要是中文教程不够多），那其实只要讲完这里基本也就能明白如何着手下一步了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-01-27T09:46:51.000Z">
-<meta property="article:modified_time" content="2025-01-28T04:45:50.955Z">
+<meta property="article:modified_time" content="2025-03-01T15:10:12.708Z">
 <meta property="article:author" content="没有秃头基因的燊">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Unity">
@@ -1884,7 +1884,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1738641411715),
+    lastupdate: new Date(1740841824342),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2699,7 +2699,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        Unity ECS实践(二)-如何找到你需要访问的组件
+        Unity ECS实践(二)-如何找到你需要访问的组件与碰撞实现
       </h1>
       <div class='new-meta-box'>
         
@@ -2788,8 +2788,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>在<code>Cube</code>的Prefab上挂载<code>RigidBody</code>，这里还挂载了<code>Collider</code>，主要讲下这两者在ECS下的使用方法。</p>
 <h3 id="找到component"><a class="markdownIt-Anchor" href="#找到component"></a> 找到Component</h3>
 <p>运行游戏后，在对应的Entity中可以找到被转换的Component（注意Inspector右上角选择Running）</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs4.png" class="lazyload" data-srcset="/img/ecs/ecs4.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs5.png" class="lazyload" data-srcset="/img/ecs/ecs5.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs4.png" class="lazyload" data-srcset="/img/ecs/ecs4.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:300px;"/></div></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs5.png" class="lazyload" data-srcset="/img/ecs/ecs5.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:450px;"/></div></div>
 <p>比如我们可以看到<code>RigidBody</code>运行后被拆分成了<code>Physics Damping</code>，<code>Physics Mass</code>, <code>Physics Velocity</code>这三个<code>Component</code>，例如我想知道此时停止运动的方块的数量，可以把<code>CubeSystem</code>的代码改写下（场景中放了个地板来接住生成的方块）</p>
 <pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Unity<span class="token punctuation">.</span>Collections</span><span class="token punctuation">;</span>
 <span class="token keyword">using</span> <span class="token namespace">Unity<span class="token punctuation">.</span>Entities</span><span class="token punctuation">;</span>
@@ -2871,8 +2871,62 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行效果如图所示，对应可以在控制台看到信息</p>
 <div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs6.gif" class="lazyload" data-srcset="/img/ecs/ecs6.gif" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs6.png" class="lazyload" data-srcset="/img/ecs/ecs6.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
-<p>后面再讲下关于碰撞检测那些吧，留个坑</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload" src="/img/ecs/ecs7.png" class="lazyload" data-srcset="/img/ecs/ecs7.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image" style="width:600px;"/></div></div>
+<h2 id="碰撞"><a class="markdownIt-Anchor" href="#碰撞"></a> 碰撞</h2>
+<p>其实实现还是挺简单的，就不专门开多一章了。</p>
+<h3 id="collisionlayer设置"><a class="markdownIt-Anchor" href="#collisionlayer设置"></a> CollisionLayer设置</h3>
+<p>跟传统碰撞一样，设置碰撞体的层级（场景右上角Layer），做个枚举类方便访问。我在subScene中设置了plane的层级</p>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">CollisionLayer</span>
+<span class="token punctuation">&#123;</span>
+    Default <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Cube <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">6</span><span class="token punctuation">,</span>
+    Plane <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">7</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="设置碰撞检测"><a class="markdownIt-Anchor" href="#设置碰撞检测"></a> 设置碰撞检测</h3>
+<p>然后设置我们的entity的碰撞检测，需要将物体投射到PhysicsWorld来判断是否产生了碰撞。这里写在了<code>CubeSystem</code>的<code>OnUpdate</code>方法下</p>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 获取单例</span>
+<span class="token class-name"><span class="token keyword">var</span></span> physicsWorld <span class="token operator">=</span> SystemAPI<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">GetSingleton</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>PhysicsWorldSingleton<span class="token punctuation">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> e <span class="token keyword">in</span> entities<span class="token punctuation">)</span> 
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// ... 之前的代码</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> hits <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">NativeList<span class="token punctuation">&lt;</span>ColliderCastHit<span class="token punctuation">></span></span><span class="token punctuation">(</span>Allocator<span class="token punctuation">.</span>Temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    physicsWorld<span class="token punctuation">.</span><span class="token function">BoxCastAll</span><span class="token punctuation">(</span>localTransform<span class="token punctuation">.</span>Position<span class="token punctuation">,</span> localTransform<span class="token punctuation">.</span>Rotation<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">float3</span><span class="token punctuation">(</span><span class="token number">0.5f</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">float3</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0f</span><span class="token punctuation">,</span> <span class="token keyword">ref</span> hits<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CollisionFilter</span> 
+    <span class="token punctuation">&#123;</span> 
+        BelongsTo <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">uint</span><span class="token punctuation">)</span>CollisionLayer<span class="token punctuation">.</span>Cube<span class="token punctuation">,</span>       <span class="token comment">// 设置属于的层级</span>
+        CollidesWith <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">uint</span><span class="token punctuation">)</span>CollisionLayer<span class="token punctuation">.</span>Plane    <span class="token comment">// 设置碰撞的层级</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cube<span class="token punctuation">.</span>hasHit <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span> hits<span class="token punctuation">.</span>Length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        cube<span class="token punctuation">.</span>hasHit <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        entityManager<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">SetComponentData</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>CubeComponent<span class="token punctuation">></span></span></span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> cube<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Debug<span class="token punctuation">.</span><span class="token function">Log</span><span class="token punctuation">(</span><span class="token string">"Cube collided"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>首先是获取到<code>PhysicsWorld</code>的单例，然后这里的话是用了<code>BoxCastAll</code>的一个方法，官方文档位置如下<a target="_blank" rel="noopener" href="https://docs.unity3d.com/Packages/com.unity.physics@1.0/api/Unity.Physics.PhysicsWorld.html?q=Physicsworld#Unity_Physics_PhysicsWorld_BoxCastAll_Unity_Mathematics_float3_Unity_Mathematics_quaternion_Unity_Mathematics_float3_Unity_Mathematics_float3_System_Single_Unity_Collections_NativeList_Unity_Physics_ColliderCastHit___Unity_Physics_CollisionFilter_Unity_Physics_QueryInteraction_">Struct PhysicsWorld | Unity Physics | 1.0.16</a></p>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">BoxCastAll</span><span class="token punctuation">(</span><span class="token class-name">float3</span> center<span class="token punctuation">,</span> <span class="token class-name">quaternion</span> orientation<span class="token punctuation">,</span> <span class="token class-name">float3</span> halfExtents<span class="token punctuation">,</span> 
+<span class="token class-name">float3</span> direction<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">float</span></span> maxDistance<span class="token punctuation">,</span> <span class="token keyword">ref</span> <span class="token class-name">NativeList<span class="token punctuation">&lt;</span>ColliderCastHit<span class="token punctuation">></span></span> outHits<span class="token punctuation">,</span> 
+<span class="token class-name">CollisionFilter</span> filter<span class="token punctuation">,</span> <span class="token class-name">QueryInteraction</span> queryInteraction <span class="token operator">=</span> QueryInteraction<span class="token punctuation">.</span>Default<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>halfExtents: 各个维度长度（长宽高）的一半</p>
+</li>
+<li>
+<p>direction: 投射的方向</p>
+</li>
+<li>
+<p>maxDistance: 投射的最远距离，从最远投射的立方体到本体的这个长方体都会触发碰撞</p>
+</li>
+<li>
+<p>filter: 层级过滤</p>
+</li>
+<li>
+<p>queryInteraction: 可以设置是否忽略Trigger，默认不忽略</p>
+</li>
+</ul>
+<p>hits代表了这段时间内n次检测到的碰撞的信息，此处我这里设置的hasHit是用来判断是否第一次碰撞的，相当于变相实现了之前的CollisionEnter这样的情况。</p>
+<p>再去场景里实验一下，就可以看到方块接触地板时打印信息了（就不放图了）</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
   </div>
   
@@ -2897,10 +2951,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-01-28T12:45:50+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-03-01T23:10:12+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年1月28日</p>
+    <p>更新于：2025年3月1日</p>
   </a>
 </div>
 
@@ -2989,7 +3043,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-text"> 找到你需要的组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%8C%85%E4%BD%93"><span class="toc-text"> 导入包体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E8%84%9A%E6%9C%AC"><span class="toc-text"> 挂载脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%B0component"><span class="toc-text"> 找到Component</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-text"> 找到你需要的组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%8C%85%E4%BD%93"><span class="toc-text"> 导入包体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E8%84%9A%E6%9C%AC"><span class="toc-text"> 挂载脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%B0component"><span class="toc-text"> 找到Component</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%B0%E6%92%9E"><span class="toc-text"> 碰撞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#collisionlayer%E8%AE%BE%E7%BD%AE"><span class="toc-text"> CollisionLayer设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B"><span class="toc-text"> 设置碰撞检测</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -3822,7 +3876,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside1.jpg","/img/Wallpaper/pic8.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic5.png","/img/Wallpaper/pic2.png","/img/inside2.jpg","/img/Wallpaper/pic4.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic6.jpg"];
+  let imgs = ["/img/Wallpaper/pic3.jpg","/img/HollowKnight2.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic2.png","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic8.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic7.jpg","/img/inside1.jpg","/img/inside2.jpg","/img/Wallpaper/pic5.png"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4049,7 +4103,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/22201/","name":"Unity ECS实践(二)-如何找到你需要访问的组件"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践(二)-如何找到你需要访问的组件","description":"如果实践过官方教程，或者看过上一篇Unity ECS实践，那么其实基本就可以开始编程了，但是这部分很容易找不到重点（主要是中文教程不够多），那其实只要讲完这里基本也就能明白如何着手下一步了","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/22201/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/22201/","wordCount":94,"datePublished":"2025-01-27T09:46:51.000Z","dateModified":"2025-01-28T04:45:50.955Z","articleSection":"框架","keywords":"C#,Unity,框架,ECS,RigidBody","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/框架/","name":"框架"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/22201/","name":"Unity ECS实践(二)-如何找到你需要访问的组件与碰撞实现"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unity ECS实践(二)-如何找到你需要访问的组件与碰撞实现","description":"如果实践过官方教程，或者看过上一篇Unity ECS实践，那么其实基本就可以开始编程了，但是这部分很容易找不到重点（主要是中文教程不够多），那其实只要讲完这里基本也就能明白如何着手下一步了","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/22201/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/22201/","wordCount":94,"datePublished":"2025-01-27T09:46:51.000Z","dateModified":"2025-03-01T15:10:12.708Z","articleSection":"框架","keywords":"C#,Unity,框架,ECS,RigidBody","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
