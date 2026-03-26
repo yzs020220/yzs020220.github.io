@@ -38,7 +38,7 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>2.5D视错觉小游戏 - 没有秃头基因的燊的博客</title>
-  <meta name="keywords" content="Unity,C#,图形学, 编程, Developer, Unity">
+  <meta name="keywords" content="C#,Unity,图形学, 编程, Developer, Unity">
   <meta desc name="description" content="分享一下我做的一个Unity小demo，玩法大致类似于纪念碑谷(Monument Valley) - 没有秃头基因的燊 - 没有秃头基因的燊的博客">
   
 <meta property="og:type" content="article">
@@ -49,10 +49,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2023-03-23T01:07:49.000Z">
-<meta property="article:modified_time" content="2023-03-23T04:21:30.000Z">
+<meta property="article:modified_time" content="2026-03-26T16:12:25.748Z">
 <meta property="article:author" content="没有秃头基因的燊">
-<meta property="article:tag" content="Unity">
 <meta property="article:tag" content="C#">
+<meta property="article:tag" content="Unity">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773583392866),
+    lastupdate: new Date(1774542491426),
     sidebar: {
       for_page: ["blogger","announce","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -2741,8 +2741,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
             
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Unity/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Unity</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/C/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>C#</p></a></div>
-  <span hidden itemprop="keywords">Unity C#</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/C/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>C#</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Unity/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Unity</p></a></div>
+  <span hidden itemprop="keywords">C# Unity</span>
 
 
           
@@ -2980,7 +2980,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="相机旋转"><a class="markdownIt-Anchor" href="#相机旋转"></a> 相机旋转</h3>
 <p>功能在我的另一篇博客都有实现，只要在相机旋转完成时再次调用路径更新方法即可</p>
-<a href="/posts/54306/" title="初识Unity Input System">初识Unity Input System</a>
+<p><a href="/posts/54306/">初识Unity Input System</a></p>
 <h3 id="视觉效果完善"><a class="markdownIt-Anchor" href="#视觉效果完善"></a> 视觉效果完善</h3>
 <p>上面的功能做完之后，你会发现角色从原来方块走到世界座标系中不是相互连接的方块会出现方块与角色相互遮挡，这是因为当角色的路径穿过方块，就会出现所谓的穿模，然而这里我们要实现的就是路径穿过方块所以其实没有办法避免，使用视错觉显得方块是相邻的本身就是一个谎言，那就得有另一个谎言来把这个谎圆起来。</p>
 <p>简单来说，其实我们只要让角色显示在脚下的方块前就可以了，因为角色总是踩在方块上面，所以我们只要让角色都显示出来就好了，最简单的实现方法就是使用两个相机，新建一个新的相机，RenderType选择Overlay，Culling Mask选择Player(角色要设置为这个Layer)，然后在原相机上的stack中添加该相机，并在原相机的Culling Mask中取消选择Player，这样我们就是实现了这个视觉效果</p>
@@ -3011,10 +3011,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-23T12:21:30+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-27T00:12:25+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年3月23日</p>
+    <p>更新于：2026年3月27日</p>
   </a>
 </div>
 
@@ -3936,7 +3936,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["/img/inside2.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic1.jpg","/img/Wallpaper/pic6.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic8.jpg","/img/Wallpaper/pic5.png","/img/inside1.jpg","/img/Wallpaper/pic2.png","/img/HollowKnight2.jpg","/img/Wallpaper/pic4.jpg"];
+  let imgs = ["/img/Wallpaper/pic2.png","/img/Wallpaper/pic3.jpg","/img/Wallpaper/pic1.jpg","/img/HollowKnight3.jpg","/img/Wallpaper/pic4.jpg","/img/Wallpaper/pic6.jpg","/img/Wallpaper/pic5.png","/img/inside2.jpg","/img/Wallpaper/pic7.jpg","/img/Wallpaper/pic8.jpg","/img/HollowKnight2.jpg","/img/inside1.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4163,7 +4163,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Unity/","name":"Unity"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/36275/","name":"2.5D视错觉小游戏"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"2.5D视错觉小游戏","description":"分享一下我做的一个Unity小demo，玩法大致类似于纪念碑谷(Monument Valley)","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/36275/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/36275/","wordCount":48,"datePublished":"2023-03-23T01:07:49.000Z","dateModified":"2023-03-23T04:21:30.000Z","articleSection":"Unity","keywords":"Unity,C#","image":{"@type":"ImageObject","url":"/img/2-5D_demo/headimg.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","sameAs":["https://github.com/volantis-x"],"description":"喜爱折腾的人"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://yzs020220.github.io/","name":"没有秃头基因的燊的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://yzs020220.github.io/categories/Unity/","name":"Unity"}},{"@type":"ListItem","position":3,"item":{"@id":"https://yzs020220.github.io/posts/36275/","name":"2.5D视错觉小游戏"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","keywords":"图形学, 编程, Developer, Unity","description":"喜爱折腾的人","author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/","description":"喜爱折腾的人"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","url":"https://yzs020220.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://yzs020220.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"2.5D视错觉小游戏","description":"分享一下我做的一个Unity小demo，玩法大致类似于纪念碑谷(Monument Valley)","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://yzs020220.github.io/posts/36275/"},"author":{"@type":"Person","name":"没有秃头基因的燊","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://yzs020220.github.io/"},"publisher":{"@type":"Organization","name":"没有秃头基因的燊的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://yzs020220.github.io/posts/36275/","wordCount":48,"datePublished":"2023-03-23T01:07:49.000Z","dateModified":"2026-03-26T16:12:25.748Z","articleSection":"Unity","keywords":"C#,Unity","image":{"@type":"ImageObject","url":"/img/2-5D_demo/headimg.png","width":1024,"height":768}}]</script>
 
 
 
